@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="Impressum | DataTalks.Club Academy" description="Impressum von DataTalks.Club." path="/impressum/" lang="de">
+  <Header tagline={false} />
+  <main id="main" class="legal wrap">
+    <h1>Impressum</h1>
+    <h2>Angaben gemäß § 5 DDG</h2>
+    <p>
+      <address>
+        DataTalks.Club<br />
+        Schönensche Str. 13<br />
+        10439 Berlin<br />
+        Deutschland
+      </address>
+    </p>
+    <p><strong>Vertreten durch:</strong> Alexey Grigorev</p>
+    <p><strong>Kontakt:</strong> <a href="mailto:alexey@datatalks.club">alexey@datatalks.club</a></p>
+    <p><strong>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:</strong> DE343190995</p>
+    <p><strong>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:</strong> Alexey Grigorev, Anschrift wie oben</p>
+    <h2>Verbraucherstreitbeilegung</h2>
+    <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+  </main>
+  <Footer />
+</Base>

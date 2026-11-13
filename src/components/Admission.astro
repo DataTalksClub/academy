@@ -1,0 +1,98 @@
+---
+import SectionHead from './SectionHead.astro';
+import SeatGrid from './SeatGrid.astro';
+import { admission } from '../data/shared';
+---
+
+<section id="admission" class="section" aria-labelledby="admission-title">
+  <div class="wrap admission">
+    <div class="admission__why">
+      <SectionHead num="07" label="HOW YOU GET IN" title={admission.heading} titleId="admission-title" />
+      <div class="admission__seats paper-seats"><SeatGrid size="sm" /></div>
+      <p class="admission__body">{admission.body}</p>
+    </div>
+    <ol class="steps">
+      {
+        admission.steps.map((s, i) => (
+          <li>
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <p>
+              <strong>{s.title}</strong> {s.text}
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .admission {
+    display: grid;
+    gap: 56px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .paper-seats {
+    --seat: var(--green-700);
+    margin: 28px 0 24px;
+    max-width: 150px;
+  }
+  .admission__body {
+    margin: 0;
+    max-width: 30rem;
+  }
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    align-self: start;
+  }
+  .steps li {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 8px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .num {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    color: var(--green-700);
+    letter-spacing: -0.02em;
+  }
+  .steps p {
+    margin: 0;
+    padding-top: 3px;
+    max-width: 32rem;
+  }
+  .steps strong {
+    display: block;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 1.3125rem;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+  @media (min-width: 768px) {
+    .admission {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: 24px;
+    }
+    .admission__why {
+      grid-column: 1 / span 5;
+    }
+    .steps {
+      grid-column: 7 / span 6;
+    }
+    .steps li {
+      grid-template-columns: 72px minmax(0, 1fr);
+    }
+    .num {
+      font-size: 2rem;
+    }
+  }
+</style>

@@ -1,0 +1,73 @@
+---
+import { facts } from '../data/shared';
+---
+
+<section id="facts" class="facts" aria-label="Key facts">
+  <div class="wrap">
+    <dl class="facts__grid">
+      {
+        facts.map((f) => (
+          <div class="fact">
+            <dt class="mono">{f.label}</dt>
+            <dd>{f.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .facts {
+    border-bottom: 1px solid var(--line);
+  }
+  .facts__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+  }
+  .fact {
+    padding: 22px 16px 22px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .fact:nth-child(2n) {
+    padding-left: 16px;
+    border-left: 1px solid var(--line);
+  }
+  .fact:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+  dt {
+    color: var(--ink-2);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  dd {
+    margin: 0;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  @media (min-width: 768px) {
+    .facts__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .fact,
+    .fact:nth-child(2n) {
+      padding: 28px 24px 28px 0;
+      border-left: 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .fact:nth-child(3n + 2),
+    .fact:nth-child(3n) {
+      padding-left: 24px;
+      border-left: 1px solid var(--line);
+    }
+    .fact:nth-last-child(-n + 3) {
+      border-bottom: 0;
+    }
+    dd {
+      font-size: 1.125rem;
+    }
+  }
+</style>

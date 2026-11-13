@@ -1,0 +1,156 @@
+---
+import SectionHead from './SectionHead.astro';
+import { syllabus } from '../data/shared';
+import type { Track } from '../data/tracks';
+interface Props { track: Track }
+const { track } = Astro.props;
+let n = 0;
+---
+
+<section id="syllabus" class="section" aria-labelledby="syllabus-title">
+  <div class="wrap split">
+    <SectionHead num="05" label="WHAT WE COVER" title={syllabus.heading} titleId="syllabus-title">
+      <p class="intro">{syllabus.intro}</p>
+    </SectionHead>
+    <div class="split__body">
+      {
+        track.syllabus.map((g, gi) => (
+          <details class="group" open={gi === 0}>
+            <summary>
+              <span class="mono group__weeks">{g.weeks}</span>
+              <span class="group__title">{g.title}</span>
+              <span class="plus" aria-hidden="true" />
+            </summary>
+            <ol class="modules">
+              {g.modules.map((m) => {
+                n += 1;
+                return (
+                  <li>
+                    <span class="mono mod__n">{String(n).padStart(2, '0')}</span>
+                    <span class="mod__body">
+                      <span class="mod__title">{m.title}</span>
+                      <span class="mod__produce">
+                        <span class="mono">You produce:</span> {m.produce}
+                      </span>
+                    </span>
+                  </li>
+                );
+              })}
+            </ol>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro {
+    margin: 20px 0 0;
+    color: var(--ink-2);
+    max-width: 26rem;
+  }
+  .group {
+    border-top: 1px solid var(--line);
+  }
+  .group:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  summary {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr) 20px;
+    align-items: baseline;
+    gap: 8px 16px;
+    padding: 20px 0;
+    min-height: 44px;
+    cursor: pointer;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  .group__weeks {
+    color: var(--green-700);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .group__title {
+    font-family: var(--display);
+    font-size: 1.375rem;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+  }
+  .plus {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    align-self: center;
+    justify-self: end;
+  }
+  .plus::before,
+  .plus::after {
+    content: '';
+    position: absolute;
+    background: var(--ink);
+    left: 0;
+    top: 6.25px;
+    width: 14px;
+    height: 1.5px;
+  }
+  .plus::after {
+    transform: rotate(90deg);
+    transition: transform 160ms;
+  }
+  details[open] .plus::after {
+    transform: rotate(0);
+  }
+  .modules {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 12px;
+  }
+  .modules li {
+    display: grid;
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: 4px 16px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line);
+  }
+  .mod__n {
+    color: var(--ink-2);
+    padding-top: 3px;
+  }
+  .mod__title {
+    display: block;
+    font-weight: 500;
+  }
+  .mod__produce {
+    display: block;
+    margin-top: 4px;
+    color: var(--ink-2);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+  .mod__produce .mono {
+    color: var(--green-700);
+    text-transform: uppercase;
+    margin-right: 4px;
+    font-size: 0.6875rem;
+  }
+  @media (max-width: 559px) {
+    summary {
+      grid-template-columns: minmax(0, 1fr) 20px;
+    }
+    .group__weeks {
+      grid-column: 1;
+    }
+    .group__title {
+      grid-column: 1;
+    }
+    .plus {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
+  }
+</style>
