@@ -21,14 +21,14 @@ import { url } from '../lib';
           {
             tracks.map((t) => (
               <article class="panel" data-track-panel={t.slug}>
-                <p class="mono label">TRACK {t.label}</p>
+                <p class="mono label">Candidate track</p>
                 <h2>{t.name}</h2>
                 <p class="panel__headline">{t.headline}</p>
                 <ol class="panel__list">
-                  {[0, 2, 4].map((i) => (
+                  {[0, 2, 4].map((o, n) => (
                     <li>
-                      <span class="mono">{String(i + 1).padStart(2, '0')}</span>
-                      <span>{t.outcomes[i]}</span>
+                      <span class="mono">{String(n + 1).padStart(2, '0')}</span>
+                      <span>{t.outcomes[o]}</span>
                     </li>
                   ))}
                 </ol>
