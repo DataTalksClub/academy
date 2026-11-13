@@ -4,7 +4,7 @@ import photo from '../assets/alexey.jpg';
 import SeatGrid from './SeatGrid.astro';
 import SignupForm from './SignupForm.astro';
 import { emph } from '../lib';
-import { heroInstructorLine, seatCaption } from '../data/shared';
+import { heroHonesty, heroInstructorLine, seatCaption } from '../data/shared';
 
 interface Props {
   eyebrow: string;
@@ -24,13 +24,14 @@ const { eyebrow, headline, emphasis, lead, form = true } = Astro.props;
       <p class="lead">{lead}</p>
     </div>
 
-    <div class="hero__seats">
-      <div class="hero__seats-lg"><SeatGrid size="lg" numbered /></div>
-      <div class="hero__seats-sm"><SeatGrid size="sm" /></div>
-      <p class="mono caption">{seatCaption}</p>
-    </div>
-
-    {form && <div class="hero__form"><SignupForm id="hero" /></div>}
+    {
+      form && (
+        <div class="hero__form">
+          <SignupForm id="hero" />
+          <p class="mono hero__honesty">{heroHonesty}</p>
+        </div>
+      )
+    }
 
     {
       form && (
@@ -40,6 +41,12 @@ const { eyebrow, headline, emphasis, lead, form = true } = Astro.props;
         </p>
       )
     }
+
+    <div class="hero__seats">
+      <div class="hero__seats-lg"><SeatGrid size="lg" numbered /></div>
+      <div class="hero__seats-sm"><SeatGrid size="sm" /></div>
+      <p class="mono caption">{seatCaption}</p>
+    </div>
   </div>
 </section>
 
@@ -84,6 +91,13 @@ const { eyebrow, headline, emphasis, lead, form = true } = Astro.props;
     color: var(--mint);
     font-size: 0.6875rem;
     text-transform: none;
+  }
+  .hero__honesty {
+    margin: 12px 0 0;
+    color: var(--mint);
+    font-size: 0.75rem;
+    line-height: 1.6;
+    max-width: 34rem;
   }
   .hero__instructor {
     display: flex;

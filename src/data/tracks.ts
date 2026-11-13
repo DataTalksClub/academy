@@ -52,7 +52,7 @@ export const tracks: Track[] = [
     ],
     project:
       'You ship a working web application for a real user task. People try it, you improve it from their feedback, and you show how you tested and released each change.',
-    fitFirst: 'You write code today (Python, JavaScript, TypeScript or similar) and have used AI tools only a little.',
+    fitFirst: 'You write code today (Python, JavaScript, TypeScript or similar) and want to move from ad-hoc prompting to disciplined engineering with agents.',
     prerequisites:
       "You can write basic code in Python, JavaScript, TypeScript or a similar language, use the command line and Git, read and explain a short function, and run a simple test. You don't need any experience with coding agents.",
     syllabus: [

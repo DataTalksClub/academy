@@ -125,6 +125,9 @@ for (const el of signups) {
   const errInvalid = $$('[data-error="invalid"]', form)[0];
   const errFailed = $$('[data-error="failed"]', form)[0];
   const label = button.textContent || '';
+  // The button is disabled in the HTML so that a submit without this script
+  // cannot put the email into the URL.
+  button.disabled = false;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -169,14 +172,24 @@ for (const el of signups) {
     }
   });
 
-  // Optional answers: each chip sends a second POST, failures are silent.
+  // Optional answers: each chip sends a second POST. A chip is shown as chosen
+  // only once the answer is stored, and a failed request says so.
+  const errAnswers = $$('[data-error="answers"]', el)[0];
   for (const chip of $$<HTMLButtonElement>('.chip', el)) {
-    chip.addEventListener('click', () => {
+    chip.addEventListener('click', async () => {
       const group = chip.dataset.group!;
-      for (const other of $$<HTMLButtonElement>(`.chip[data-group="${group}"]`)) {
-        other.setAttribute('aria-pressed', String(other === chip));
+      const peers = $$<HTMLButtonElement>(`.chip[data-group="${group}"]`);
+      for (const e of $$('[data-error="answers"]')) e.hidden = true;
+      for (const p of peers) p.disabled = true;
+      const ok = await post('/signup', { email: joinedEmail, track, answers: { [group]: chip.dataset.value } });
+      for (const p of peers) p.disabled = false;
+      if (ok) {
+        for (const p of peers) {
+          p.setAttribute('aria-pressed', String(p.dataset.value === chip.dataset.value));
+        }
+      } else if (errAnswers) {
+        errAnswers.hidden = false;
       }
-      void post('/signup', { email: joinedEmail, track, answers: { [group]: chip.dataset.value } });
     });
   }
 }

@@ -8,7 +8,7 @@ const { id } = Astro.props;
 ---
 
 <div class="signup card" id={`signup-${id}`} data-signup={id}>
-  <form class="signup__form" method="post" action="#" novalidate>
+  <form class="signup__form" novalidate>
     <label class="mono field-label" for={`email-${id}`}>{form.label}</label>
     <div class="signup__row">
       <input
@@ -22,7 +22,7 @@ const { id } = Astro.props;
         placeholder="you@example.com"
         aria-describedby={`email-err-${id} email-micro-${id}`}
       />
-      <button class="btn btn--green" type="submit">{form.button}</button>
+      <button class="btn btn--green" type="submit" disabled data-needs-js>{form.button}</button>
     </div>
     <div class="hp" aria-hidden="true">
       <input type="text" name="website" tabindex="-1" autocomplete="off" />
@@ -33,6 +33,11 @@ const { id } = Astro.props;
     <p class="field-error mono" data-error="failed" role="alert" hidden>
       That didn't go through. Please try again, or email <a href="mailto:alexey@datatalks.club">alexey@datatalks.club</a> and I'll add you.
     </p>
+    <noscript>
+      <p class="field-error mono">
+        Signing up needs JavaScript. Or email <a href="mailto:alexey@datatalks.club">alexey@datatalks.club</a> and I'll add you.
+      </p>
+    </noscript>
     <p class="micro mono" id={`email-micro-${id}`}>
       {form.micro} <a href={url('/privacy/')}>Privacy</a>
     </p>
@@ -65,6 +70,10 @@ const { id } = Astro.props;
         <button type="button" class="chip" data-group="funding" data-value="unsure" aria-pressed="false">Not sure yet</button>
       </span>
     </div>
+
+    <p class="field-error mono" data-error="answers" role="alert" hidden>
+      That answer didn't save. Please tap it again.
+    </p>
 
     <p class="success__survey">Want more say in what is taught? The five-minute survey decides the curriculum.</p>
     <a class="btn btn--outline" href="#" target="_blank" rel="noopener" data-survey>Take the survey</a>

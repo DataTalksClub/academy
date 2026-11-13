@@ -16,6 +16,9 @@ export const facts: { label: string; value: string }[] = [
 export const heroInstructorLine =
   'Taught live by Alexey Grigorev, founder of DataTalks.Club and creator of the free Zoomcamps (85,000+ GitHub stars across the course repositories).';
 
+export const heroHonesty =
+  'Planned program. One of two tracks runs first, and your signup counts as a vote for this one.';
+
 export const instructor = {
   heading: 'One instructor. Every session, every project review.',
   paragraphs: [
@@ -64,7 +67,7 @@ export const funding = {
 
 export const admission = {
   heading: 'Why 15 seats',
-  body: "I teach this cohort myself and review every project. I can do that properly for about 15 people, not for more. In Berlin the room doesn't fit more either. If more people qualify than there are seats, there is a waitlist and a later cohort. I won't add seats.",
+  body: "I teach this cohort myself and review every project. I can do that properly for about 15 people, not for more. If more people qualify than there are seats, there is a waitlist and a later cohort. I won't add seats.",
   stepsHeading: 'How you get in',
   steps: [
     { title: 'Join the shortlist.', text: 'Leave your email on this page. It takes ten seconds and commits you to nothing.' },
