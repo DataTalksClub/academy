@@ -1,0 +1,88 @@
+---
+import { Image } from 'astro:assets';
+import photo from '../assets/alexey.jpg';
+import SectionHead from './SectionHead.astro';
+import { instructor } from '../data/shared';
+---
+
+<section id="instructor" class="section section--band" aria-labelledby="instructor-title">
+  <div class="wrap instructor">
+    <div class="instructor__photo">
+      <Image src={photo} alt="Alexey Grigorev" width={280} height={280} densities={[1, 2]} class="portrait" />
+    </div>
+    <div class="instructor__text">
+      <SectionHead num="03" label="WHO TEACHES" title={instructor.heading} titleId="instructor-title" />
+      {instructor.paragraphs.map((p) => <p class="prose">{p}</p>)}
+      <ul class="proof">
+        {
+          instructor.proof.map((p) => (
+            <li>
+              <a class="mono" href={p.href} target="_blank" rel="noopener">{p.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .instructor {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .instructor__photo {
+    max-width: 200px;
+  }
+  .instructor__photo :global(.portrait) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: grayscale(1) contrast(1.05);
+  }
+  .prose {
+    margin: 0 0 1em;
+    max-width: 38rem;
+  }
+  .instructor__text :global(h2) {
+    max-width: 22ch;
+  }
+  .proof {
+    list-style: none;
+    margin: 32px 0 0;
+    padding: 20px 0 0;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 28px;
+  }
+  .proof a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--green-700);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(44, 87, 62, 0.4);
+  }
+  .proof a:hover {
+    text-decoration-color: currentColor;
+  }
+  @media (min-width: 768px) {
+    .instructor {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: 24px;
+    }
+    .instructor__photo {
+      grid-column: 1 / span 4;
+      max-width: 280px;
+    }
+    .instructor__text {
+      grid-column: 5 / span 8;
+    }
+  }
+</style>

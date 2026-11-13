@@ -1,0 +1,140 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import FactsStrip from '../components/FactsStrip.astro';
+import Footer from '../components/Footer.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { tracks } from '../data/tracks';
+import { home, funding } from '../data/shared';
+import { url } from '../lib';
+---
+
+<Base title={home.metaTitle} description={home.metaDescription} path="/" ogImage="/og/home.png">
+  <Header tagline />
+  <main id="main">
+    <Hero eyebrow={home.eyebrow} headline={home.headline} emphasis={home.emphasis} lead={home.lead} form={false} />
+
+    <section id="tracks" class="section tracks-section" aria-label="Choose a track">
+      <div class="wrap">
+        <div class="tracks" data-tracks>
+          {
+            tracks.map((t) => (
+              <article class="panel" data-track-panel={t.slug}>
+                <p class="mono label">TRACK {t.label}</p>
+                <h2>{t.name}</h2>
+                <p class="panel__headline">{t.headline}</p>
+                <ol class="panel__list">
+                  {[0, 2, 4].map((i) => (
+                    <li>
+                      <span class="mono">{String(i + 1).padStart(2, '0')}</span>
+                      <span>{t.outcomes[i]}</span>
+                    </li>
+                  ))}
+                </ol>
+                <a class="btn btn--green" href={url(`/${t.slug}/`)}>
+                  {home.cta}
+                </a>
+              </article>
+            ))
+          }
+        </div>
+        <script is:inline>
+          (function () {
+            var c = document.querySelector('[data-tracks]');
+            if (c && Math.random() < 0.5) c.appendChild(c.firstElementChild);
+          })();
+        </script>
+      </div>
+    </section>
+
+    <FactsStrip />
+
+    <section id="funding" class="section" aria-labelledby="funding-title">
+      <div class="wrap split">
+        <SectionHead label="FUNDING" title={funding.heading} titleId="funding-title" />
+        <div class="split__body prose">
+          <p>{funding.paragraphs[0]}</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .tracks-section {
+    border-top: 0;
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  .tracks {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .panel {
+    display: flex;
+    flex-direction: column;
+    padding: 28px 24px 28px;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--green-700);
+    border-radius: 2px;
+    background: #faf7f0;
+  }
+  .panel h2 {
+    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+  }
+  .panel .label {
+    margin-bottom: 16px;
+  }
+  .panel__headline {
+    margin: 16px 0 28px;
+    font-family: var(--display);
+    font-size: 1.25rem;
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+    color: var(--ink-2);
+  }
+  .panel__list {
+    list-style: none;
+    margin: 0 0 32px;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .panel__list li {
+    display: grid;
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: 8px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .panel__list .mono {
+    color: var(--green-700);
+    padding-top: 3px;
+    font-weight: 500;
+  }
+  .panel .btn {
+    margin-top: auto;
+    white-space: normal;
+    text-align: center;
+    padding-block: 12px;
+  }
+  @media (min-width: 768px) {
+    .tracks-section {
+      padding-block: 96px;
+    }
+    .tracks {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 32px;
+    }
+    .panel__headline {
+      min-height: 2.7em;
+    }
+    .panel {
+      padding: 36px 36px 36px;
+    }
+  }
+</style>

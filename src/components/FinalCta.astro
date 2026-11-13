@@ -1,0 +1,63 @@
+---
+import SignupForm from './SignupForm.astro';
+import SeatGrid from './SeatGrid.astro';
+import { join, seatCaption } from '../data/shared';
+---
+
+<section id="join" class="join dark" aria-labelledby="join-title">
+  <div class="wrap join__grid">
+    <div class="join__copy">
+      <p class="mono label">09 / JOIN THE SHORTLIST</p>
+      <h2 id="join-title">{join.heading}</h2>
+      <p class="join__text">{join.text}</p>
+      <div class="join__seats"><SeatGrid size="sm" /></div>
+      <p class="mono caption">{seatCaption}</p>
+    </div>
+    <div class="join__form"><SignupForm id="join" /></div>
+  </div>
+</section>
+
+<style>
+  .join {
+    background: var(--green-900);
+    color: var(--paper);
+    padding-block: 64px;
+    border-top: 1px solid var(--line-dark);
+  }
+  .join__grid {
+    display: grid;
+    gap: 36px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .join__text {
+    margin: 20px 0 0;
+    max-width: 30rem;
+    color: rgba(245, 241, 232, 0.86);
+  }
+  .join__seats {
+    margin-top: 32px;
+    max-width: 120px;
+  }
+  .caption {
+    margin: 12px 0 0;
+    color: var(--mint);
+    font-size: 0.6875rem;
+  }
+  @media (min-width: 768px) {
+    .join {
+      padding-block: 112px;
+    }
+    .join__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: 24px;
+      align-items: start;
+    }
+    .join__copy {
+      grid-column: 1 / span 6;
+    }
+    .join__form {
+      grid-column: 8 / span 5;
+      margin-top: 6px;
+    }
+  }
+</style>

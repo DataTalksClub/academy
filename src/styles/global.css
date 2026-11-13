@@ -1,0 +1,262 @@
+:root {
+  --paper: #f5f1e8;
+  --paper-2: #ece6d8;
+  --ink: #17201b;
+  --ink-2: #4a564f;
+  --green-900: #16301f;
+  --green-700: #2c573e;
+  --mint: #8ed8ad;
+  --mint-100: #dcefe3;
+  --line: rgba(23, 32, 27, 0.16);
+  --line-dark: rgba(245, 241, 232, 0.22);
+  --error: #b3261e;
+
+  --display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+  --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --gutter: 20px;
+  --focus: var(--green-700);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 16px;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 768px) {
+  body {
+    font-size: 1.125rem;
+  }
+  :root {
+    --gutter: 32px;
+  }
+}
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 68px;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+.dark {
+  --focus: var(--mint);
+}
+
+.skip {
+  position: absolute;
+  left: 12px;
+  top: -100px;
+  z-index: 100;
+  padding: 12px 16px;
+  background: var(--mint);
+  color: var(--green-900);
+  font-weight: 600;
+  border-radius: 2px;
+}
+.skip:focus {
+  top: 12px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: calc(1120px + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Type */
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  font-optical-sizing: auto;
+  margin: 0;
+}
+h1 {
+  font-size: clamp(2.4rem, 6.2vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+h2 {
+  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+  line-height: 1.1;
+}
+em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.mono {
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+}
+.label {
+  margin: 0 0 20px;
+  color: var(--green-700);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.dark .label {
+  color: var(--mint);
+}
+
+/* Sections */
+.section {
+  padding-block: 64px;
+  border-top: 1px solid var(--line);
+}
+.section--band {
+  background: var(--paper-2);
+  border-top: 0;
+}
+.section--band + .section {
+  border-top: 0;
+}
+@media (min-width: 768px) {
+  .section {
+    padding-block: 112px;
+  }
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+}
+@media (min-width: 768px) {
+  .split {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+  }
+  .split > .section-head {
+    grid-column: 1 / span 5;
+    padding-right: 32px;
+    align-self: start;
+    position: sticky;
+    top: 32px;
+  }
+  .split > .split__body {
+    grid-column: 6 / span 7;
+  }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 24px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font: 600 1rem/1.2 var(--sans);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 140ms, color 140ms, border-color 140ms;
+}
+.btn--green {
+  background: var(--green-700);
+  color: var(--paper);
+}
+.btn--green:hover {
+  background: var(--green-900);
+}
+.btn--green:disabled {
+  opacity: 0.75;
+  cursor: progress;
+}
+.btn--mint {
+  background: var(--mint);
+  color: var(--green-900);
+}
+.btn--mint:hover {
+  background: var(--mint-100);
+}
+.btn--outline {
+  border-color: var(--green-700);
+  color: var(--green-700);
+  background: transparent;
+}
+.btn--outline:hover {
+  background: var(--mint-100);
+}
+
+/* Prose links */
+.prose a,
+.legal a {
+  color: var(--green-700);
+  text-underline-offset: 3px;
+}
+
+/* Legal pages */
+.legal {
+  padding-block: 56px 96px;
+}
+.legal h1 {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  margin-bottom: 40px;
+}
+.legal h2 {
+  font-size: 1.5rem;
+  margin: 40px 0 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.legal p,
+.legal ol {
+  max-width: 40rem;
+}
+.legal address {
+  font-style: normal;
+}
+
+.section-head h2 {
+  margin-bottom: 28px;
+}
+.split > .section-head h2:last-child {
+  margin-bottom: 0;
+}
+
+h1,
+h2,
+.eyebrow {
+  text-wrap: balance;
+}
+p,
+li {
+  text-wrap: pretty;
+}

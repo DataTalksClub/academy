@@ -1,0 +1,86 @@
+---
+import SectionHead from './SectionHead.astro';
+import { faq, faqHeading } from '../data/shared';
+import { rich } from '../lib';
+import type { Track } from '../data/tracks';
+interface Props { track: Track }
+const { track } = Astro.props;
+---
+
+<section id="faq" class="section" aria-labelledby="faq-title">
+  <div class="wrap split">
+    <SectionHead num="08" label="QUESTIONS" title={faqHeading} titleId="faq-title" />
+    <div class="split__body faq">
+      {
+        faq.map((f) => (
+          <details>
+            <summary>
+              <span>{f.q}</span>
+              <span class="plus" aria-hidden="true" />
+            </summary>
+            <p set:html={rich(f.a ?? track.prerequisites)} />
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    border-bottom: 1px solid var(--line);
+  }
+  details {
+    border-top: 1px solid var(--line);
+  }
+  summary {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    min-height: 44px;
+    padding: 18px 0;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1.0625rem;
+    line-height: 1.4;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  .plus {
+    position: relative;
+    flex: none;
+    width: 14px;
+    height: 14px;
+  }
+  .plus::before,
+  .plus::after {
+    content: '';
+    position: absolute;
+    background: var(--ink);
+    left: 0;
+    top: 6.25px;
+    width: 14px;
+    height: 1.5px;
+  }
+  .plus::after {
+    transform: rotate(90deg);
+    transition: transform 160ms;
+  }
+  details[open] .plus::after {
+    transform: rotate(0);
+  }
+  details p {
+    margin: 0;
+    padding: 0 40px 24px 0;
+    max-width: 38rem;
+    color: var(--ink);
+  }
+  details p :global(a) {
+    color: var(--green-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import FactsStrip from '../components/FactsStrip.astro';
+import Outcomes from '../components/Outcomes.astro';
+import Project from '../components/Project.astro';
+import Instructor from '../components/Instructor.astro';
+import Fit from '../components/Fit.astro';
+import Syllabus from '../components/Syllabus.astro';
+import Funding from '../components/Funding.astro';
+import Admission from '../components/Admission.astro';
+import Faq from '../components/Faq.astro';
+import FinalCta from '../components/FinalCta.astro';
+import Footer from '../components/Footer.astro';
+import StickyCta from '../components/StickyCta.astro';
+import { tracks, otherTrack, type Track } from '../data/tracks';
+
+export function getStaticPaths() {
+  return tracks.map((track) => ({ params: { track: track.slug }, props: { track } }));
+}
+const { track } = Astro.props as { track: Track };
+---
+
+<Base
+  title={track.metaTitle}
+  description={track.metaDescription}
+  path={`/${track.slug}/`}
+  ogImage={`/og/${track.slug}.png`}
+  track={track.slug}
+>
+  <Header cta />
+  <main id="main">
+    <Hero
+      eyebrow="FIRST COHORT · APRIL 2027 · BERLIN OR LIVE ONLINE"
+      headline={track.headline}
+      emphasis={track.emphasis}
+      lead={track.lead}
+    />
+    <FactsStrip />
+    <Outcomes track={track} />
+    <Project track={track} />
+    <Instructor />
+    <Fit track={track} />
+    <Syllabus track={track} />
+    <Funding />
+    <Admission />
+    <Faq track={track} />
+    <FinalCta />
+  </main>
+  <Footer other={otherTrack(track.slug)} />
+  <StickyCta />
+</Base>

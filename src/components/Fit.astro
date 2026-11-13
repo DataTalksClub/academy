@@ -1,0 +1,72 @@
+---
+import SectionHead from './SectionHead.astro';
+import { fit } from '../data/shared';
+import { rich } from '../lib';
+import type { Track } from '../data/tracks';
+interface Props { track: Track }
+const { track } = Astro.props;
+const forItems = [track.fitFirst, ...fit.forShared];
+---
+
+<section id="fit" class="section" aria-labelledby="fit-title">
+  <div class="wrap">
+    <SectionHead num="04" label="WHO IT IS FOR" />
+    <div class="fit">
+      <div class="fit__col">
+        <h2 id="fit-title" class="h-col">{fit.forTitle}</h2>
+        <ul class="ticks ticks--yes">
+          {forItems.map((t) => <li>{t}</li>)}
+        </ul>
+      </div>
+      <div class="fit__col">
+        <h2 class="h-col">{fit.notTitle}</h2>
+        <ul class="ticks ticks--no">
+          {fit.not.map((t) => <li set:html={rich(t)} />)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .fit {
+    display: grid;
+    gap: 48px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .h-col {
+    font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+    margin: 0 0 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .ticks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .ticks li {
+    position: relative;
+    padding: 0 0 18px 28px;
+    max-width: 34rem;
+  }
+  .ticks li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 11px;
+    height: 11px;
+    border: 1.5px solid var(--green-700);
+  }
+  .ticks--yes li::before {
+    background: var(--green-700);
+  }
+  @media (min-width: 768px) {
+    .fit {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 48px;
+      margin-top: 8px;
+    }
+  }
+</style>

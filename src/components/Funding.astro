@@ -1,0 +1,32 @@
+---
+import SectionHead from './SectionHead.astro';
+import { funding } from '../data/shared';
+---
+
+<section id="funding" class="section" aria-labelledby="funding-title">
+  <div class="wrap split">
+    <SectionHead num="06" label="FUNDING" title={funding.heading} titleId="funding-title" />
+    <div class="split__body prose">
+      {funding.paragraphs.map((p) => <p>{p}</p>)}
+      <p class="small">
+        <a href={funding.linkHref} target="_blank" rel="noopener">{funding.linkLabel}</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .prose p {
+    margin: 0 0 1.1em;
+    max-width: 38rem;
+  }
+  .small {
+    margin-top: 28px !important;
+    font-size: 0.9375rem;
+  }
+  .small a {
+    color: var(--green-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

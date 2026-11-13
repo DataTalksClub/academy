@@ -1,0 +1,30 @@
+---
+import SectionHead from './SectionHead.astro';
+import { project } from '../data/shared';
+import type { Track } from '../data/tracks';
+interface Props { track: Track }
+const { track } = Astro.props;
+---
+
+<section id="project" class="section" aria-labelledby="project-title">
+  <div class="wrap split">
+    <SectionHead num="02" label="THE FINAL PROJECT" title={project.heading} titleId="project-title" />
+    <div class="split__body">
+      <p class="project">{track.project}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .project {
+    margin: 0;
+    padding-left: 24px;
+    border-left: 4px solid var(--mint);
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+    max-width: 38rem;
+  }
+</style>
