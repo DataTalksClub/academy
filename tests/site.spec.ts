@@ -65,6 +65,22 @@ test('home page links to both landings and shows both tracks', async ({ page }) 
   for (const t of TRACKS) await expect(page.locator(`[data-track-panel=${t}] a.btn`)).toHaveAttribute('href', new RegExp(`${t}/`));
 });
 
+test('home page track click logs /click/<track> pv event with utms', async ({ page }) => {
+  const api = await mockApi(page);
+  await page.goto('?utm_source=meta&utm_medium=paid&utm_campaign=nov&utm_content=var1');
+  await page.locator('[data-track-click="agentic-engineering"]').click();
+  await expect(page).toHaveURL(/agentic-engineering\//);
+  const clickPv = api.pvs.find((r) => r.postDataJSON().page === '/click/agentic-engineering');
+  expect(clickPv).toBeTruthy();
+  expect(clickPv!.postDataJSON()).toMatchObject({
+    page: '/click/agentic-engineering',
+    utm_source: 'meta',
+    utm_medium: 'paid',
+    utm_campaign: 'nov',
+    utm_content: 'var1',
+  });
+});
+
 test('meta: canonical, og image, lang', async ({ page }) => {
   await mockApi(page);
   await page.goto(`${TRACKS[0]}/`);

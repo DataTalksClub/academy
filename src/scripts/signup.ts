@@ -59,21 +59,32 @@ async function post(path: string, body: unknown, keepalive = false): Promise<boo
   }
 }
 
-// 1. Page-view beacon (errors swallowed).
-if (API && !navigator.webdriver) {
+function sendPv(page: string) {
+  if (!API || navigator.webdriver) return;
   const u = utm();
   fetch(API + '/pv', {
     method: 'POST',
     keepalive: true,
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
-      page: pagePath(),
+      page,
       utm_source: u.utm_source,
       utm_medium: u.utm_medium,
       utm_campaign: u.utm_campaign,
       utm_content: u.utm_content,
     }),
   }).catch(() => {});
+}
+
+// 1. Page-view beacon (errors swallowed).
+sendPv(pagePath());
+
+// 1b. Home page track-click event in the PV counter, broken down by UTM.
+for (const link of $$<HTMLAnchorElement>('[data-track-click]')) {
+  link.addEventListener('click', () => {
+    const slug = link.dataset.trackClick;
+    if (slug) sendPv(`/click/${slug}`);
+  });
 }
 
 // 2. UTM continuity on internal links.
