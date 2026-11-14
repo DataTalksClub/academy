@@ -1,11 +1,8 @@
 // All copy, dates, links and flags for /sessions ("Hireable with AI") live here, so
-// Marketer can swap them in one file. Source of the copy: bots-management
-// context/research/hireable-with-ai-final-copy-2026-11.md @c443d62, with the overrides of
-// intake 43f5b079 (t48u survey fields win, source stays layoff_proof, Zoom per session from t53u).
+// Marketer can swap them in one file. Session titles and descriptions come verbatim from
+// bots-management context/courses/academy/copy-bank/sessions.md (approved 14 November 2026).
 //
-// Rules: plain copy, no dashes as punctuation. Anything still marked [PLACEHOLDER] in the
-// source file (Field Guide figure, GitHub star count, AZAV wording, Alexey's reason,
-// session 2 demo, photo, recording turnaround) is left out here and renders nothing.
+// Rules: plain copy, no dashes as punctuation.
 //
 // The reminder and recording emails are sent by the signup Lambda (aws-infra main/academy,
 // lambda/sessions_config.json), which keeps its own copy of the dates, titles and Zoom links.
@@ -47,11 +44,11 @@ export const sessions: Session[] = [
     weekdayDate: 'Monday 23 November',
     startUtc: '20261123T160000Z',
     endUtc: '20261123T170000Z',
-    title: 'AI engineering or agentic engineering? What job postings ask for, and which path fits you',
-    heroTopic: 'What Berlin job postings ask for about AI, and which path fits you',
-    shortLabel: 'Mon 23 Nov: AI or agentic engineering, which path',
+    title: 'AI engineering vs agentic engineering',
+    heroTopic: 'AI engineering vs agentic engineering',
+    shortLabel: 'Mon 23 Nov: AI engineering vs agentic engineering',
     description:
-      "One in ten engineering job postings at tech companies now lists AI coding tools like Cursor or Claude Code. I'll walk through what those postings ask for and compare AI engineering (building products on LLMs) with agentic engineering (shipping software with coding agents) on real tasks, with Q&A at the end.",
+      "AI engineering is building apps that use LLMs, like chatbots, search over documents or agents. Agentic engineering is using tools like Claude Code or Cursor to write and ship code faster.\n\nIn the first 15 to 20 minutes I'll explain:\n\n- how they are different\n- what companies want for each\n- which one to pick if you are a backend, frontend or data person\n\nThen I'll answer your questions.",
     zoomUrl: 'https://us06web.zoom.us/j/84099607571?pwd=afNorKbnnXre2oWcsOpmrPWWKZEiHj.1',
     meetupUrl: 'https://www.meetup.com/berlin-datatalks-club/events/317427871/',
   },
@@ -62,11 +59,11 @@ export const sessions: Session[] = [
     weekdayDate: 'Monday 30 November',
     startUtc: '20261130T160000Z',
     endUtc: '20261130T170000Z',
-    title: 'Agentic engineering: shipping real software with coding agents, live',
-    heroTopic: 'Agentic engineering: shipping a feature with a coding agent, live',
-    shortLabel: 'Mon 30 Nov: Agentic engineering, live',
+    title: 'Agentic engineering: how I build software with coding agents',
+    heroTopic: 'Agentic engineering: how I build software with coding agents',
+    shortLabel: 'Mon 30 Nov: Agentic engineering',
     description:
-      "I'll take a small feature from a ticket to a merged pull request using a coding agent. I'll show the prompt, the code and tests it generates, where it breaks, and how to present this work in a job application.",
+      "Agentic engineering is using tools like Claude Code or Cursor to write most of the code, while you decide what to build and check the result.\n\nIn the first 15 to 20 minutes I'll explain:\n\n- how my work changed since I started using agents\n- what I still do myself and where agents make mistakes\n- what companies expect from developers who use them\n\nThen I'll answer your questions.",
     zoomUrl: 'https://us06web.zoom.us/j/86910927132?pwd=kBoaU0pv5ATHmXH5sEyA1k1VMqPdPJ.1',
     meetupUrl: 'https://www.meetup.com/berlin-datatalks-club/events/317427748/',
   },
@@ -77,11 +74,11 @@ export const sessions: Session[] = [
     weekdayDate: 'Monday 7 December',
     startUtc: '20261207T160000Z',
     endUtc: '20261207T170000Z',
-    title: 'AI engineering: building an LLM app that works, live',
-    heroTopic: 'AI engineering: building and testing an LLM app, live',
-    shortLabel: 'Mon 7 Dec: AI engineering, live',
+    title: 'AI engineering: how to build apps on top of LLMs',
+    heroTopic: 'AI engineering: how to build apps on top of LLMs',
+    shortLabel: 'Mon 7 Dec: AI engineering',
     description:
-      "I'll build a small LLM app with document search and tool calling, plus an evaluation script that checks if a change helped or broke answers. I'll also show the common failure modes and how to test for them.",
+      "AI engineering is building products that use LLMs, like chatbots, search over your company's documents or agents that do tasks for users.\n\nIn the first 15 to 20 minutes I'll explain:\n\n- what AI engineers build day to day\n- which skills from backend, frontend or data work you already have\n- what to learn first if you want to move into it\n\nThen I'll answer your questions.",
     zoomUrl: 'https://us06web.zoom.us/j/89929618442?pwd=xjMMnER39hbJudSCMZ9bUXbCwvwrWI.1',
     meetupUrl: 'https://www.meetup.com/berlin-datatalks-club/events/317427758/',
   },
@@ -98,15 +95,15 @@ export type Variant = 'a' | 'b' | 'c';
 export const variants: Record<Variant, { headline: string; subhead: string }> = {
   a: {
     headline: 'The AI skills Berlin companies now hire developers for',
-    subhead: 'Three free one-hour sessions on Zoom:',
+    subhead: 'Three free online sessions on Zoom, 15 to 20 minute talk plus Q&A:',
   },
   b: {
     headline: 'Becoming layoff-proof as a developer in Berlin',
-    subhead: 'Solaris and Glow25 cut jobs in Berlin this year and named AI as a reason. Three free one-hour sessions on Zoom:',
+    subhead: 'Solaris and Glow25 cut jobs in Berlin this year and named AI as a reason. Three free online sessions on Zoom, 15 to 20 minute talk plus Q&A:',
   },
   c: {
     headline: 'Show employers you can ship software with AI',
-    subhead: 'A working AI project in your GitHub gives a hiring manager something to click. Three free one-hour sessions on Zoom:',
+    subhead: 'A working AI project in your GitHub gives a hiring manager something to click. Three free online sessions on Zoom, 15 to 20 minute talk plus Q&A:',
   },
 };
 
@@ -118,29 +115,31 @@ export function variantFor(utmContent: string | null | undefined): Variant {
 export const sessionsPage = {
   metaTitle: 'Hireable with AI: free online sessions for developers in Berlin | DataTalks.Club',
   metaDescription:
-    'Three free one-hour online sessions with Alexey Grigorev for developers in Berlin who are job hunting or want to upskill. Mondays 23 November, 30 November and 7 December 2026 at 17:00 Berlin time.',
+    'Three free online sessions with Alexey Grigorev for developers in Berlin who are job hunting or want to upskill. Mondays 23 November, 30 November and 7 December 2026 at 17:00 Berlin time.',
   eyebrow: 'For developers in Berlin who are job hunting or want to upskill',
-  factLine: 'Free, online on Zoom and in English, 60 minutes each. Everyone who registers gets the recording.',
+  factLine: 'Free, online on Zoom and in English. Everyone who registers gets the recording.',
+  speakerLine:
+    'Taught by Alexey Grigorev, founder of DataTalks.Club, 15 years in software engineering and ML, teaching online since 2020.',
   button: 'Save my seat',
   underButton: 'Pick one, two or all three sessions in the form.',
 
   forHeading: 'Who these sessions are for',
-  forIntro: 'I made these sessions for developers who live in Berlin and are in one of two situations:',
+  forIntro: 'I made these sessions for developers in Berlin who already write code:',
   forList: [
-    "You're job hunting or in a notice period.",
-    'You have a job and want to learn Cursor, Claude Code or LLM APIs for your next role.',
+    "You're job hunting, laid off or in a notice period.",
+    'You have a job and want to learn Cursor, Claude Code or LLM APIs.',
   ],
   forOutro:
-    'These sessions assume you already write code, in any language. Anyone can join from anywhere, though the job market and Agentur für Arbeit parts focus on Berlin.',
+    'Any programming language works for the first two sessions, and Python helps for 7 December. Anyone can join from anywhere, though the job market and Agentur für Arbeit parts focus on Berlin.',
   forNote: "If you've never written code, these sessions will move too fast. My free [Zoomcamps](https://datatalks.club/courses.html) are a better place to start.",
 
   sessionsHeading: 'Three Mondays, 17:00 to 18:00 Berlin time',
   afterSessions:
-    "After each session I spend about ten minutes on the full-time program I'm planning for April 2027 and on how the Bildungsgutschein works. If you're not interested, you can leave before that part.",
+    "After the talk and Q&A I spend about ten minutes on the full-time program I'm planning for April 2027 and on how the Bildungsgutschein works. If you're not interested, you can leave before that part.",
 
   whoHeading: 'Who runs the sessions',
   whoText:
-    "I'm Alexey Grigorev. I run DataTalks.Club and made its free Zoomcamps on data engineering, machine learning, MLOps, LLMs and AI dev tools. I wrote the book Machine Learning Bookcamp.",
+    "I'm Alexey Grigorev. I've worked in software engineering and machine learning for 15 years and have been teaching online since 2020, when I founded DataTalks.Club. Since 2024, 12,755 students have enrolled on our course platform and 1,848 have graduated with certificates across free Zoomcamps on data engineering, machine learning, MLOps, LLMs and AI dev tools. I also wrote Machine Learning Bookcamp.",
 
   numbersHeading: 'Numbers behind session 1',
   numbers: [
@@ -160,17 +159,15 @@ export const sessionsPage = {
     },
     {
       q: "I don't live in Berlin. Can I join?",
-      a: 'Yes. The job market and Agentur für Arbeit examples are for Germany, while the coding part applies anywhere.',
+      a: 'Yes. The job market and Agentur für Arbeit examples are for Germany, while the rest applies anywhere.',
     },
     {
       q: 'Is this a sales pitch for a course?',
-      // The "applying" or "have applied" wording is still a placeholder, so the sentence about
-      // the application is left out until Alexey decides.
-      a: "About 50 minutes of each hour are the technical topic. In the last 10 minutes I cover the full-time program for 15 people I'm planning for April 2027. A Bildungsgutschein can only pay for it once certification is granted, and your Agentur für Arbeit or Jobcenter decides whether you get a voucher.",
+      a: "Each session starts with a 15 to 20 minute talk and Q&A. At the end I spend about 10 minutes on the full-time program for 15 people I'm planning for April 2027. A Bildungsgutschein can only pay for it once certification is granted, and your Agentur für Arbeit or Jobcenter decides whether you get a voucher.",
     },
     {
       q: "I've already done an AI bootcamp or a prompting course. Will this be the same?",
-      a: "No. These sessions assume you write software, so there's no ChatGPT intro. I build live and show how to test the code.",
+      a: "No. These sessions assume you write software, so there's no ChatGPT intro.",
     },
     {
       q: 'Do I need to know Python?',
@@ -234,9 +231,9 @@ export const form = {
 
 export const qrForm = {
   metaTitle: 'Get the recording and materials | DataTalks.Club',
-  metaDescription: 'Leave your email and get the recording, the slides and the code from the Hireable with AI session.',
+  metaDescription: 'Leave your email and get the recording and the slides from the Hireable with AI session.',
   heading: 'Get the recording and materials',
-  text: "Leave your email and I'll send you today's recording, the slides and the code from the session.",
+  text: "Leave your email and I'll send you today's recording and the slides from the session.",
   button: 'Send me the recording',
   success: 'Done. Please confirm your email with the link I just sent, then the recording comes to your inbox.',
 };

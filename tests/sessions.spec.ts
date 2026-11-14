@@ -38,7 +38,7 @@ test('unknown utm_content shows headline A', async ({ page }) => {
   await expect(page.locator('h1')).toHaveText(H.a);
 });
 
-test('page copy has no placeholders and no dashes as punctuation', async ({ page }) => {
+test('page copy has no placeholders, no dashes as punctuation and no live-coding promises', async ({ page }) => {
   await mockApi(page);
   await page.goto('sessions/');
   const text = await page.locator('main').innerText();
@@ -46,9 +46,14 @@ test('page copy has no placeholders and no dashes as punctuation', async ({ page
   expect(text).not.toMatch(/[—–]/);
   expect(text).not.toMatch(/ - /);
   expect(text).not.toContain('·');
+  expect(text).not.toMatch(/live coding|live demo|hands-on|merged pull request|build live|one-hour/i);
+  expect(text).toContain('AI engineering vs agentic engineering');
+  expect(text).toContain('Agentic engineering: how I build software with coding agents');
+  expect(text).toContain('AI engineering: how to build apps on top of LLMs');
   await page.goto('sessions/materials/');
   const qr = await page.locator('main').innerText();
   expect(qr).not.toMatch(/PLACEHOLDER|[—–]| - /);
+  expect(qr).not.toMatch(/live coding|live demo|hands-on|merged pull request|the code/i);
 });
 
 test('form posts survey answers as source=layoff_proof with channel UTMs, then shows calendar links', async ({ page }) => {
@@ -92,9 +97,9 @@ test('form posts survey answers as source=layoff_proof with channel UTMs, then s
   const cal = page.locator('[data-calendar-session]:visible');
   await expect(cal).toHaveCount(2);
   await expect(page.locator('[data-calendar] a[href$="hireable-with-ai.ics"]')).toBeVisible();
-  const pvPages = api.pvs.map((r) => r.postDataJSON().page);
-  expect(pvPages).toContain('/form/sessions-submit');
-  expect(pvPages).toContain('/form/sessions-success');
+  const pvPages = () => api.pvs.map((r) => r.postDataJSON().page);
+  await expect.poll(pvPages).toContain('/form/sessions-submit');
+  await expect.poll(pvPages).toContain('/form/sessions-success');
 });
 
 test('form needs at least one session and an email', async ({ page }) => {
@@ -141,7 +146,7 @@ test('QR form posts form=qr with the session from the URL', async ({ page }) => 
     utm_content: 'session2',
   });
   expect(api.signups[0].postDataJSON().sessions).toBeUndefined();
-  expect(api.pvs.map((r) => r.postDataJSON().page)).toContain('/form/materials-success');
+  await expect.poll(() => api.pvs.map((r) => r.postDataJSON().page)).toContain('/form/materials-success');
 });
 
 test('QR form without a valid session does not post', async ({ page }) => {
@@ -167,11 +172,13 @@ test('ics files carry the per-session Zoom link and the right times', async ({ r
     expect(body).toContain('BEGIN:VCALENDAR');
     expect(body).toContain(`DTSTART:${start}`);
     expect(body).toContain(`zoom.us/j/${meeting}`);
+    expect(body).not.toMatch(/live coding|live demo|hands-on|merged pull request/i);
     expect(body.match(/BEGIN:VEVENT/g)).toHaveLength(1);
     for (const other of Object.values(zoom)) if (other[0] !== meeting) expect(body).not.toContain(other[0]);
   }
   const all = (await (await request.get(`${baseURL}sessions/hireable-with-ai.ics`)).text()).replace(/\r\n /g, '');
   expect(all.match(/BEGIN:VEVENT/g)).toHaveLength(3);
+  expect(all).not.toMatch(/live coding|live demo|hands-on|merged pull request/i);
 });
 
 test('old /layoff-proof/ link redirects to /sessions/ and keeps the query', async ({ page }) => {
