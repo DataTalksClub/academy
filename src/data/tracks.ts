@@ -52,7 +52,7 @@ export const tracks: Track[] = [
     ],
     project:
       'You ship a working web application for a real user task. People try it, you improve it from their feedback, and you show how you tested and released each change.',
-    fitFirst: 'You write code today (Python, JavaScript, TypeScript or similar) and want to move from ad-hoc prompting to disciplined engineering with agents.',
+    fitFirst: 'You write code today (Python, JavaScript, TypeScript or similar) and want to build and ship software with coding agents.',
     prerequisites:
       "You can write basic code in Python, JavaScript, TypeScript or a similar language, use the command line and Git, read and explain a short function, and run a simple test. You don't need any experience with coding agents.",
     syllabus: [
@@ -83,17 +83,17 @@ export const tracks: Track[] = [
           { title: 'Environments, logs, metrics and an on-call agent.', produce: 'dashboards, one alert, and a failure investigated from telemetry.' },
           { title: 'Reusable workflows: skills, subagents and hooks.', produce: 'packaged implementation and code-review workflows.' },
           { title: 'Connecting agents to tools through MCP.', produce: "your product's tools exposed through MCP and used by the agent." },
-          { title: 'Agent teams, loops and the software factory.', produce: 'an agent-team backlog batch, configured factory and operating guide.' },
+          { title: 'Agent teams, loops and parallel runs.', produce: 'an agent-team backlog batch, automated workflow setup and operating guide.' },
         ],
       },
       {
         weeks: 'Weeks 13 to 16',
         title: 'Capstone and interviews',
         modules: [
-          { title: 'Technical interviews and hiring prep (full week, 40 UE).', produce: 'algorithm coding drills without AI, a timed take-home, a project presentation and first peer mocks.' },
-          { title: 'Capstone I and interview practice.', produce: 'your 80 UE capstone core alongside weekly coding drills and squad mock interviews.' },
+          { title: 'Technical interviews and hiring prep (full week, 30 hours).', produce: 'algorithm coding drills without AI, a timed take-home, a project presentation and first peer mocks.' },
+          { title: 'Capstone I and interview practice.', produce: 'your 60-hour capstone core alongside weekly coding drills and squad mock interviews.' },
           { title: 'Capstone II and interview practice.', produce: 'user-tested capstone improvements, mock interviews and project-talk rehearsals.' },
-          { title: 'Capstone III: release, defence and career prep.', produce: 'the launched product, defence, final 40 UE interview practice and 3 individual 45-min career consultations plus written CV review.' },
+          { title: 'Capstone III: release, defence and career prep.', produce: 'the launched product, defence, final 30 hours of interview practice and 3 individual 45-min career consultations plus written CV review.' },
         ],
       },
     ],
@@ -159,10 +159,10 @@ export const tracks: Track[] = [
         weeks: 'Weeks 13 to 16',
         title: 'Capstone and interviews',
         modules: [
-          { title: 'Technical interviews and hiring prep (full week, 40 UE).', produce: 'algorithm coding drills without AI, a timed take-home, a project presentation and first peer mocks.' },
-          { title: 'Capstone I and interview practice.', produce: 'your 80 UE capstone assistant core alongside weekly coding drills and squad mock interviews.' },
+          { title: 'Technical interviews and hiring prep (full week, 30 hours).', produce: 'algorithm coding drills without AI, a timed take-home, a project presentation and first peer mocks.' },
+          { title: 'Capstone I and interview practice.', produce: 'your 60-hour capstone assistant core alongside weekly coding drills and squad mock interviews.' },
           { title: 'Capstone II and interview practice.', produce: 'evaluation evidence, improved assistant, mock interviews and project-talk rehearsals.' },
-          { title: 'Capstone III: deploy, defence and career prep.', produce: 'the deployed assistant, defence, final 40 UE interview practice and 3 individual 45-min career consultations plus written CV review.' },
+          { title: 'Capstone III: deploy, defence and career prep.', produce: 'the deployed assistant, defence, final 30 hours of interview practice and 3 individual 45-min career consultations plus written CV review.' },
         ],
       },
     ],

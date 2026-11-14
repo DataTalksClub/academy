@@ -110,7 +110,7 @@ test('rendered marketing pages have no dashes, disclaimers, or internal markers'
       /cannot guarantee|can't promise|won't promise|nobody can promise|no placement promises|not a job placement/i,
     );
     expect(combined, `${p}: internal marker`).not.toMatch(
-      /PLACEHOLDER|TODO|FIXME|\bt\d+u\b|\bAC\d+\b|candidate track|agentic software factory|SPEC\.md/i,
+      /PLACEHOLDER|TODO|FIXME|\bt\d+u\b|\bAC\d+\b|candidate track|software factory|configured factory|SPEC\.md|\b\d+\s*UE\b|ad-hoc prompting|disciplined engineering/i,
     );
   }
 });
