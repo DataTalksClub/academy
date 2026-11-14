@@ -1,0 +1,252 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import SessionsForm from '../../components/SessionsForm.astro';
+import { sessions, sessionsPage as c, variants } from '../../data/sessions';
+import { url, rich } from '../../lib';
+---
+
+<Base title={c.metaTitle} description={c.metaDescription} path="/sessions/" ogImage="/og/sessions.png">
+  <Header cta={false} tagline={false} />
+  <main id="main">
+    <section class="hero dark">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="mono hero__eyebrow">{c.eyebrow}</p>
+          <h1 data-hero-headline>{variants.a.headline}</h1>
+          <p class="hero__lead" data-hero-subhead>{variants.a.subhead}</p>
+          <p class="hero__note">{c.factLine}</p>
+          <p class="hero__cta">
+            <a class="btn btn--mint" href="#register" data-scroll-to-form-lp>{c.button}</a>
+          </p>
+          <p class="hero__note hero__note--small">{c.underButton}</p>
+        </div>
+        <div class="hero__form">
+          <SessionsForm />
+        </div>
+      </div>
+      <script type="application/json" id="hero-variants" set:html={JSON.stringify(variants)} />
+    </section>
+
+    <section class="section" aria-labelledby="for-title">
+      <div class="wrap split">
+        <SectionHead label="AUDIENCE" title={c.forHeading} titleId="for-title" />
+        <div class="split__body prose">
+          <p>{c.forIntro}</p>
+          <ol>{c.forList.map((t) => <li>{t}</li>)}</ol>
+          <p>{c.forOutro}</p>
+          <p set:html={rich(c.forNote)} />
+        </div>
+      </div>
+    </section>
+
+    <section id="sessions" class="section section--band" aria-labelledby="sessions-title">
+      <div class="wrap">
+        <SectionHead label="THE SESSIONS" title={c.sessionsHeading} titleId="sessions-title" />
+        <ol class="sessions-list">
+          {
+            sessions.map((s) => (
+              <li class="session-card" data-session-id={s.id}>
+                <div class="session-card__meta mono">
+                  <span class="session-card__num">0{s.number}</span>
+                  <span>{s.weekdayDate}</span>
+                </div>
+                <h3 class="session-card__title">{s.title}</h3>
+                <p class="session-card__desc">{s.description}</p>
+              </li>
+            ))
+          }
+        </ol>
+        <p class="prose after">{c.afterSessions}</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="who-title">
+      <div class="wrap split">
+        <SectionHead label="INSTRUCTOR" title={c.whoHeading} titleId="who-title" />
+        <div class="split__body prose">
+          <p>{c.whoText}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--band" aria-labelledby="numbers-title">
+      <div class="wrap split">
+        <SectionHead label="NUMBERS" title={c.numbersHeading} titleId="numbers-title" />
+        <div class="split__body prose">
+          <ol>{c.numbers.map((t) => <li set:html={rich(t)} />)}</ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="faq-title">
+      <div class="wrap split">
+        <SectionHead label="QUESTIONS" title={c.faqHeading} titleId="faq-title" />
+        <div class="split__body prose faq">
+          {
+            c.faq.map((f) => (
+              <div class="faq__item">
+                <h3>{f.q}</h3>
+                <p set:html={rich(f.a)} />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--band final" aria-labelledby="final-title">
+      <div class="wrap">
+        <h2 id="final-title" class="final__title">{c.finalHeading}</h2>
+        <p class="prose">{c.finalText}</p>
+        <p><a class="btn btn--green" href="#register" data-scroll-to-form-lp>{c.button}</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="plain-footer">
+    <div class="wrap">
+      <a href={url('/impressum/')}>Impressum</a>
+      <a href={url('/privacy/')}>Privacy</a>
+      <a href="mailto:alexey@datatalks.club">alexey@datatalks.club</a>
+    </div>
+  </footer>
+</Base>
+
+<style>
+  .hero {
+    background: var(--green-900);
+    color: var(--paper);
+    padding: 40px 0 56px;
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+  }
+  .hero__eyebrow {
+    margin: 0 0 14px;
+    color: var(--mint);
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(2.1rem, 4.4vw, 3.3rem);
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    margin: 0 0 18px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--mint);
+  }
+  .hero__lead {
+    font-size: 1.125rem;
+    line-height: 1.55;
+    color: rgba(245, 241, 232, 0.9);
+    margin: 0 0 16px;
+    max-width: 54ch;
+  }
+  .hero__note {
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    color: rgba(245, 241, 232, 0.78);
+    margin: 0;
+    max-width: 56ch;
+  }
+  @media (min-width: 960px) {
+    .hero {
+      padding: 56px 0 72px;
+    }
+    .hero__grid {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 48px;
+    }
+  }
+
+  .sessions-list {
+    list-style: none;
+    margin: 32px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .session-card {
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--green-700);
+    border-radius: 2px;
+    background: #faf7f0;
+  }
+  .session-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    font-size: 0.8125rem;
+    color: var(--ink-2);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .session-card__num {
+    color: var(--green-700);
+    font-weight: 600;
+  }
+  .session-card__title {
+    font-family: var(--display);
+    font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+    line-height: 1.25;
+    margin: 0 0 10px;
+  }
+  .session-card__desc {
+    margin: 0;
+    color: var(--ink-2);
+    line-height: 1.55;
+  }
+
+  .hero__cta {
+    margin: 18px 0 8px;
+  }
+  .hero__note--small {
+    font-size: 0.875rem;
+  }
+  .hero__note {
+    font-family: var(--sans);
+  }
+  .after {
+    margin-top: 24px;
+    max-width: 62ch;
+  }
+  .faq__item h3 {
+    font-family: var(--display);
+    font-size: 1.15rem;
+    margin: 22px 0 6px;
+  }
+  .faq__item p {
+    margin: 0;
+  }
+  .final__title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin: 0 0 12px;
+  }
+  .plain-footer {
+    background: var(--green-900);
+    color: var(--paper);
+    padding: 28px 0 36px;
+  }
+  .plain-footer .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 24px;
+  }
+  .plain-footer a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--paper);
+    text-underline-offset: 4px;
+  }
+</style>

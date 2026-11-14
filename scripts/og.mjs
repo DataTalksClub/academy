@@ -15,8 +15,22 @@ const items = [
   { file: 'agentic-engineering', head: 'Build, test and <em>ship</em> software with coding agents.', tag: 'AGENTIC ENGINEERING' },
   { file: 'ai-engineering', head: 'Build, <em>evaluate</em> and run applications on language models.', tag: 'AI ENGINEERING' },
   { file: 'home', head: 'One instructor. Fifteen seats. Which track runs <em>first</em>?', tag: 'FIRST COHORT · APRIL 2027' },
-  { file: 'layoff-proof', head: 'Layoff-Proof Developer: <em>free</em> online sessions for Berlin devs', tag: 'THREE SESSIONS · MONDAYS 17:00 BERLIN' },
+  {
+    file: 'sessions',
+    head: 'Hireable with AI. Free online sessions for <em>developers in Berlin</em>',
+    tag: 'MONDAYS 23 NOV, 30 NOV, 7 DEC AT 17:00 BERLIN TIME',
+    dates: ['23 NOV', '30 NOV', '7 DEC'],
+  },
 ];
+
+function dateCards(dates) {
+  return dates
+    .map(
+      (d, i) =>
+        `<div class="dc"><span>0${i + 1}</span><b>${d}</b><i>17:00</i></div>`,
+    )
+    .join('');
+}
 
 function grid() {
   let s = '';
@@ -39,9 +53,14 @@ em{font-style:italic;font-weight:400;color:#8ED8AD}
 .brand{font:500 28px F}
 .cap{font:500 12px M;letter-spacing:.06em;color:#8ED8AD;margin-top:16px;white-space:nowrap}
 .g{position:absolute;right:72px;bottom:64px;width:360px}
+.dcs{position:absolute;right:72px;bottom:64px;display:flex;flex-direction:column;gap:12px;width:300px}
+.dc{border:2px solid #8ED8AD;padding:14px 18px;display:flex;align-items:baseline;gap:16px}
+.dc span{font:500 16px M;color:#8ED8AD}
+.dc b{font:500 34px F;flex:1}
+.dc i{font:500 16px M;font-style:normal;color:#8ED8AD}
 </style>
 <div class=top>${i.tag}</div><h1>${i.head}</h1><div class=brand>DataTalks.Club Academy</div>
-<div class=g>${grid()}<div class=cap>15 SEATS · 1 INSTRUCTOR · NONE OFFERED YET</div></div>`;
+${i.dates ? `<div class=dcs>${dateCards(i.dates)}</div>` : `<div class=g>${grid()}<div class=cap>15 SEATS · 1 INSTRUCTOR · NONE OFFERED YET</div></div>`}`;
 
 mkdirSync(root + 'public/og', { recursive: true });
 const b = await chromium.launch();

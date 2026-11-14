@@ -1,0 +1,99 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import { qrForm as q, form } from '../../data/sessions';
+import { url } from '../../lib';
+---
+
+<Base title={q.metaTitle} description={q.metaDescription} path="/sessions/materials/" ogImage="/og/sessions.png" noindex>
+  <Header cta={false} tagline={false} />
+  <main id="main" class="qr">
+    <div class="wrap qr__wrap">
+      <h1 class="qr__title">{q.heading}</h1>
+      <p class="qr__text">{q.text}</p>
+      <div class="lp-form card" id="register" data-layoff-form data-form-kind="qr">
+        <form class="lp-form__inner" novalidate>
+          <div class="field">
+            <label class="mono field-label" for="qr-email">{form.emailLabel}</label>
+            <input class="input" id="qr-email" type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@example.com" />
+            <p class="field-error mono" data-error="invalid" role="alert" hidden>Please enter a valid email address.</p>
+          </div>
+          <div class="field">
+            <label class="mono field-label" for="qr-name">{form.nameLabel}</label>
+            <input class="input" id="qr-name" type="text" name="name" autocomplete="given-name" maxlength="60" />
+          </div>
+          <fieldset class="field fieldset">
+            <legend class="mono field-label">{form.statusLabel}</legend>
+            <div class="radio-row">
+              {form.statuses.map((o) => (<label class="radio-pill"><input type="radio" name="status" value={o.value} /><span>{o.label}</span></label>))}
+            </div>
+          </fieldset>
+          <label class="check-item field">
+            <input type="checkbox" name="academy_optin" value="yes" />
+            <span>{form.optinLabel}</span>
+          </label>
+          <div class="hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off" /></div>
+          <button class="btn btn--green lp-submit" type="submit" disabled data-needs-js>{q.button}</button>
+          <p class="field-error mono" data-error="failed" role="alert" hidden>
+            That did not go through. Please try again, or write to <a href="mailto:alexey@datatalks.club">alexey@datatalks.club</a>.
+          </p>
+          <noscript><p class="field-error mono">This form needs JavaScript. Or write to <a href="mailto:alexey@datatalks.club">alexey@datatalks.club</a>.</p></noscript>
+          <p class="micro mono">I'll use your email to send the recording and the materials. You can unsubscribe any time. <a href={url('/privacy/')}>Privacy</a></p>
+        </form>
+        <div class="success" data-success hidden>
+          <h2 class="success__title" tabindex="-1" data-success-title>{q.success}</h2>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="plain-footer">
+    <div class="wrap">
+      <a href={url('/impressum/')}>Impressum</a>
+      <a href={url('/privacy/')}>Privacy</a>
+      <a href="mailto:alexey@datatalks.club">alexey@datatalks.club</a>
+    </div>
+  </footer>
+</Base>
+
+<style>
+  .qr {
+    padding: 32px 0 56px;
+  }
+  .qr__wrap {
+    max-width: 560px;
+  }
+  .qr__title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+  }
+  .qr__text {
+    margin: 0 0 20px;
+    line-height: 1.55;
+  }
+  .lp-form {
+    border: 1px solid var(--line);
+    padding: 20px;
+    background: var(--paper);
+  }
+  .field { margin-bottom: 16px; }
+  .fieldset { border: 0; padding: 0; margin-inline: 0; }
+  .field-label { display: block; margin-bottom: 7px; color: var(--ink-2); text-transform: uppercase; }
+  .input { width: 100%; min-height: 46px; padding: 0 14px; border: 1px solid rgba(23, 32, 27, 0.5); border-radius: 2px; background: #fff; color: var(--ink); font: 400 1rem/1.2 var(--sans); }
+  .input[aria-invalid='true'] { border-color: var(--error); }
+  .radio-row { display: flex; flex-direction: column; gap: 8px; }
+  .radio-pill, .check-item { display: flex; align-items: center; gap: 8px; min-height: 40px; cursor: pointer; font-size: 0.95rem; }
+  .radio-pill input, .check-item input { accent-color: var(--green-700); }
+  .lp-submit { width: 100%; }
+  .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  .field-error { margin: 8px 0 0; color: var(--error); font-size: 0.8125rem; line-height: 1.5; }
+  .field-error a { color: inherit; text-decoration: underline; }
+  .micro { margin: 12px 0 0; color: var(--ink-2); font-size: 0.75rem; line-height: 1.6; }
+  .micro a { color: var(--green-700); text-decoration: underline; }
+  .success__title { font-family: var(--display); font-weight: 500; font-size: 1.4rem; line-height: 1.25; margin: 0; outline: none; }
+  .plain-footer { background: var(--green-900); color: var(--paper); padding: 28px 0 36px; }
+  .plain-footer .wrap { display: flex; flex-wrap: wrap; gap: 4px 24px; }
+  .plain-footer a { display: inline-flex; align-items: center; min-height: 44px; color: var(--paper); text-underline-offset: 4px; }
+</style>
