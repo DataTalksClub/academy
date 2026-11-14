@@ -7,7 +7,7 @@ const { track } = Astro.props;
 
 <section id="outcomes" class="section" aria-labelledby="outcomes-title">
   <div class="wrap">
-    <SectionHead num="01" label="WHAT YOU WILL BE ABLE TO DO" title={track.outcomesTitle} titleId="outcomes-title" />
+    <SectionHead title={track.outcomesTitle} titleId="outcomes-title" />
     <ol class="outcomes">
       {
         track.outcomes.map((o, i) => (

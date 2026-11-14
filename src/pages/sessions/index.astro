@@ -28,7 +28,7 @@ import { url, rich } from '../../lib';
               ))
             }
           </ul>
-          <p class="hero__note">{c.factLine}</p>
+          {c.factLine && <p class="hero__note">{c.factLine}</p>}
           <p class="hero__cta">
             <a class="btn btn--mint" href="#register" data-scroll-to-form-lp>{c.button}</a>
           </p>
@@ -47,7 +47,7 @@ import { url, rich } from '../../lib';
 
     <section class="section" aria-labelledby="for-title">
       <div class="wrap split">
-        <SectionHead label="AUDIENCE" title={c.forHeading} titleId="for-title" />
+        <SectionHead title={c.forHeading} titleId="for-title" />
         <div class="split__body prose">
           <p>{c.forIntro}</p>
           <ol>{c.forList.map((t) => <li>{t}</li>)}</ol>
@@ -59,7 +59,7 @@ import { url, rich } from '../../lib';
 
     <section id="sessions" class="section section--band" aria-labelledby="sessions-title">
       <div class="wrap">
-        <SectionHead label="THE SESSIONS" title={c.sessionsHeading} titleId="sessions-title" />
+        <SectionHead title={c.sessionsHeading} titleId="sessions-title" />
         <ol class="sessions-list">
           {
             sessions.map((s) => (
@@ -92,7 +92,7 @@ import { url, rich } from '../../lib';
 
     <section class="section" aria-labelledby="who-title">
       <div class="wrap split">
-        <SectionHead label="INSTRUCTOR" title={c.whoHeading} titleId="who-title" />
+        <SectionHead title={c.whoHeading} titleId="who-title" />
         <div class="split__body prose">
           <p>{c.whoText}</p>
         </div>
@@ -101,7 +101,7 @@ import { url, rich } from '../../lib';
 
     <section class="section section--band" aria-labelledby="numbers-title">
       <div class="wrap split">
-        <SectionHead label="NUMBERS" title={c.numbersHeading} titleId="numbers-title" />
+        <SectionHead title={c.numbersHeading} titleId="numbers-title" />
         <div class="split__body prose">
           <ol>{c.numbers.map((t) => <li set:html={rich(t)} />)}</ol>
         </div>
@@ -110,7 +110,7 @@ import { url, rich } from '../../lib';
 
     <section class="section" aria-labelledby="faq-title">
       <div class="wrap split">
-        <SectionHead label="QUESTIONS" title={c.faqHeading} titleId="faq-title" />
+        <SectionHead title={c.faqHeading} titleId="faq-title" />
         <div class="split__body prose faq">
           {
             c.faq.map((f) => (

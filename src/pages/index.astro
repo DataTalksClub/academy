@@ -21,7 +21,6 @@ import { url } from '../lib';
           {
             tracks.map((t) => (
               <article class="panel" data-track-panel={t.slug}>
-                <p class="mono label">Candidate track</p>
                 <h2>{t.name}</h2>
                 <p class="panel__headline">{t.headline}</p>
                 <ol class="panel__list">
@@ -33,7 +32,7 @@ import { url } from '../lib';
                   ))}
                 </ol>
                 <a class="btn btn--green" href={url(`/${t.slug}/`)} data-track-click={t.slug}>
-                  {home.cta}
+                  Read about {t.name}
                 </a>
               </article>
             ))
@@ -52,7 +51,7 @@ import { url } from '../lib';
 
     <section id="funding" class="section" aria-labelledby="funding-title">
       <div class="wrap split">
-        <SectionHead label="FUNDING" title={funding.heading} titleId="funding-title" />
+        <SectionHead title={funding.heading} titleId="funding-title" />
         <div class="split__body prose">
           <p>{funding.paragraphs[0]}</p>
         </div>

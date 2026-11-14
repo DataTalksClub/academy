@@ -34,9 +34,9 @@ export const tracks: Track[] = [
     label: 'A',
     name: 'Agentic Engineering',
     surveyOption: 'A. Agentic engineering',
-    headline: 'Build, test and ship software with coding agents.',
-    emphasis: 'ship',
-    lead: 'A full-time, live program for people who already write code. You learn to run coding agents the way an engineer runs a team: clear specs, small tasks, tests, review, releases. Fifteen seats, taught by Alexey Grigorev.',
+    headline: 'Ship software with coding agents',
+    emphasis: '',
+    lead: "A 16-week full-time course for developers who already write code. You'll learn to turn specs into tasks, run coding agents like Claude Code and Cursor, review their changes, and ship to production. 15 seats, taught live by me, Alexey Grigorev.",
     metaTitle: 'Agentic Engineering: a 15-seat live program, April 2027 | DataTalks.Club Academy',
     metaDescription:
       'Learn to build, test and ship software with coding agents. Full-time, live, 15 seats, taught by Alexey Grigorev. Berlin or online, April 2027. Join the shortlist.',
@@ -48,7 +48,7 @@ export const tracks: Track[] = [
       'Automate tests and releases with CI/CD.',
       'Deploy your application and use logs and metrics to investigate failures.',
       'Connect agents to tools through MCP and build reusable workflows for implementation and code review.',
-      'Set up and configure an agentic software factory.',
+      'Run multiple coding agents in parallel on a backlog with automated checks.',
     ],
     project:
       'You ship a working web application for a real user task. People try it, you improve it from their feedback, and you show how you tested and released each change.',
@@ -57,7 +57,7 @@ export const tracks: Track[] = [
       "You can write basic code in Python, JavaScript, TypeScript or a similar language, use the command line and Git, read and explain a short function, and run a simple test. You don't need any experience with coding agents.",
     syllabus: [
       {
-        weeks: 'Weeks 1–4',
+        weeks: 'Weeks 1 to 4',
         title: 'Foundations',
         modules: [
           { title: 'AI development tools: overview and setup.', produce: 'a working environment and your first agent-made commit.' },
@@ -67,7 +67,7 @@ export const tracks: Track[] = [
         ],
       },
       {
-        weeks: 'Weeks 5–8',
+        weeks: 'Weeks 5 to 8',
         title: 'Build and verify',
         modules: [
           { title: 'Testing, verification and debugging.', produce: 'a test suite, and a seeded bug reproduced, fixed and covered.' },
@@ -77,7 +77,7 @@ export const tracks: Track[] = [
         ],
       },
       {
-        weeks: 'Weeks 9–12',
+        weeks: 'Weeks 9 to 12',
         title: 'Operate and automate',
         modules: [
           { title: 'Environments, logs, metrics and an on-call agent.', produce: 'dashboards, one alert, and a failure investigated from telemetry.' },
@@ -87,13 +87,13 @@ export const tracks: Track[] = [
         ],
       },
       {
-        weeks: 'Weeks 13–16',
+        weeks: 'Weeks 13 to 16',
         title: 'Capstone and interviews',
         modules: [
           { title: 'Technical interviews and hiring prep (full week, 40 UE).', produce: 'algorithm coding drills without AI, a timed take-home, a project presentation and first peer mocks.' },
           { title: 'Capstone I and interview practice.', produce: 'your 80 UE capstone core alongside weekly coding drills and squad mock interviews.' },
           { title: 'Capstone II and interview practice.', produce: 'user-tested capstone improvements, mock interviews and project-talk rehearsals.' },
-          { title: 'Capstone III: release, defence and career prep.', produce: 'the launched product, defence, final 40 UE interview practice and 3 individual 45-min career consultations plus written CV review (no placement promises).' },
+          { title: 'Capstone III: release, defence and career prep.', produce: 'the launched product, defence, final 40 UE interview practice and 3 individual 45-min career consultations plus written CV review.' },
         ],
       },
     ],
@@ -103,9 +103,9 @@ export const tracks: Track[] = [
     label: 'B',
     name: 'AI Engineering',
     surveyOption: 'B. AI engineering',
-    headline: 'Build, evaluate and run applications on language models.',
-    emphasis: 'evaluate',
-    lead: 'A full-time, live program for people who already write code. You learn to build LLM applications the way an engineer builds any system: retrieval, tools, evaluation, deployment, monitoring. Fifteen seats, taught by Alexey Grigorev.',
+    headline: 'Build and evaluate LLM applications',
+    emphasis: '',
+    lead: "A 16-week full-time course for developers who want to build LLM systems in Python. You'll build retrieval over messy documents, tool-calling agents, and evaluation suites that catch regressions before users do. 15 seats, taught live by me, Alexey Grigorev.",
     metaTitle: 'AI Engineering: a 15-seat live program, April 2027 | DataTalks.Club Academy',
     metaDescription:
       'Learn to build, evaluate and run LLM applications: RAG, agents, evals, deployment. Full-time, live, 15 seats, taught by Alexey Grigorev. Berlin or online, April 2027. Join the shortlist.',
@@ -115,7 +115,7 @@ export const tracks: Track[] = [
       'Use retrieval-augmented generation (RAG) and document processing over company data.',
       'Give the assistant tools, function calling and MCP connections to look things up or call an API.',
       'Define what it can do on its own and when it needs human approval.',
-      'Evaluate answers and tool use with realistic tasks; compare prompts, models and retrieval methods; catch regressions.',
+      'Evaluate answers and tool use on realistic tasks, compare prompts and models, and catch regressions.',
       'Deploy the application to the cloud and trace its model and tool calls.',
       'Track quality, latency and cost, and handle failures safely with guardrails.',
     ],
@@ -126,7 +126,7 @@ export const tracks: Track[] = [
       "You are comfortable programming, preferably in Python, and you can use the command line, Git and basic Docker. You don't need a machine-learning background, advanced mathematics or a GPU.",
     syllabus: [
       {
-        weeks: 'Weeks 1–4',
+        weeks: 'Weeks 1 to 4',
         title: 'Retrieval',
         modules: [
           { title: 'Agentic engineering basics and a Python service on an LLM API.', produce: 'a working coding-agent setup (day 1) and a small API that returns validated, structured answers.' },
@@ -136,7 +136,7 @@ export const tracks: Track[] = [
         ],
       },
       {
-        weeks: 'Weeks 5–8',
+        weeks: 'Weeks 5 to 8',
         title: 'Agents',
         modules: [
           { title: 'Agentic engineering workflow, tools and the agent loop.', produce: 'the full agent workflow on your project repo (spec to tasks, tests, diff review, CI) and an assistant that calls an API through a tool.' },
@@ -146,7 +146,7 @@ export const tracks: Track[] = [
         ],
       },
       {
-        weeks: 'Weeks 9–12',
+        weeks: 'Weeks 9 to 12',
         title: 'Quality and production',
         modules: [
           { title: 'Testing LLM applications and CI/CD.', produce: 'a regression suite running in CI.' },
@@ -156,13 +156,13 @@ export const tracks: Track[] = [
         ],
       },
       {
-        weeks: 'Weeks 13–16',
+        weeks: 'Weeks 13 to 16',
         title: 'Capstone and interviews',
         modules: [
           { title: 'Technical interviews and hiring prep (full week, 40 UE).', produce: 'algorithm coding drills without AI, a timed take-home, a project presentation and first peer mocks.' },
           { title: 'Capstone I and interview practice.', produce: 'your 80 UE capstone assistant core alongside weekly coding drills and squad mock interviews.' },
           { title: 'Capstone II and interview practice.', produce: 'evaluation evidence, improved assistant, mock interviews and project-talk rehearsals.' },
-          { title: 'Capstone III: deploy, defence and career prep.', produce: 'the deployed assistant, defence, final 40 UE interview practice and 3 individual 45-min career consultations plus written CV review (no placement promises).' },
+          { title: 'Capstone III: deploy, defence and career prep.', produce: 'the deployed assistant, defence, final 40 UE interview practice and 3 individual 45-min career consultations plus written CV review.' },
         ],
       },
     ],

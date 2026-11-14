@@ -5,19 +5,19 @@ import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 
 const root = new URL('../', import.meta.url).pathname;
-const nm = root + 'node_modules/';
-const font = (p) => 'data:font/woff2;base64,' + readFileSync(nm + p).toString('base64');
+const require = createRequire(import.meta.url);
+const font = (p) => 'data:font/woff2;base64,' + readFileSync(require.resolve(p)).toString('base64');
 const fraunces = font('@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2');
 const frauncesItalic = font('@fontsource-variable/fraunces/files/fraunces-latin-opsz-italic.woff2');
 const plex = font('@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2');
 
 const items = [
-  { file: 'agentic-engineering', head: 'Build, test and <em>ship</em> software with coding agents.', tag: 'AGENTIC ENGINEERING' },
-  { file: 'ai-engineering', head: 'Build, <em>evaluate</em> and run applications on language models.', tag: 'AI ENGINEERING' },
-  { file: 'home', head: 'One instructor. Fifteen seats. Which track runs <em>first</em>?', tag: 'FIRST COHORT · APRIL 2027' },
+  { file: 'agentic-engineering', head: 'Ship software with coding agents', tag: 'AGENTIC ENGINEERING' },
+  { file: 'ai-engineering', head: 'Build and evaluate LLM applications', tag: 'AI ENGINEERING' },
+  { file: 'home', head: 'Live full-time courses in Berlin or online, starting April 2027', tag: 'APRIL 2027' },
   {
     file: 'sessions',
-    head: 'Hireable with AI. Free online sessions for <em>developers in Berlin</em>',
+    head: 'Between jobs: the AI skills that get experienced developers hired',
     tag: 'MONDAYS 23 NOV, 30 NOV, 7 DEC AT 17:00 BERLIN TIME',
     dates: ['23 NOV', '30 NOV', '7 DEC'],
   },
@@ -60,7 +60,7 @@ em{font-style:italic;font-weight:400;color:#8ED8AD}
 .dc i{font:500 16px M;font-style:normal;color:#8ED8AD}
 </style>
 <div class=top>${i.tag}</div><h1>${i.head}</h1><div class=brand>DataTalks.Club Academy</div>
-${i.dates ? `<div class=dcs>${dateCards(i.dates)}</div>` : `<div class=g>${grid()}<div class=cap>15 SEATS · 1 INSTRUCTOR · NONE OFFERED YET</div></div>`}`;
+${i.dates ? `<div class=dcs>${dateCards(i.dates)}</div>` : `<div class=g>${grid()}<div class=cap>15 SEATS, 1 INSTRUCTOR</div></div>`}`;
 
 mkdirSync(root + 'public/og', { recursive: true });
 const b = await chromium.launch();

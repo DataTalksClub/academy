@@ -2,10 +2,12 @@ import { test, expect } from '@playwright/test';
 import { existsSync, readFileSync } from 'node:fs';
 import { mockApi } from './helpers';
 
+const APPROVED_HEADLINE = 'Between jobs: the AI skills that get experienced developers hired';
+
 const H = {
-  a: 'The AI skills Berlin companies now hire developers for',
-  b: 'Becoming layoff-proof as a developer in Berlin',
-  c: 'Show employers you can ship software with AI',
+  a: APPROVED_HEADLINE,
+  b: APPROVED_HEADLINE,
+  c: APPROVED_HEADLINE,
 };
 
 test('sessions page shows all three sessions, the form and an OG image', async ({ page }) => {
@@ -50,6 +52,7 @@ test('page copy has no placeholders, no dashes as punctuation and no live-coding
   expect(text).toContain('AI engineering vs agentic engineering');
   expect(text).toContain('Agentic engineering: how I build software with coding agents');
   expect(text).toContain('AI engineering: how to build apps on top of LLMs');
+  expect(text.match(/how to get a Bildungsgutschein for your training/g)).toHaveLength(3);
   await page.goto('sessions/materials/');
   const qr = await page.locator('main').innerText();
   expect(qr).not.toMatch(/PLACEHOLDER|[—–]| - /);
