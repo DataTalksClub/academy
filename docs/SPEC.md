@@ -270,8 +270,8 @@ SignupForm (same component), small seat grid.
   - **Weeks 1–4 · Foundations**
     1. AI development tools: overview and setup. *You produce: a working environment and your first agent-made commit.*
     2. Working in a session and in an existing codebase. *You produce: a verified pull request in a repository you didn't write.*
-    3. From idea to spec, backlog and small tasks. *You produce: a product brief and a groomed backlog for your own product.*
-    4. Full-stack feature: interface, API contract, backend and database. *You produce: a working interface on mocks, OpenAPI spec and end-to-end backend tests.*
+    3. From idea to spec, backlog and full-stack foundation. *You produce: a product brief, a groomed backlog and a minimal full-stack scaffold with passing backend tests.*
+    4. Introduction to AI engineering. *You produce: an LLM API app with a chatbot, RAG over documents and a simple tool-calling agent built with coding agents.*
   - **Weeks 5–8 · Build and verify**
     5. Testing, verification and debugging. *You produce: a test suite, and a seeded bug reproduced, fixed and covered.*
     6. Reviewing agent-generated changes. *You produce: a review record, a reviewer workflow and two automatic checks.*
@@ -310,12 +310,12 @@ SignupForm (same component), small seat grid.
 - `prerequisites`: You are comfortable programming, preferably in Python, and you can use the command line, Git and basic Docker. You don't need a machine-learning background, advanced mathematics or a GPU.
 - `syllabus` (four groups):
   - **Weeks 1–4 · Retrieval**
-    1. A Python service on an LLM API. *You produce: a small API that returns validated, structured answers.*
+    1. Agentic engineering basics and a Python service on an LLM API. *You produce: a working coding-agent setup (day 1) and a small API that returns validated, structured answers.*
     2. Retrieval, document processing and indexing. *You produce: a one-command ingestion pipeline and a knowledge assistant with sources.*
     3. Vector and hybrid search. *You produce: three retrieval variants, with examples of where each fails.*
     4. Evaluating retrieval. *You produce: a retrieval evaluation and a justified configuration.*
   - **Weeks 5–8 · Agents**
-    5. Tools, function calling and the agent loop. *You produce: an assistant that calls an API through a tool.*
+    5. Agentic engineering workflow, tools and the agent loop. *You produce: the full agent workflow on your project repo (spec to tasks, tests, diff review, CI) and an assistant that calls an API through a tool.*
     6. Agent frameworks, MCP and context. *You produce: the assistant rebuilt on a framework, with one MCP tool.*
     7. Serving and cloud deployment. *You produce: a deployed assistant with cited answers and one tool (midterm).*
     8. Agentic workflows and human approval. *You produce: a workflow action that waits for approval and handles refusal.*
