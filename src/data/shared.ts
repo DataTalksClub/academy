@@ -83,7 +83,7 @@ export const faqHeading = 'Questions';
 export const faq: { q: string; a: string | null }[] = [
   {
     q: 'Is this program confirmed?',
-    a: "It is planned for April 2027. Two tracks are on the table, agentic engineering and AI engineering, and I'll run the one with more serious interest first. Joining a shortlist is how you vote.",
+    a: "It is planned for April 2027. Two tracks are on the table, Agentic Engineering and AI Engineering, and I'll run the one with more serious interest first. Joining a shortlist is how you vote.",
   },
   {
     q: 'What do I get for joining the shortlist?',
@@ -132,7 +132,7 @@ export const form = {
 export const home = {
   metaTitle: 'DataTalks.Club Academy: live full-time courses with Alexey Grigorev, April 2027',
   metaDescription:
-    'A full-time, live program for developers who already write code, taught by Alexey Grigorev. Two tracks: agentic engineering and AI engineering. 15 seats, Berlin or online, April 2027.',
+    'A full-time, live program for developers who already write code, taught by Alexey Grigorev. Two tracks: Agentic Engineering and AI Engineering. 15 seats, Berlin or online, April 2027.',
   eyebrow: 'DataTalks.Club Academy, April 2027',
   headline: 'Live full-time courses in Berlin or online, starting April 2027',
   emphasis: '',
