@@ -69,6 +69,7 @@ if (API && !navigator.webdriver) {
     body: JSON.stringify({
       page: pagePath(),
       utm_source: u.utm_source,
+      utm_medium: u.utm_medium,
       utm_campaign: u.utm_campaign,
       utm_content: u.utm_content,
     }),

@@ -115,11 +115,11 @@ for (const t of TRACKS) {
 
     test('6. /pv is called once per page load with the page path', async ({ page }) => {
       const api = await mockApi(page);
-      await page.goto(`${t}/?utm_source=x`);
+      await page.goto(`${t}/?utm_source=x&utm_medium=paid-social`);
       await expect.poll(() => api.pvs.length).toBe(1);
       await page.waitForTimeout(300);
       expect(api.pvs).toHaveLength(1);
-      expect(api.pvs[0].postDataJSON()).toMatchObject({ page: `/${t}/`, utm_source: 'x' });
+      expect(api.pvs[0].postDataJSON()).toMatchObject({ page: `/${t}/`, utm_source: 'x', utm_medium: 'paid-social' });
     });
 
     test('10. sticky bar shows after the hero form and hides after signup', async ({ page, isMobile }) => {
