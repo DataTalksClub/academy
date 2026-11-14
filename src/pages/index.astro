@@ -32,7 +32,7 @@ import { url } from '../lib';
                     </li>
                   ))}
                 </ol>
-                <a class="btn btn--green" href={url(`/${t.slug}/`)}>
+                <a class="btn btn--green" href={url(`/${t.slug}/`)} data-track-click={t.slug}>
                   {home.cta}
                 </a>
               </article>
