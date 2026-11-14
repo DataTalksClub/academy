@@ -1,0 +1,318 @@
+---
+import { url } from '../lib';
+import { sessions, form, rsvp_published } from '../data/sessions';
+
+interface Props {
+  id?: string;
+  idPrefix?: string;
+}
+const { id = 'register', idPrefix = 'lp' } = Astro.props;
+const rsvp = rsvp_published ? sessions.filter((s) => s.meetupUrl) : [];
+---
+
+<div class="lp-form card" id={id} data-layoff-form data-form-kind="main">
+  <form class="lp-form__inner" novalidate>
+    <div class="field">
+      <label class="mono field-label" for={`${idPrefix}-email`}>{form.emailLabel}</label>
+      <input
+        class="input"
+        id={`${idPrefix}-email`}
+        type="email"
+        name="email"
+        required
+        autocomplete="email"
+        inputmode="email"
+        placeholder="you@example.com"
+      />
+      <p class="field-error mono" data-error="invalid" role="alert" hidden>Please enter a valid email address.</p>
+    </div>
+
+    <div class="field">
+      <label class="mono field-label" for={`${idPrefix}-name`}>{form.nameLabel}</label>
+      <input class="input" id={`${idPrefix}-name`} type="text" name="name" autocomplete="given-name" maxlength="60" />
+    </div>
+
+    <fieldset class="field fieldset">
+      <legend class="mono field-label">{form.sessionsLabel}</legend>
+      <div class="check-list">
+        {
+          sessions.map((s) => (
+            <label class="check-item">
+              <input type="checkbox" name="sessions" value={s.id} checked />
+              <span>{s.shortLabel}</span>
+            </label>
+          ))
+        }
+      </div>
+      <p class="field-error mono" data-error="sessions" role="alert" hidden>Pick at least one session.</p>
+    </fieldset>
+
+    <fieldset class="field fieldset">
+      <legend class="mono field-label">{form.trackLabel}</legend>
+      <div class="radio-row">
+        {form.tracks.map((o) => (<label class="radio-pill"><input type="radio" name="track_interest" value={o.value} /><span>{o.label}</span></label>))}
+      </div>
+    </fieldset>
+
+    <fieldset class="field fieldset">
+      <legend class="mono field-label">{form.statusLabel}</legend>
+      <div class="radio-row">
+        {form.statuses.map((o) => (<label class="radio-pill"><input type="radio" name="status" value={o.value} /><span>{o.label}</span></label>))}
+      </div>
+    </fieldset>
+
+    <div class="field">
+      <label class="mono field-label" for={`${idPrefix}-years`}>{form.yearsLabel}</label>
+      <input class="input input--short" id={`${idPrefix}-years`} type="number" name="years_dev" min="0" max="60" step="1" inputmode="numeric" />
+    </div>
+
+    <fieldset class="field fieldset">
+      <legend class="mono field-label">{form.basedLabel}</legend>
+      <div class="radio-row">
+        {form.based.map((o) => (<label class="radio-pill"><input type="radio" name="based_in" value={o.value} /><span>{o.label}</span></label>))}
+      </div>
+    </fieldset>
+
+    <fieldset class="field fieldset">
+      <legend class="mono field-label">{form.bildungLabel}</legend>
+      <div class="radio-row">
+        {form.bildung.map((o) => (<label class="radio-pill"><input type="radio" name="bildungsgutschein" value={o.value} /><span>{o.label}</span></label>))}
+      </div>
+    </fieldset>
+
+    <div class="field">
+      <label class="mono field-label" for={`${idPrefix}-free`}>{form.freeTextLabel}</label>
+      <textarea class="input input--area" id={`${idPrefix}-free`} name="free_text" rows="3" maxlength="500"></textarea>
+    </div>
+
+    <label class="check-item field">
+      <input type="checkbox" name="academy_optin" value="yes" />
+      <span>{form.optinLabel}</span>
+    </label>
+
+    <div class="hp" aria-hidden="true">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <button class="btn btn--green lp-submit" type="submit" disabled data-needs-js>{form.button}</button>
+
+    <p class="field-error mono" data-error="failed" role="alert" hidden>
+      That did not go through. Please try again, or write to <a href="mailto:alexey@datatalks.club">alexey@datatalks.club</a>.
+    </p>
+    <noscript>
+      <p class="field-error mono">Registration needs JavaScript. Or write to <a href="mailto:alexey@datatalks.club">alexey@datatalks.club</a>.</p>
+    </noscript>
+    <p class="micro mono">{form.micro} <a href={url('/privacy/')}>Privacy</a></p>
+  </form>
+
+  <div class="success" data-success hidden>
+    <p class="mono label-green">Check your inbox</p>
+    <h2 class="success__title" tabindex="-1" data-success-title>{form.success.title}</h2>
+    <p>{form.success.text}</p>
+    {
+      rsvp.length > 0 && (
+        <div class="success__block" data-rsvp>
+          <h3 class="success__sub">{form.success.rsvpHeading}</h3>
+          <p>{form.success.rsvpText}</p>
+          <div class="success__buttons">
+            {rsvp.map((s) => (
+              <a class="btn btn--green" href={s.meetupUrl} target="_blank" rel="noopener" data-meetup={s.id}>
+                {form.success.rsvpButton(s)}
+              </a>
+            ))}
+          </div>
+        </div>
+      )
+    }
+    <div class="success__block" data-calendar>
+      <h3 class="success__sub">{form.success.calendarHeading}</h3>
+      <ul class="success__links">
+        {
+          sessions.map((s) => (
+            <li data-calendar-session={s.id}>
+              <a href={url(`/sessions/${s.id}.ics`)} download>{s.shortLabel}</a>
+            </li>
+          ))
+        }
+        <li><a href={url('/sessions/hireable-with-ai.ics')} download>{form.success.calendarAll}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+  .lp-form {
+    --focus: var(--green-700);
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 2px;
+    padding: 24px 20px;
+    box-shadow: 0 18px 48px -18px rgba(0, 0, 0, 0.45);
+  }
+  @media (min-width: 768px) {
+    .lp-form {
+      padding: 28px 28px 26px;
+    }
+  }
+  .field {
+    margin-bottom: 16px;
+  }
+  .fieldset {
+    border: 0;
+    padding: 0;
+    margin-inline: 0;
+  }
+  .field-label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--ink-2);
+    text-transform: uppercase;
+  }
+  .input {
+    width: 100%;
+    min-height: 46px;
+    padding: 0 14px;
+    border: 1px solid rgba(23, 32, 27, 0.5);
+    border-radius: 2px;
+    background: #fff;
+    color: var(--ink);
+    font: 400 1rem/1.2 var(--sans);
+  }
+  .input::placeholder {
+    color: #6b756f;
+  }
+  .input[aria-invalid='true'] {
+    border-color: var(--error);
+    box-shadow: inset 0 0 0 1px var(--error);
+  }
+  .check-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    cursor: pointer;
+  }
+  .check-item input {
+    margin-top: 3px;
+    accent-color: var(--green-700);
+    flex-shrink: 0;
+  }
+  .check-item__num {
+    color: var(--green-700);
+    margin-right: 4px;
+  }
+  .radio-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .radio-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 38px;
+    padding: 4px 12px;
+    border: 1px solid rgba(23, 32, 27, 0.4);
+    border-radius: 2px;
+    background: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .radio-pill input {
+    accent-color: var(--green-700);
+  }
+  .field-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  @media (min-width: 560px) {
+    .field-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .lp-submit {
+    width: 100%;
+    margin-top: 4px;
+  }
+  .hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .field-error {
+    margin: 8px 0 0;
+    color: var(--error);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+  .field-error a {
+    color: inherit;
+    text-decoration: underline;
+  }
+  .micro {
+    margin: 12px 0 0;
+    color: var(--ink-2);
+    font-size: 0.75rem;
+    line-height: 1.6;
+  }
+  .micro a {
+    color: var(--green-700);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .success__title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin: 8px 0 14px;
+    outline: none;
+  }
+  .success > p:not(.mono) {
+    margin: 0 0 16px;
+    font-size: 0.96875rem;
+  }
+  .label-green {
+    margin: 0;
+    color: var(--green-700);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .input--short {
+    max-width: 8rem;
+  }
+  .input--area {
+    min-height: 84px;
+    padding: 10px 14px;
+    line-height: 1.4;
+    resize: vertical;
+  }
+  .success__sub {
+    font-family: var(--display);
+    font-size: 1.15rem;
+    margin: 20px 0 6px;
+  }
+  .success__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .success__links {
+    margin: 0;
+    padding-left: 1.1rem;
+    line-height: 1.8;
+  }
+  .success__links a {
+    color: var(--green-700);
+  }
+</style>

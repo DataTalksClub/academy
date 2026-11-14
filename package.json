@@ -12,6 +12,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "og": "node scripts/og.mjs",
+    "qr": "node scripts/qr.mjs",
     "test": "playwright test",
     "test:base": "BASE_PATH=/academy/ playwright test"
   },
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
     "@playwright/test": "^1.65.0",
+    "qrcode": "^1.5.4",
     "typescript": "^6.0.3"
   }
 }

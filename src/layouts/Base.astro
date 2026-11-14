@@ -18,8 +18,9 @@ interface Props {
   ogImage?: string;
   lang?: string;
   track?: string;
+  noindex?: boolean;
 }
-const { title, description, path, ogImage, lang = 'en', track } = Astro.props;
+const { title, description, path, ogImage, lang = 'en', track, noindex = false } = Astro.props;
 const canonical = absoluteUrl(path);
 const og = ogImage ? absoluteUrl(ogImage) : undefined;
 ---
@@ -31,6 +32,7 @@ const og = ogImage ? absoluteUrl(ogImage) : undefined;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#16301F" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
