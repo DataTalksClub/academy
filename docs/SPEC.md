@@ -271,22 +271,22 @@ SignupForm (same component), small seat grid.
     1. AI development tools: overview and setup. *You produce: a working environment and your first agent-made commit.*
     2. Working in a session and in an existing codebase. *You produce: a verified pull request in a repository you didn't write.*
     3. From idea to spec, backlog and small tasks. *You produce: a product brief and a groomed backlog for your own product.*
-    4. Full-stack feature I: interface and API contract. *You produce: a working interface on mocks and an OpenAPI specification.*
+    4. Full-stack feature: interface, API contract, backend and database. *You produce: a working interface on mocks, OpenAPI spec and end-to-end backend tests.*
   - **Weeks 5–8 · Build and verify**
-    5. Full-stack feature II: backend and database. *You produce: the main user task working end to end, with backend tests.*
-    6. Testing, verification and debugging. *You produce: a test suite, and a seeded bug reproduced, fixed and covered.*
-    7. Reviewing agent-generated changes. *You produce: a review record, a reviewer workflow and two automatic checks.*
-    8. Containers, CI/CD and deployment. *You produce: your first version deployed through CI (midterm).*
+    5. Testing, verification and debugging. *You produce: a test suite, and a seeded bug reproduced, fixed and covered.*
+    6. Reviewing agent-generated changes. *You produce: a review record, a reviewer workflow and two automatic checks.*
+    7. Containers, CI/CD and deployment. *You produce: your first version deployed through CI (midterm).*
+    8. Permissions, sandboxing and safe operation. *You produce: a threat sketch and guardrails for your product.*
   - **Weeks 9–12 · Operate and automate**
-    9. Permissions, sandboxing and safe operation. *You produce: a threat sketch and guardrails for your product.*
-    10. Environments, logs, metrics and an on-call agent. *You produce: dashboards, one alert, and a failure investigated from telemetry.*
-    11. Reusable workflows: skills, subagents and hooks. *You produce: packaged implementation and code-review workflows.*
-    12. Connecting agents to tools through MCP. *You produce: your product's tools exposed through MCP and used by the agent.*
-  - **Weeks 13–16 · Factory, capstone and interviews**
-    13. Agent teams, loops and parallel work. *You produce: a backlog batch worked through by an agent team, with QA verdicts.*
-    14. The agentic software factory. *You produce: a configured factory on your product and an operating guide.*
-    15. Capstone: users, feedback, release and defence. *You produce: an improved product released through the pipeline, launch report and defence.*
-    16. Technical interviews and hiring prep. *You produce: peer mock interviews, coding and take-home drills, and a project presentation.*
+    9. Environments, logs, metrics and an on-call agent. *You produce: dashboards, one alert, and a failure investigated from telemetry.*
+    10. Reusable workflows: skills, subagents and hooks. *You produce: packaged implementation and code-review workflows.*
+    11. Connecting agents to tools through MCP. *You produce: your product's tools exposed through MCP and used by the agent.*
+    12. Agent teams, loops and the software factory. *You produce: an agent-team backlog batch, configured factory and operating guide.*
+  - **Weeks 13–16 · Capstone and interviews**
+    13. Technical interviews and hiring prep (full week, 40 UE). *You produce: algorithm coding drills without AI, a timed take-home, a project presentation and first peer mocks.*
+    14. Capstone I and interview practice. *You produce: your 80 UE capstone core alongside weekly coding drills and squad mock interviews.*
+    15. Capstone II and interview practice. *You produce: user-tested capstone improvements, mock interviews and project-talk rehearsals.*
+    16. Capstone III: release, defence and career prep. *You produce: the launched product, defence, final 40 UE interview practice and 3 individual 45-min career consultations plus written CV review (no placement promises).*
 
 ### ai-engineering
 
@@ -311,24 +311,24 @@ SignupForm (same component), small seat grid.
 - `syllabus` (four groups):
   - **Weeks 1–4 · Retrieval**
     1. A Python service on an LLM API. *You produce: a small API that returns validated, structured answers.*
-    2. First assistant with retrieval. *You produce: a knowledge assistant that answers with sources.*
-    3. Document processing, ingestion and indexing. *You produce: an ingestion pipeline you can rebuild with one command.*
-    4. Vector and hybrid search. *You produce: three retrieval variants, with examples of where each fails.*
+    2. Retrieval, document processing and indexing. *You produce: a one-command ingestion pipeline and a knowledge assistant with sources.*
+    3. Vector and hybrid search. *You produce: three retrieval variants, with examples of where each fails.*
+    4. Evaluating retrieval. *You produce: a retrieval evaluation and a justified configuration.*
   - **Weeks 5–8 · Agents**
-    5. Evaluating retrieval. *You produce: a retrieval evaluation and a justified configuration.*
-    6. Tools, function calling and the agent loop. *You produce: an assistant that calls an API through a tool.*
-    7. Agent frameworks, MCP and context. *You produce: the assistant rebuilt on a framework, with one MCP tool.*
-    8. Serving and cloud deployment. *You produce: a deployed assistant with cited answers and one tool (midterm).*
-  - **Weeks 9–12 · Quality**
-    9. Agentic workflows and human approval. *You produce: a workflow action that waits for approval and handles refusal.*
-    10. Testing LLM applications and CI/CD. *You produce: a regression suite running in CI.*
-    11. Evaluating answers and agents. *You produce: an evaluation report comparing two configurations.*
-    12. Tracing, observability and monitoring. *You produce: traces and a monitoring dashboard for the deployed assistant.*
-  - **Weeks 13–16 · Production, capstone and interviews**
-    13. Cost, latency and model choice. *You produce: a cost and latency report with one measured improvement.*
-    14. Safety: guardrails, injection and compliance. *You produce: tested guardrails and a short compliance checklist.*
-    15. Capstone: build, evaluate and defend. *You produce: a deployed assistant, an evaluation report and a defence.*
-    16. Technical interviews and hiring prep. *You produce: peer mock interviews, coding and take-home drills, and a project presentation.*
+    5. Tools, function calling and the agent loop. *You produce: an assistant that calls an API through a tool.*
+    6. Agent frameworks, MCP and context. *You produce: the assistant rebuilt on a framework, with one MCP tool.*
+    7. Serving and cloud deployment. *You produce: a deployed assistant with cited answers and one tool (midterm).*
+    8. Agentic workflows and human approval. *You produce: a workflow action that waits for approval and handles refusal.*
+  - **Weeks 9–12 · Quality and production**
+    9. Testing LLM applications and CI/CD. *You produce: a regression suite running in CI.*
+    10. Evaluating answers and agents. *You produce: an evaluation report comparing two configurations.*
+    11. Tracing, monitoring, cost and latency. *You produce: traces, dashboards, and a cost/latency report with a measured improvement.*
+    12. Safety: guardrails, injection and compliance. *You produce: tested guardrails and a short compliance checklist.*
+  - **Weeks 13–16 · Capstone and interviews**
+    13. Technical interviews and hiring prep (full week, 40 UE). *You produce: algorithm coding drills without AI, a timed take-home, a project presentation and first peer mocks.*
+    14. Capstone I and interview practice. *You produce: your 80 UE capstone assistant core alongside weekly coding drills and squad mock interviews.*
+    15. Capstone II and interview practice. *You produce: evaluation evidence, improved assistant, mock interviews and project-talk rehearsals.*
+    16. Capstone III: deploy, defence and career prep. *You produce: the deployed assistant, defence, final 40 UE interview practice and 3 individual 45-min career consultations plus written CV review (no placement promises).*
 
 ## 7. Home page (`/`)
 
