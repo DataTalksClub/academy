@@ -282,11 +282,11 @@ SignupForm (same component), small seat grid.
     10. Environments, logs, metrics and an on-call agent. *You produce: dashboards, one alert, and a failure investigated from telemetry.*
     11. Reusable workflows: skills, subagents and hooks. *You produce: packaged implementation and code-review workflows.*
     12. Connecting agents to tools through MCP. *You produce: your product's tools exposed through MCP and used by the agent.*
-  - **Weeks 13–16 · Factory and capstone**
+  - **Weeks 13–16 · Factory, capstone and interviews**
     13. Agent teams, loops and parallel work. *You produce: a backlog batch worked through by an agent team, with QA verdicts.*
     14. The agentic software factory. *You produce: a configured factory on your product and an operating guide.*
-    15. Capstone: users, feedback, improvement. *You produce: an improved product released through the pipeline.*
-    16. Capstone: release, evidence and defence. *You produce: the product, a launch report and a technical defence.*
+    15. Capstone: users, feedback, release and defence. *You produce: an improved product released through the pipeline, launch report and defence.*
+    16. Technical interviews and hiring prep. *You produce: peer mock interviews, coding and take-home drills, and a project presentation.*
 
 ### ai-engineering
 
@@ -324,11 +324,11 @@ SignupForm (same component), small seat grid.
     10. Testing LLM applications and CI/CD. *You produce: a regression suite running in CI.*
     11. Evaluating answers and agents. *You produce: an evaluation report comparing two configurations.*
     12. Tracing, observability and monitoring. *You produce: traces and a monitoring dashboard for the deployed assistant.*
-  - **Weeks 13–16 · Production and capstone**
+  - **Weeks 13–16 · Production, capstone and interviews**
     13. Cost, latency and model choice. *You produce: a cost and latency report with one measured improvement.*
     14. Safety: guardrails, injection and compliance. *You produce: tested guardrails and a short compliance checklist.*
-    15. Capstone: build and measure. *You produce: the capstone build with evaluation evidence.*
-    16. Capstone: improve, review and defend. *You produce: a deployed assistant, an evaluation report and a defence.*
+    15. Capstone: build, evaluate and defend. *You produce: a deployed assistant, an evaluation report and a defence.*
+    16. Technical interviews and hiring prep. *You produce: peer mock interviews, coding and take-home drills, and a project presentation.*
 
 ## 7. Home page (`/`)
 

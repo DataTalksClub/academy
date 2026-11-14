@@ -88,12 +88,12 @@ export const tracks: Track[] = [
       },
       {
         weeks: 'Weeks 13–16',
-        title: 'Factory and capstone',
+        title: 'Factory, capstone and interviews',
         modules: [
           { title: 'Agent teams, loops and parallel work.', produce: 'a backlog batch worked through by an agent team, with QA verdicts.' },
           { title: 'The agentic software factory.', produce: 'a configured factory on your product and an operating guide.' },
-          { title: 'Capstone: users, feedback, improvement.', produce: 'an improved product released through the pipeline.' },
-          { title: 'Capstone: release, evidence and defence.', produce: 'the product, a launch report and a technical defence.' },
+          { title: 'Capstone: users, feedback, release and defence.', produce: 'an improved product released through the pipeline, launch report and defence.' },
+          { title: 'Technical interviews and hiring prep.', produce: 'peer mock interviews, coding and take-home drills, and a project presentation.' },
         ],
       },
     ],
@@ -157,12 +157,12 @@ export const tracks: Track[] = [
       },
       {
         weeks: 'Weeks 13–16',
-        title: 'Production and capstone',
+        title: 'Production, capstone and interviews',
         modules: [
           { title: 'Cost, latency and model choice.', produce: 'a cost and latency report with one measured improvement.' },
           { title: 'Safety: guardrails, injection and compliance.', produce: 'tested guardrails and a short compliance checklist.' },
-          { title: 'Capstone: build and measure.', produce: 'the capstone build with evaluation evidence.' },
-          { title: 'Capstone: improve, review and defend.', produce: 'a deployed assistant, an evaluation report and a defence.' },
+          { title: 'Capstone: build, evaluate and defend.', produce: 'a deployed assistant, an evaluation report and a defence.' },
+          { title: 'Technical interviews and hiring prep.', produce: 'peer mock interviews, coding and take-home drills, and a project presentation.' },
         ],
       },
     ],
