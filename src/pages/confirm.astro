@@ -1,0 +1,124 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { url } from '../lib';
+---
+
+<Base
+  title="Confirm Email"
+  description="Confirm your email address for DataTalks.Club Academy."
+  path="/confirm/"
+  noindex
+>
+  <Header cta={false} />
+  <main id="main" class="confirm">
+    <div class="wrap confirm__wrap">
+      <div class="confirm__card card" data-confirm-card>
+        <p class="mono label-green" data-confirm-eyebrow>Email Confirmation</p>
+        <h1 class="confirm__title" data-confirm-title tabindex="-1">Confirming Your Email</h1>
+        <p class="confirm__message" data-confirm-message>Checking your confirmation link.</p>
+        <p class="confirm__actions">
+          <a class="btn btn--outline" href={url('/')} data-confirm-back>Back to DataTalks.Club Academy</a>
+        </p>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<script>
+  const API = (import.meta.env.PUBLIC_API_URL || '').replace(/\/+$/, '');
+  const BASE = import.meta.env.BASE_URL.replace(/\/+$/, '');
+  const eyebrow = document.querySelector<HTMLElement>('[data-confirm-eyebrow]');
+  const titleEl = document.querySelector<HTMLElement>('[data-confirm-title]');
+  const messageEl = document.querySelector<HTMLElement>('[data-confirm-message]');
+  const backEl = document.querySelector<HTMLAnchorElement>('[data-confirm-back]');
+
+  function show(eyebrowText: string, title: string, message: string, isError: boolean, backPath = '/') {
+    if (eyebrow) {
+      eyebrow.textContent = eyebrowText;
+      eyebrow.classList.toggle('label-error', isError);
+      eyebrow.classList.toggle('label-green', !isError);
+    }
+    if (titleEl) {
+      titleEl.textContent = title;
+      titleEl.focus();
+    }
+    if (messageEl) messageEl.textContent = message;
+    if (backEl) backEl.setAttribute('href', (BASE || '') + backPath);
+  }
+
+  async function run() {
+    const token = new URLSearchParams(location.search).get('token') || '';
+    if (!token) {
+      show('Error', 'Invalid Confirmation Link', 'This confirmation link is missing a token. Please submit the form again to get a new link.', true);
+      return;
+    }
+    if (!API) {
+      show('Error', 'Confirmation Failed', 'Confirmation service is not configured. Please try again later.', true);
+      return;
+    }
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 15000);
+    try {
+      const res = await fetch(`${API}/confirm?token=${encodeURIComponent(token)}&format=json`, {
+        method: 'GET',
+        headers: { accept: 'application/json' },
+        signal: ctrl.signal,
+      });
+      const data = await res.json().catch(() => null);
+      if (res.ok && data?.ok) {
+        const backPath = data.source === 'layoff_proof' ? '/sessions/' : data.track ? `/${data.track}/` : '/';
+        show('Confirmed', data.title || 'Email Confirmed', data.message || 'Your email is confirmed.', false, backPath);
+      } else {
+        const backPath = data?.source === 'layoff_proof' ? '/sessions/' : data?.track ? `/${data.track}/` : '/';
+        show(
+          'Error',
+          data?.title || 'Invalid Confirmation Link',
+          data?.message || 'This confirmation link is invalid or expired. Please submit the form again.',
+          true,
+          backPath,
+        );
+      }
+    } catch {
+      show('Error', 'Confirmation Failed', 'Something went wrong while confirming your email. Please try again.', true);
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  run();
+</script>
+
+<style>
+  .confirm {
+    padding: 56px 0 80px;
+  }
+  .confirm__wrap {
+    max-width: 560px;
+  }
+  .confirm__card {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 28px 24px;
+    border-radius: 2px;
+  }
+  .confirm__title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(1.6rem, 4vw, 2.1rem);
+    margin: 8px 0 12px;
+    letter-spacing: -0.02em;
+  }
+  .confirm__message {
+    margin: 0 0 20px;
+    line-height: 1.6;
+  }
+  .confirm__actions {
+    margin: 0;
+  }
+  .label-error {
+    color: var(--error, #a61b1b);
+  }
+</style>

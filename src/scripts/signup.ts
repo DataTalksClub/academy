@@ -44,18 +44,23 @@ function referrer(): string {
 
 async function post(path: string, body: unknown, keepalive = false): Promise<boolean> {
   if (!API) return false;
+  const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+  const timer = ctrl ? setTimeout(() => ctrl.abort(), 15000) : null;
   try {
     const res = await fetch(API + path, {
       method: 'POST',
       keepalive,
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(body),
+      signal: ctrl?.signal,
     });
     if (res.status !== 200) return false;
     const data = await res.json().catch(() => null);
     return !!data && data.ok === true;
   } catch {
     return false;
+  } finally {
+    if (timer) clearTimeout(timer);
   }
 }
 
