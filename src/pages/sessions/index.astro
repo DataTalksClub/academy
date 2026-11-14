@@ -1,8 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import SessionsForm from '../../components/SessionsForm.astro';
+import alexeyImg from '../../assets/alexey.jpg';
 import { sessions, sessionsPage as c, variants, HERO_TIME } from '../../data/sessions';
 import { url, rich } from '../../lib';
 ---
@@ -31,6 +33,10 @@ import { url, rich } from '../../lib';
             <a class="btn btn--mint" href="#register" data-scroll-to-form-lp>{c.button}</a>
           </p>
           <p class="hero__note hero__note--small">{c.underButton}</p>
+          <div class="hero__speaker">
+            <Image src={alexeyImg} alt="Alexey Grigorev" width={52} height={52} class="hero__avatar" />
+            <p class="hero__speaker-text">{c.speakerLine}</p>
+          </div>
         </div>
         <div class="hero__form">
           <SessionsForm />
@@ -63,7 +69,19 @@ import { url, rich } from '../../lib';
                   <span>{s.weekdayDate}</span>
                 </div>
                 <h3 class="session-card__title">{s.title}</h3>
-                <p class="session-card__desc">{s.description}</p>
+                {
+                  s.description.split('\n\n').map((block) =>
+                    block.startsWith('- ') ? (
+                      <ul class="session-card__bullets">
+                        {block.split('\n').map((line) => (
+                          <li>{line.replace(/^- /, '')}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p class="session-card__desc">{block}</p>
+                    ),
+                  )
+                }
               </li>
             ))
           }
@@ -183,11 +201,34 @@ import { url, rich } from '../../lib';
     color: var(--paper);
   }
   .hero__note {
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     line-height: 1.55;
-    color: rgba(245, 241, 232, 0.78);
+    color: rgba(245, 241, 232, 0.82);
     margin: 0;
     max-width: 56ch;
+  }
+  .hero__speaker {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line-dark);
+    max-width: 54ch;
+  }
+  .hero__avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 2px;
+    object-fit: cover;
+    flex-shrink: 0;
+    filter: grayscale(100%) contrast(1.05);
+  }
+  .hero__speaker-text {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: rgba(245, 241, 232, 0.88);
   }
   @media (min-width: 960px) {
     .hero {
@@ -234,9 +275,21 @@ import { url, rich } from '../../lib';
     margin: 0 0 10px;
   }
   .session-card__desc {
-    margin: 0;
+    margin: 0 0 10px;
     color: var(--ink-2);
     line-height: 1.55;
+  }
+  .session-card__desc:last-child {
+    margin-bottom: 0;
+  }
+  .session-card__bullets {
+    margin: 0 0 10px;
+    padding-left: 1.2rem;
+    color: var(--ink-2);
+    line-height: 1.55;
+  }
+  .session-card__bullets li + li {
+    margin-top: 4px;
   }
 
   .hero__cta {

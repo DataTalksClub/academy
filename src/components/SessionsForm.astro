@@ -12,24 +12,26 @@ const rsvp = rsvp_published ? sessions.filter((s) => s.meetupUrl) : [];
 
 <div class="lp-form card" id={id} data-layoff-form data-form-kind="main">
   <form class="lp-form__inner" novalidate>
-    <div class="field">
-      <label class="mono field-label" for={`${idPrefix}-email`}>{form.emailLabel}</label>
-      <input
-        class="input"
-        id={`${idPrefix}-email`}
-        type="email"
-        name="email"
-        required
-        autocomplete="email"
-        inputmode="email"
-        placeholder="you@example.com"
-      />
-      <p class="field-error mono" data-error="invalid" role="alert" hidden>Please enter a valid email address.</p>
-    </div>
+    <div class="field-grid">
+      <div class="field">
+        <label class="mono field-label" for={`${idPrefix}-email`}>{form.emailLabel}</label>
+        <input
+          class="input"
+          id={`${idPrefix}-email`}
+          type="email"
+          name="email"
+          required
+          autocomplete="email"
+          inputmode="email"
+          placeholder="you@example.com"
+        />
+        <p class="field-error mono" data-error="invalid" role="alert" hidden>Please enter a valid email address.</p>
+      </div>
 
-    <div class="field">
-      <label class="mono field-label" for={`${idPrefix}-name`}>{form.nameLabel}</label>
-      <input class="input" id={`${idPrefix}-name`} type="text" name="name" autocomplete="given-name" maxlength="60" />
+      <div class="field">
+        <label class="mono field-label" for={`${idPrefix}-name`}>{form.nameLabel}</label>
+        <input class="input" id={`${idPrefix}-name`} type="text" name="name" autocomplete="given-name" maxlength="60" />
+      </div>
     </div>
 
     <fieldset class="field fieldset">
@@ -82,7 +84,7 @@ const rsvp = rsvp_published ? sessions.filter((s) => s.meetupUrl) : [];
 
     <div class="field">
       <label class="mono field-label" for={`${idPrefix}-free`}>{form.freeTextLabel}</label>
-      <textarea class="input input--area" id={`${idPrefix}-free`} name="free_text" rows="3" maxlength="500"></textarea>
+      <textarea class="input input--area" id={`${idPrefix}-free`} name="free_text" rows="2" maxlength="500"></textarea>
     </div>
 
     <label class="check-item field">
@@ -151,11 +153,11 @@ const rsvp = rsvp_published ? sessions.filter((s) => s.meetupUrl) : [];
   }
   @media (min-width: 768px) {
     .lp-form {
-      padding: 28px 28px 26px;
+      padding: 22px 24px 20px;
     }
   }
   .field {
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
   .fieldset {
     border: 0;
@@ -164,19 +166,19 @@ const rsvp = rsvp_published ? sessions.filter((s) => s.meetupUrl) : [];
   }
   .field-label {
     display: block;
-    margin-bottom: 7px;
+    margin-bottom: 5px;
     color: var(--ink-2);
     text-transform: uppercase;
   }
   .input {
     width: 100%;
-    min-height: 46px;
-    padding: 0 14px;
+    min-height: 42px;
+    padding: 0 12px;
     border: 1px solid rgba(23, 32, 27, 0.5);
     border-radius: 2px;
     background: #fff;
     color: var(--ink);
-    font: 400 1rem/1.2 var(--sans);
+    font: 400 0.95rem/1.2 var(--sans);
   }
   .input::placeholder {
     color: #6b756f;
@@ -188,18 +190,18 @@ const rsvp = rsvp_published ? sessions.filter((s) => s.meetupUrl) : [];
   .check-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 5px;
   }
   .check-item {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    font-size: 0.9375rem;
-    line-height: 1.4;
+    gap: 8px;
+    font-size: 0.9rem;
+    line-height: 1.35;
     cursor: pointer;
   }
   .check-item input {
-    margin-top: 3px;
+    margin-top: 2px;
     accent-color: var(--green-700);
     flex-shrink: 0;
   }
@@ -210,18 +212,18 @@ const rsvp = rsvp_published ? sessions.filter((s) => s.meetupUrl) : [];
   .radio-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
   }
   .radio-pill {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    min-height: 38px;
-    padding: 4px 12px;
+    min-height: 34px;
+    padding: 3px 10px;
     border: 1px solid rgba(23, 32, 27, 0.4);
     border-radius: 2px;
     background: #fff;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     cursor: pointer;
   }
   .radio-pill input {
@@ -292,8 +294,8 @@ const rsvp = rsvp_published ? sessions.filter((s) => s.meetupUrl) : [];
     max-width: 8rem;
   }
   .input--area {
-    min-height: 84px;
-    padding: 10px 14px;
+    min-height: 58px;
+    padding: 8px 12px;
     line-height: 1.4;
     resize: vertical;
   }
