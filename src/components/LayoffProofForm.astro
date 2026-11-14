@@ -1,0 +1,289 @@
+---
+import { url } from '../lib';
+import { layoffProof } from '../data/layoff-proof';
+---
+
+<div class="lp-form card" id="register" data-layoff-form>
+  <form class="lp-form__inner" novalidate>
+    <div class="field">
+      <label class="mono field-label" for="lp-email">Email address (required)</label>
+      <input
+        class="input"
+        id="lp-email"
+        type="email"
+        name="email"
+        required
+        autocomplete="email"
+        inputmode="email"
+        placeholder="you@example.com"
+        aria-describedby="lp-email-err"
+      />
+      <p class="field-error mono" id="lp-email-err" data-error="invalid" hidden>
+        Please enter a valid email address.
+      </p>
+    </div>
+
+    <div class="field">
+      <label class="mono field-label" for="lp-name">Name</label>
+      <input
+        class="input"
+        id="lp-name"
+        type="text"
+        name="name"
+        autocomplete="name"
+        placeholder="Your name (optional)"
+      />
+    </div>
+
+    <fieldset class="field fieldset">
+      <legend class="mono field-label">Sessions to attend</legend>
+      <div class="check-list">
+        {
+          layoffProof.sessions.map((s) => (
+            <label class="check-item">
+              <input type="checkbox" name="sessions" value={s.id} checked />
+              <span>
+                <span class="mono check-item__num">{s.number}</span>
+                {s.title}
+              </span>
+            </label>
+          ))
+        }
+      </div>
+    </fieldset>
+
+    <fieldset class="field fieldset">
+      <legend class="mono field-label">Current status</legend>
+      <div class="radio-row">
+        <label class="radio-pill">
+          <input type="radio" name="status" value="job_hunting" />
+          <span>Job hunting</span>
+        </label>
+        <label class="radio-pill">
+          <input type="radio" name="status" value="employed_upskilling" />
+          <span>Employed, want to upskill</span>
+        </label>
+        <label class="radio-pill">
+          <input type="radio" name="status" value="other" />
+          <span>Other</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <div class="field-grid">
+      <fieldset class="field fieldset">
+        <legend class="mono field-label">Live in Berlin or Germany?</legend>
+        <div class="radio-row">
+          <label class="radio-pill">
+            <input type="radio" name="berlin_germany" value="yes" />
+            <span>Yes</span>
+          </label>
+          <label class="radio-pill">
+            <input type="radio" name="berlin_germany" value="no" />
+            <span>No</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="field fieldset">
+        <legend class="mono field-label">Interested in Bildungsgutschein?</legend>
+        <div class="radio-row">
+          <label class="radio-pill">
+            <input type="radio" name="bildungsgutschein" value="yes" />
+            <span>Yes</span>
+          </label>
+          <label class="radio-pill">
+            <input type="radio" name="bildungsgutschein" value="no" />
+            <span>No</span>
+          </label>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="hp" aria-hidden="true">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <button class="btn btn--green lp-submit" type="submit" disabled data-needs-js>
+      Register for free sessions
+    </button>
+
+    <p class="field-error mono" data-error="failed" role="alert" hidden>
+      That did not go through. Please try again, or email <a href="mailto:alexey@datatalks.club">alexey@datatalks.club</a>.
+    </p>
+    <noscript>
+      <p class="field-error mono">
+        Registration needs JavaScript. Or email <a href="mailto:alexey@datatalks.club">alexey@datatalks.club</a>.
+      </p>
+    </noscript>
+    <p class="micro mono">
+      We send a confirmation email with session details. No spam, unsubscribe anytime. <a href={url('/privacy/')}>Privacy</a>
+    </p>
+  </form>
+
+  <div class="success" data-success hidden>
+    <p class="mono label-green">Check your inbox</p>
+    <h2 class="success__title" tabindex="-1" data-success-title>
+      Confirm your email to complete registration.
+    </h2>
+    <p>
+      We sent a confirmation link to your email address with the session overview. Click that link to confirm your spot.
+    </p>
+    <p>
+      Interested in the full-time 2027 Academy cohorts as well?
+    </p>
+    <a class="btn btn--outline" href={url('/')}>
+      {layoffProof.tracksLinkLabel}
+    </a>
+  </div>
+</div>
+
+<style>
+  .lp-form {
+    --focus: var(--green-700);
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 2px;
+    padding: 24px 20px;
+    box-shadow: 0 18px 48px -18px rgba(0, 0, 0, 0.45);
+  }
+  @media (min-width: 768px) {
+    .lp-form {
+      padding: 28px 28px 26px;
+    }
+  }
+  .field {
+    margin-bottom: 16px;
+  }
+  .fieldset {
+    border: 0;
+    padding: 0;
+    margin-inline: 0;
+  }
+  .field-label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--ink-2);
+    text-transform: uppercase;
+  }
+  .input {
+    width: 100%;
+    min-height: 46px;
+    padding: 0 14px;
+    border: 1px solid rgba(23, 32, 27, 0.5);
+    border-radius: 2px;
+    background: #fff;
+    color: var(--ink);
+    font: 400 1rem/1.2 var(--sans);
+  }
+  .input::placeholder {
+    color: #6b756f;
+  }
+  .input[aria-invalid='true'] {
+    border-color: var(--error);
+    box-shadow: inset 0 0 0 1px var(--error);
+  }
+  .check-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    cursor: pointer;
+  }
+  .check-item input {
+    margin-top: 3px;
+    accent-color: var(--green-700);
+    flex-shrink: 0;
+  }
+  .check-item__num {
+    color: var(--green-700);
+    margin-right: 4px;
+  }
+  .radio-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .radio-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 38px;
+    padding: 4px 12px;
+    border: 1px solid rgba(23, 32, 27, 0.4);
+    border-radius: 2px;
+    background: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .radio-pill input {
+    accent-color: var(--green-700);
+  }
+  .field-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  @media (min-width: 560px) {
+    .field-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .lp-submit {
+    width: 100%;
+    margin-top: 4px;
+  }
+  .hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .field-error {
+    margin: 8px 0 0;
+    color: var(--error);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+  .field-error a {
+    color: inherit;
+    text-decoration: underline;
+  }
+  .micro {
+    margin: 12px 0 0;
+    color: var(--ink-2);
+    font-size: 0.75rem;
+    line-height: 1.6;
+  }
+  .micro a {
+    color: var(--green-700);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .success__title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin: 8px 0 14px;
+    outline: none;
+  }
+  .success > p:not(.mono) {
+    margin: 0 0 16px;
+    font-size: 0.96875rem;
+  }
+  .label-green {
+    margin: 0;
+    color: var(--green-700);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+</style>

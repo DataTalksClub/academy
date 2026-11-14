@@ -206,6 +206,76 @@ for (const el of signups) {
   }
 }
 
+// 3b. Layoff-Proof registration form (distinct source=layoff_proof).
+for (const el of $$<HTMLElement>('[data-layoff-form]')) {
+  const form = $$<HTMLFormElement>('form', el)[0];
+  const emailInput = $$<HTMLInputElement>('input[name="email"]', form)[0];
+  const nameInput = $$<HTMLInputElement>('input[name="name"]', form)[0];
+  const hp = $$<HTMLInputElement>('input[name="website"]', form)[0];
+  const button = $$<HTMLButtonElement>('button[type="submit"]', form)[0];
+  const errInvalid = $$('[data-error="invalid"]', form)[0];
+  const errFailed = $$('[data-error="failed"]', form)[0];
+  const okBox = $$('[data-success]', el)[0];
+  const label = button.textContent || '';
+  button.disabled = false;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errFailed.hidden = true;
+    const email = emailInput.value.trim();
+    emailInput.value = email;
+    if (!emailInput.checkValidity() || !EMAIL_RE.test(email)) {
+      errInvalid.hidden = false;
+      emailInput.setAttribute('aria-invalid', 'true');
+      emailInput.focus();
+      return;
+    }
+    errInvalid.hidden = true;
+    emailInput.removeAttribute('aria-invalid');
+    button.disabled = true;
+    button.textContent = 'Registering…';
+
+    const sessions = $$<HTMLInputElement>('input[name="sessions"]:checked', form).map((c) => c.value);
+    const status = $$<HTMLInputElement>('input[name="status"]:checked', form)[0]?.value || '';
+    const berlin_germany = $$<HTMLInputElement>('input[name="berlin_germany"]:checked', form)[0]?.value || '';
+    const bildungsgutschein = $$<HTMLInputElement>('input[name="bildungsgutschein"]:checked', form)[0]?.value || '';
+
+    sendPv('/form/layoff-proof-submit');
+    const ok = await post('/signup', {
+      source: 'layoff_proof',
+      email,
+      name: nameInput.value.trim(),
+      sessions,
+      status,
+      berlin_germany,
+      bildungsgutschein,
+      ...utm(),
+      referrer: referrer(),
+      page: pagePath(),
+      lang: navigator.language,
+      consent_version: CONSENT_VERSION,
+      website: hp.value,
+    });
+    button.disabled = false;
+    button.textContent = label;
+    if (ok) {
+      sendPv('/form/layoff-proof-success');
+      form.hidden = true;
+      okBox.hidden = false;
+      $$<HTMLElement>('[data-success-title]', okBox)[0]?.focus();
+    } else {
+      errFailed.hidden = false;
+    }
+  });
+
+  emailInput.addEventListener('input', () => {
+    if (emailInput.getAttribute('aria-invalid') && EMAIL_RE.test(emailInput.value.trim())) {
+      emailInput.removeAttribute('aria-invalid');
+      errInvalid.hidden = true;
+    }
+  });
+}
+
 // 4. Scroll-to-form buttons (header, sticky bar).
 function nearestForm(): HTMLElement | undefined {
   const mid = innerHeight / 2;

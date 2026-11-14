@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { TRACKS, mockApi } from './helpers';
 
-const PAGES = ['', ...TRACKS.map((t) => `${t}/`), 'privacy/', 'impressum/'];
+const PAGES = ['', ...TRACKS.map((t) => `${t}/`), 'layoff-proof/', 'privacy/', 'impressum/'];
 
 test('7. no third-party requests, no cookies, empty storage', async ({ page, baseURL }) => {
   const origin = new URL(baseURL!).origin;
