@@ -11,6 +11,7 @@ const H = {
 test('sessions page shows all three sessions, the form and an OG image', async ({ page }) => {
   await mockApi(page);
   await page.goto('sessions/');
+  await expect(page.locator('[data-hero-sessions] li')).toHaveCount(3);
   await expect(page.locator('[data-session-id]')).toHaveCount(3);
   await expect(page.locator('[data-session-id]').nth(0)).toContainText('Monday 23 November');
   await expect(page.locator('[data-session-id]').nth(1)).toContainText('Monday 30 November');

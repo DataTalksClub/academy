@@ -26,6 +26,7 @@ export interface Session {
   startUtc: string;
   endUtc: string;
   title: string;
+  heroTopic: string;
   shortLabel: string;
   description: string;
   zoomUrl: string;
@@ -33,6 +34,7 @@ export interface Session {
 }
 
 export const TIME_LABEL = '17:00 to 18:00 Berlin time';
+export const HERO_TIME = '17:00 Berlin';
 
 /** Buttons "RSVP on Meetup" stay hidden until this is true (Marketer confirms the events are published). */
 export const rsvp_published = false;
@@ -46,9 +48,10 @@ export const sessions: Session[] = [
     startUtc: '20261123T160000Z',
     endUtc: '20261123T170000Z',
     title: 'AI engineering or agentic engineering? What job postings ask for, and which path fits you',
+    heroTopic: 'What Berlin job postings ask for about AI, and which path fits you',
     shortLabel: 'Mon 23 Nov: AI or agentic engineering, which path',
     description:
-      "About one in ten engineering job postings at tech companies now lists AI coding tools like Cursor or Claude Code as a requirement. I'll go through what the postings ask for. Then I'll compare the two paths on real tasks. AI engineering means building products on top of LLMs, and agentic engineering means using coding agents to build any software faster. I'll say which one fits a backend, frontend or data background. Questions at the end.",
+      "One in ten engineering job postings at tech companies now lists AI coding tools like Cursor or Claude Code. I'll walk through what those postings ask for and compare AI engineering (building products on LLMs) with agentic engineering (shipping software with coding agents) on real tasks, with Q&A at the end.",
     zoomUrl: 'https://us06web.zoom.us/j/84099607571?pwd=afNorKbnnXre2oWcsOpmrPWWKZEiHj.1',
     meetupUrl: 'https://www.meetup.com/berlin-datatalks-club/events/317427871/',
   },
@@ -60,9 +63,10 @@ export const sessions: Session[] = [
     startUtc: '20261130T160000Z',
     endUtc: '20261130T170000Z',
     title: 'Agentic engineering: shipping real software with coding agents, live',
+    heroTopic: 'Agentic engineering: shipping a feature with a coding agent, live',
     shortLabel: 'Mon 30 Nov: Agentic engineering, live',
     description:
-      "I'll take a small feature from a ticket to a merged pull request with a coding agent. You'll see the spec I give it, the code and tests it writes, and my review, including the places where it got things wrong. I'll finish with how to put this kind of work into a job application.",
+      "I'll take a small feature from a ticket to a merged pull request using a coding agent. I'll show the prompt, the code and tests it generates, where it breaks, and how to present this work in a job application.",
     zoomUrl: 'https://us06web.zoom.us/j/86910927132?pwd=kBoaU0pv5ATHmXH5sEyA1k1VMqPdPJ.1',
     meetupUrl: 'https://www.meetup.com/berlin-datatalks-club/events/317427748/',
   },
@@ -74,9 +78,10 @@ export const sessions: Session[] = [
     startUtc: '20261207T160000Z',
     endUtc: '20261207T170000Z',
     title: 'AI engineering: building an LLM app that works, live',
+    heroTopic: 'AI engineering: building and testing an LLM app, live',
     shortLabel: 'Mon 7 Dec: AI engineering, live',
     description:
-      "I'll build a small app on top of a language model: search over real documents, a tool the model can call, and an evaluation that tells you whether a change made the answers better or worse. Along the way I'll show the mistakes that break these apps in production and how to test for them.",
+      "I'll build a small LLM app with document search and tool calling, plus an evaluation script that checks if a change helped or broke answers. I'll also show the common failure modes and how to test for them.",
     zoomUrl: 'https://us06web.zoom.us/j/89929618442?pwd=xjMMnER39hbJudSCMZ9bUXbCwvwrWI.1',
     meetupUrl: 'https://www.meetup.com/berlin-datatalks-club/events/317427758/',
   },
@@ -89,21 +94,19 @@ export const CHANNELS = ['genau', 'handpicked', '20berlin', 'linkedin', 'x', 'ne
 
 export type Variant = 'a' | 'b' | 'c';
 
-const subheadTail = 'Mondays 23 November, 30 November and 7 December, 17:00 to 18:00 Berlin time.';
-
 /** Headline variants, chosen by utm_content. Unknown or missing values show A. */
 export const variants: Record<Variant, { headline: string; subhead: string }> = {
   a: {
     headline: 'The AI skills Berlin companies now hire developers for',
-    subhead: `Three free one-hour online sessions. In the first I go through what developer job postings now ask for about AI. In the next two I build live, once with a coding agent like Claude Code and once on top of an LLM API. ${subheadTail}`,
+    subhead: 'Three free one-hour sessions on Zoom:',
   },
   b: {
     headline: 'Becoming layoff-proof as a developer in Berlin',
-    subhead: `Solaris and Glow25 cut jobs in Berlin this year and named AI as a reason. In three free one-hour online sessions I'll show which AI skills developer job postings ask for now and build with them live. ${subheadTail}`,
+    subhead: 'Solaris and Glow25 cut jobs in Berlin this year and named AI as a reason. Three free one-hour sessions on Zoom:',
   },
   c: {
     headline: 'Show employers you can ship software with AI',
-    subhead: `If you've sent dozens of applications without a reply, a project in your GitHub that shows how you work with AI gives a hiring manager a link to click. In three free one-hour online sessions I'll build two kinds of them live: a feature shipped with a coding agent and a small LLM app with tests. ${subheadTail}`,
+    subhead: 'A working AI project in your GitHub gives a hiring manager something to click. Three free one-hour sessions on Zoom:',
   },
 };
 
@@ -119,16 +122,16 @@ export const sessionsPage = {
   eyebrow: 'For developers in Berlin who are job hunting or want to upskill',
   factLine: 'Free, online on Zoom and in English, 60 minutes each. Everyone who registers gets the recording.',
   button: 'Save my seat',
-  underButton: 'In the form you pick one, two or all three sessions.',
+  underButton: 'Pick one, two or all three sessions in the form.',
 
   forHeading: 'Who these sessions are for',
   forIntro: 'I made these sessions for developers who live in Berlin and are in one of two situations:',
   forList: [
-    "You're looking for a job, you're in your notice period, or you were laid off recently.",
-    'You have a job and see Cursor, Claude Code or LLM experience in the postings for your next role, and you want to learn it.',
+    "You're job hunting or in a notice period.",
+    'You have a job and want to learn Cursor, Claude Code or LLM APIs for your next role.',
   ],
   forOutro:
-    "You'll get the most out of it if you've worked as a developer for at least a couple of years, in any language. Anyone can join, also from outside Berlin, but the parts about the job market and the Agentur für Arbeit are about Berlin.",
+    'These sessions assume you already write code, in any language. Anyone can join from anywhere, though the job market and Agentur für Arbeit parts focus on Berlin.',
   forNote: "If you've never written code, these sessions will move too fast. My free [Zoomcamps](https://datatalks.club/courses.html) are a better place to start.",
 
   sessionsHeading: 'Three Mondays, 17:00 to 18:00 Berlin time',
@@ -145,43 +148,43 @@ export const sessionsPage = {
     'In September 2026 Berlin had 3,280 unemployed software developers and 100 open vacancies registered with the Bundesagentur für Arbeit. Source: [Stellenradar, based on BA data, September 2026](https://stellenradar.org/presse/2026-09-berlin-werbung-gastronomie-software).',
   ],
 
-  faqHeading: 'Cost, recordings, location and the April program',
+  faqHeading: 'Questions',
   faq: [
     {
       q: 'Is it really free?',
-      a: "Yes. There's no payment and no card. You leave your email so I can send you the session details and the recording.",
+      a: 'Yes. No payment and no card. I only use your email for session links and recordings.',
     },
     {
       q: "I can't make it at 17:00. Should I still register?",
-      a: 'Yes. Everyone who registers gets the recording and the materials by email after each session.',
+      a: 'Yes. Everyone who registers gets the recording and materials by email after each session.',
     },
     {
       q: "I don't live in Berlin. Can I join?",
-      a: 'Yes. The job market examples and the part about the Agentur für Arbeit are about Berlin and Germany. The technical part works anywhere.',
+      a: 'Yes. The job market and Agentur für Arbeit examples are for Germany, while the coding part applies anywhere.',
     },
     {
       q: 'Is this a sales pitch for a course?',
       // The "applying" or "have applied" wording is still a placeholder, so the sentence about
       // the application is left out until Alexey decides.
-      a: "About 50 minutes of each hour are the topic. In the last 10 minutes I talk about a full-time program for 15 people that I'm planning for April 2027. A Bildungsgutschein can only pay for it once the program has the required certification, and that isn't granted yet. Whether you get a voucher is decided by your Agentur für Arbeit or Jobcenter.",
+      a: "About 50 minutes of each hour are the technical topic. In the last 10 minutes I cover the full-time program for 15 people I'm planning for April 2027. A Bildungsgutschein can only pay for it once certification is granted, and your Agentur für Arbeit or Jobcenter decides whether you get a voucher.",
     },
     {
       q: "I've already done an AI bootcamp or a prompting course. Will this be the same?",
-      a: "These sessions assume you already write software, so there's no introduction to ChatGPT. I build things live and show how they're tested.",
+      a: "No. These sessions assume you write software, so there's no ChatGPT intro. I build live and show how to test the code.",
     },
     {
       q: 'Do I need to know Python?',
-      a: 'It helps for the session on 7 December. For the other two any language is fine.',
+      a: 'It helps for 7 December. Any language is fine for the first two.',
     },
     {
       q: 'What happens to my email?',
-      a: "I use it to send you the session links, the reminders and the recordings. If you tick the box in the form, I'll also write to you about the April 2027 program. You can unsubscribe from any email. Details are in the [privacy notice](/privacy/).",
+      a: "I send you the session links, reminders and recordings. If you tick the box in the form, I'll also write about the April 2027 program. You can unsubscribe any time. Details are in the [privacy notice](/privacy/).",
     },
   ],
 
-  finalHeading: 'Save your seat for one, two or all three sessions',
+  finalHeading: 'Save your seat',
   finalText:
-    "Free and online, Mondays 23 November, 30 November and 7 December at 17:00 Berlin time. If you can't come, the recording comes to your inbox.",
+    'Free and online, Mondays 23 November, 30 November and 7 December at 17:00 Berlin time. Recordings go to everyone who registers.',
 };
 
 export const form = {

@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import SessionsForm from '../../components/SessionsForm.astro';
-import { sessions, sessionsPage as c, variants } from '../../data/sessions';
+import { sessions, sessionsPage as c, variants, HERO_TIME } from '../../data/sessions';
 import { url, rich } from '../../lib';
 ---
 
@@ -16,6 +16,16 @@ import { url, rich } from '../../lib';
           <p class="mono hero__eyebrow">{c.eyebrow}</p>
           <h1 data-hero-headline>{variants.a.headline}</h1>
           <p class="hero__lead" data-hero-subhead>{variants.a.subhead}</p>
+          <ul class="hero__sessions" data-hero-sessions>
+            {
+              sessions.map((s) => (
+                <li>
+                  <span class="hero__session-date mono">{s.dateLabel}, {HERO_TIME}</span>
+                  <span class="hero__session-topic">{s.heroTopic}</span>
+                </li>
+              ))
+            }
+          </ul>
           <p class="hero__note">{c.factLine}</p>
           <p class="hero__cta">
             <a class="btn btn--mint" href="#register" data-scroll-to-form-lp>{c.button}</a>
@@ -145,8 +155,32 @@ import { url, rich } from '../../lib';
     font-size: 1.125rem;
     line-height: 1.55;
     color: rgba(245, 241, 232, 0.9);
-    margin: 0 0 16px;
+    margin: 0 0 14px;
     max-width: 54ch;
+  }
+  .hero__sessions {
+    list-style: none;
+    margin: 0 0 18px;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+    max-width: 56ch;
+  }
+  .hero__sessions li {
+    display: grid;
+    gap: 2px;
+    padding: 10px 12px;
+    border-left: 2px solid var(--mint);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .hero__session-date {
+    font-size: 0.8125rem;
+    color: var(--mint);
+  }
+  .hero__session-topic {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--paper);
   }
   .hero__note {
     font-size: 0.8125rem;
