@@ -62,8 +62,8 @@ export const tracks: Track[] = [
         modules: [
           { title: 'AI development tools: overview and setup.', produce: 'a working environment and your first agent-made commit.' },
           { title: 'Working in a session and in an existing codebase.', produce: "a verified pull request in a repository you didn't write." },
-          { title: 'From idea to spec, backlog and small tasks.', produce: 'a product brief and a groomed backlog for your own product.' },
-          { title: 'Full-stack feature: interface, API contract, backend and database.', produce: 'a working interface on mocks, OpenAPI spec and end-to-end backend tests.' },
+          { title: 'From idea to spec, backlog and full-stack foundation.', produce: 'a product brief, a groomed backlog and a minimal full-stack scaffold with passing backend tests.' },
+          { title: 'Introduction to AI engineering.', produce: 'an LLM API app with a chatbot, RAG over documents and a simple tool-calling agent built with coding agents.' },
         ],
       },
       {
@@ -129,7 +129,7 @@ export const tracks: Track[] = [
         weeks: 'Weeks 1–4',
         title: 'Retrieval',
         modules: [
-          { title: 'A Python service on an LLM API.', produce: 'a small API that returns validated, structured answers.' },
+          { title: 'Agentic engineering basics and a Python service on an LLM API.', produce: 'a working coding-agent setup (day 1) and a small API that returns validated, structured answers.' },
           { title: 'Retrieval, document processing and indexing.', produce: 'a one-command ingestion pipeline and a knowledge assistant with sources.' },
           { title: 'Vector and hybrid search.', produce: 'three retrieval variants, with examples of where each fails.' },
           { title: 'Evaluating retrieval.', produce: 'a retrieval evaluation and a justified configuration.' },
@@ -139,7 +139,7 @@ export const tracks: Track[] = [
         weeks: 'Weeks 5–8',
         title: 'Agents',
         modules: [
-          { title: 'Tools, function calling and the agent loop.', produce: 'an assistant that calls an API through a tool.' },
+          { title: 'Agentic engineering workflow, tools and the agent loop.', produce: 'the full agent workflow on your project repo (spec to tasks, tests, diff review, CI) and an assistant that calls an API through a tool.' },
           { title: 'Agent frameworks, MCP and context.', produce: 'the assistant rebuilt on a framework, with one MCP tool.' },
           { title: 'Serving and cloud deployment.', produce: 'a deployed assistant with cited answers and one tool (midterm).' },
           { title: 'Agentic workflows and human approval.', produce: 'a workflow action that waits for approval and handles refusal.' },
