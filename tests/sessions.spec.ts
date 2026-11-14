@@ -97,9 +97,9 @@ test('form posts survey answers as source=layoff_proof with channel UTMs, then s
   const cal = page.locator('[data-calendar-session]:visible');
   await expect(cal).toHaveCount(2);
   await expect(page.locator('[data-calendar] a[href$="hireable-with-ai.ics"]')).toBeVisible();
-  const pvPages = api.pvs.map((r) => r.postDataJSON().page);
-  expect(pvPages).toContain('/form/sessions-submit');
-  expect(pvPages).toContain('/form/sessions-success');
+  const pvPages = () => api.pvs.map((r) => r.postDataJSON().page);
+  await expect.poll(pvPages).toContain('/form/sessions-submit');
+  await expect.poll(pvPages).toContain('/form/sessions-success');
 });
 
 test('form needs at least one session and an email', async ({ page }) => {
@@ -146,7 +146,7 @@ test('QR form posts form=qr with the session from the URL', async ({ page }) => 
     utm_content: 'session2',
   });
   expect(api.signups[0].postDataJSON().sessions).toBeUndefined();
-  expect(api.pvs.map((r) => r.postDataJSON().page)).toContain('/form/materials-success');
+  await expect.poll(() => api.pvs.map((r) => r.postDataJSON().page)).toContain('/form/materials-success');
 });
 
 test('QR form without a valid session does not post', async ({ page }) => {
