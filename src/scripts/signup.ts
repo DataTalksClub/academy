@@ -93,7 +93,7 @@ for (const link of $$<HTMLAnchorElement>('[data-track-click]')) {
   if (Object.keys(u).length) {
     for (const a of $$<HTMLAnchorElement>('a[href]')) {
       const raw = a.getAttribute('href') || '';
-      if (raw.startsWith('#') || /^(mailto|tel):/.test(raw)) continue;
+      if (raw.startsWith('#') || /^(mailto|tel):/.test(raw) || a.hasAttribute('download')) continue;
       let target: URL;
       try {
         target = new URL(raw, location.href);
@@ -206,22 +206,63 @@ for (const el of signups) {
   }
 }
 
-// 3b. Layoff-Proof registration form (distinct source=layoff_proof).
+// 2b. Hero headline variant by utm_content (a, b or c; anything else shows a).
+{
+  const holder = document.getElementById('hero-variants');
+  const h1 = document.querySelector<HTMLElement>('[data-hero-headline]');
+  const sub = document.querySelector<HTMLElement>('[data-hero-subhead]');
+  if (holder && h1 && sub) {
+    try {
+      const variants = JSON.parse(holder.textContent || '{}') as Record<string, { headline: string; subhead: string }>;
+      const v = (utm().utm_content || '').toLowerCase();
+      const pick = v === 'b' || v === 'c' ? variants[v] : undefined;
+      if (pick) {
+        h1.textContent = pick.headline;
+        sub.textContent = pick.subhead;
+      }
+      document.documentElement.dataset.variant = pick ? v : 'a';
+    } catch {
+      /* keep variant A */
+    }
+  }
+}
+
+// 2c. Scroll to the sessions form from the hero and final buttons.
+for (const b of $$<HTMLAnchorElement>('[data-scroll-to-form-lp]')) {
+  b.addEventListener('click', (e) => {
+    const target = document.getElementById('register');
+    if (!target) return;
+    e.preventDefault();
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    $$<HTMLInputElement>('input[name="email"]', target)[0]?.focus({ preventScroll: true });
+  });
+}
+
+// 3b. Sessions lead forms (source=layoff_proof): the main survey form and the QR "recording" form.
+const SOURCE = 'layoff_proof';
+const val = (form: HTMLFormElement, name: string) =>
+  $$<HTMLInputElement>(`input[name="${name}"]:checked`, form)[0]?.value || '';
+
 for (const el of $$<HTMLElement>('[data-layoff-form]')) {
+  const kind = el.dataset.formKind === 'qr' ? 'qr' : 'main';
   const form = $$<HTMLFormElement>('form', el)[0];
   const emailInput = $$<HTMLInputElement>('input[name="email"]', form)[0];
-  const nameInput = $$<HTMLInputElement>('input[name="name"]', form)[0];
   const hp = $$<HTMLInputElement>('input[name="website"]', form)[0];
   const button = $$<HTMLButtonElement>('button[type="submit"]', form)[0];
   const errInvalid = $$('[data-error="invalid"]', form)[0];
   const errFailed = $$('[data-error="failed"]', form)[0];
+  const errSessions = $$('[data-error="sessions"]', form)[0];
   const okBox = $$('[data-success]', el)[0];
   const label = button.textContent || '';
+  const qrParam = new URLSearchParams(location.search).get('session') || '';
+  const qrSession = /^[1-3]$/.test(qrParam) ? `session-${qrParam}` : '';
   button.disabled = false;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     errFailed.hidden = true;
+    if (errSessions) errSessions.hidden = true;
     const email = emailInput.value.trim();
     emailInput.value = email;
     if (!emailInput.checkValidity() || !EMAIL_RE.test(email)) {
@@ -232,40 +273,70 @@ for (const el of $$<HTMLElement>('[data-layoff-form]')) {
     }
     errInvalid.hidden = true;
     emailInput.removeAttribute('aria-invalid');
-    button.disabled = true;
-    button.textContent = 'Registering…';
 
     const sessions = $$<HTMLInputElement>('input[name="sessions"]:checked', form).map((c) => c.value);
-    const status = $$<HTMLInputElement>('input[name="status"]:checked', form)[0]?.value || '';
-    const berlin_germany = $$<HTMLInputElement>('input[name="berlin_germany"]:checked', form)[0]?.value || '';
-    const bildungsgutschein = $$<HTMLInputElement>('input[name="bildungsgutschein"]:checked', form)[0]?.value || '';
+    if (kind === 'main' && sessions.length === 0) {
+      if (errSessions) errSessions.hidden = false;
+      return;
+    }
+    if (kind === 'qr' && !qrSession) {
+      errFailed.hidden = false;
+      return;
+    }
+    button.disabled = true;
+    button.textContent = 'Sending…';
 
-    sendPv('/form/layoff-proof-submit');
-    const ok = await post('/signup', {
-      source: 'layoff_proof',
+    const years = $$<HTMLInputElement>('input[name="years_dev"]', form)[0]?.value.trim() || '';
+    const body: Record<string, unknown> = {
+      source: SOURCE,
+      form: kind,
       email,
-      name: nameInput.value.trim(),
-      sessions,
-      status,
-      berlin_germany,
-      bildungsgutschein,
+      name: $$<HTMLInputElement>('input[name="name"]', form)[0]?.value.trim() || '',
+      status: val(form, 'status'),
+      academy_optin: $$<HTMLInputElement>('input[name="academy_optin"]', form)[0]?.checked ? 'yes' : '',
       ...utm(),
       referrer: referrer(),
       page: pagePath(),
       lang: navigator.language,
       consent_version: CONSENT_VERSION,
       website: hp.value,
-    });
+    };
+    if (kind === 'main') {
+      Object.assign(body, {
+        sessions,
+        track_interest: val(form, 'track_interest'),
+        years_dev: years,
+        based_in: val(form, 'based_in'),
+        bildungsgutschein: val(form, 'bildungsgutschein'),
+        free_text: $$<HTMLTextAreaElement>('textarea[name="free_text"]', form)[0]?.value.trim() || '',
+      });
+    } else {
+      body.session = qrSession;
+    }
+
+    const prefix = kind === 'qr' ? 'materials' : 'sessions';
+    sendPv(`/form/${prefix}-submit`);
+    const ok = await post('/signup', body);
     button.disabled = false;
     button.textContent = label;
-    if (ok) {
-      sendPv('/form/layoff-proof-success');
-      form.hidden = true;
-      okBox.hidden = false;
-      $$<HTMLElement>('[data-success-title]', okBox)[0]?.focus();
-    } else {
+    if (!ok) {
       errFailed.hidden = false;
+      return;
     }
+    sendPv(`/form/${prefix}-success`);
+    form.hidden = true;
+    okBox.hidden = false;
+    if (kind === 'main') {
+      // Calendar links only for the picked sessions, plus the all-in-one file.
+      for (const li of $$<HTMLElement>('[data-calendar-session]', okBox)) {
+        li.hidden = !sessions.includes(li.dataset.calendarSession || '');
+      }
+      for (const a of $$<HTMLAnchorElement>('[data-meetup]', okBox)) {
+        a.addEventListener('click', () => sendPv(`/click/meetup-${a.dataset.meetup}`));
+        a.hidden = !sessions.includes(a.dataset.meetup || '');
+      }
+    }
+    $$<HTMLElement>('[data-success-title]', okBox)[0]?.focus();
   });
 
   emailInput.addEventListener('input', () => {
