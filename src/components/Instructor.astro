@@ -11,7 +11,7 @@ import { instructor } from '../data/shared';
       <Image src={photo} alt="Alexey Grigorev" width={280} height={280} densities={[1, 2]} class="portrait" />
     </div>
     <div class="instructor__text">
-      <SectionHead num="03" label="WHO TEACHES" title={instructor.heading} titleId="instructor-title" />
+      <SectionHead title={instructor.heading} titleId="instructor-title" />
       {instructor.paragraphs.map((p) => <p class="prose">{p}</p>)}
       <ul class="proof">
         {

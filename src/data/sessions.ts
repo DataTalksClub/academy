@@ -48,7 +48,7 @@ export const sessions: Session[] = [
     heroTopic: 'AI engineering vs agentic engineering',
     shortLabel: 'Mon 23 Nov: AI engineering vs agentic engineering',
     description:
-      "AI engineering is building apps that use LLMs, like chatbots, search over documents or agents. Agentic engineering is using tools like Claude Code or Cursor to write and ship code faster.\n\nIn the first 15 to 20 minutes I'll explain:\n\n- how they are different\n- what companies want for each\n- which one to pick if you are a backend, frontend or data person\n\nThen I'll answer your questions.",
+      "AI engineering is building apps that use LLMs, like chatbots, search over documents or agents. Agentic engineering is using tools like Claude Code or Cursor to write and ship code faster.\n\nIn the first 15 to 20 minutes I'll explain:\n\n- how they are different\n- what companies want for each\n- which one to pick if you are a backend, frontend or data person\n- how to get a Bildungsgutschein for your training\n\nThen I'll answer your questions.",
     zoomUrl: 'https://us06web.zoom.us/j/84099607571?pwd=afNorKbnnXre2oWcsOpmrPWWKZEiHj.1',
     meetupUrl: 'https://www.meetup.com/berlin-datatalks-club/events/317427871/',
   },
@@ -63,7 +63,7 @@ export const sessions: Session[] = [
     heroTopic: 'Agentic engineering: how I build software with coding agents',
     shortLabel: 'Mon 30 Nov: Agentic engineering',
     description:
-      "Agentic engineering is using tools like Claude Code or Cursor to write most of the code, while you decide what to build and check the result.\n\nIn the first 15 to 20 minutes I'll explain:\n\n- how my work changed since I started using agents\n- what I still do myself and where agents make mistakes\n- what companies expect from developers who use them\n\nThen I'll answer your questions.",
+      "Agentic engineering is using tools like Claude Code or Cursor to write most of the code, while you decide what to build and check the result.\n\nIn the first 15 to 20 minutes I'll explain:\n\n- how my work changed since I started using agents\n- what I still do myself and where agents make mistakes\n- what companies expect from developers who use them\n- how to get a Bildungsgutschein for your training\n\nThen I'll answer your questions.",
     zoomUrl: 'https://us06web.zoom.us/j/86910927132?pwd=kBoaU0pv5ATHmXH5sEyA1k1VMqPdPJ.1',
     meetupUrl: 'https://www.meetup.com/berlin-datatalks-club/events/317427748/',
   },
@@ -78,7 +78,7 @@ export const sessions: Session[] = [
     heroTopic: 'AI engineering: how to build apps on top of LLMs',
     shortLabel: 'Mon 7 Dec: AI engineering',
     description:
-      "AI engineering is building products that use LLMs, like chatbots, search over your company's documents or agents that do tasks for users.\n\nIn the first 15 to 20 minutes I'll explain:\n\n- what AI engineers build day to day\n- which skills from backend, frontend or data work you already have\n- what to learn first if you want to move into it\n\nThen I'll answer your questions.",
+      "AI engineering is building products that use LLMs, like chatbots, search over your company's documents or agents that do tasks for users.\n\nIn the first 15 to 20 minutes I'll explain:\n\n- what AI engineers build day to day\n- which skills from backend, frontend or data work you already have\n- what to learn first if you want to move into it\n- how to get a Bildungsgutschein for your training\n\nThen I'll answer your questions.",
     zoomUrl: 'https://us06web.zoom.us/j/89929618442?pwd=xjMMnER39hbJudSCMZ9bUXbCwvwrWI.1',
     meetupUrl: 'https://www.meetup.com/berlin-datatalks-club/events/317427758/',
   },
@@ -91,20 +91,17 @@ export const CHANNELS = ['genau', 'handpicked', '20berlin', 'linkedin', 'x', 'ne
 
 export type Variant = 'a' | 'b' | 'c';
 
-/** Headline variants, chosen by utm_content. Unknown or missing values show A. */
+const approvedHero = {
+  headline: 'Between jobs: the AI skills that get experienced developers hired',
+  subhead:
+    "3 free online sessions for developers with 2+ years of experience who were laid off, are in their notice period or are looking for a job. They're for Berlin first, and anyone can join online. I skip the basics and assume you already ship code at work. Mondays 23 Nov, 30 Nov and 7 Dec at 17:00 Berlin time, on Zoom.",
+};
+
+/** Approved copy-bank hero (hero.md) for all utm_content values. */
 export const variants: Record<Variant, { headline: string; subhead: string }> = {
-  a: {
-    headline: 'The AI skills Berlin companies now hire developers for',
-    subhead: 'Three free online sessions on Zoom, 15 to 20 minute talk plus Q&A:',
-  },
-  b: {
-    headline: 'Becoming layoff-proof as a developer in Berlin',
-    subhead: 'Solaris and Glow25 cut jobs in Berlin this year and named AI as a reason. Three free online sessions on Zoom, 15 to 20 minute talk plus Q&A:',
-  },
-  c: {
-    headline: 'Show employers you can ship software with AI',
-    subhead: 'A working AI project in your GitHub gives a hiring manager something to click. Three free online sessions on Zoom, 15 to 20 minute talk plus Q&A:',
-  },
+  a: approvedHero,
+  b: approvedHero,
+  c: approvedHero,
 };
 
 export function variantFor(utmContent: string | null | undefined): Variant {
@@ -113,15 +110,16 @@ export function variantFor(utmContent: string | null | undefined): Variant {
 }
 
 export const sessionsPage = {
-  metaTitle: 'Hireable with AI: free online sessions for developers in Berlin | DataTalks.Club',
+  metaTitle: 'Between jobs: the AI skills that get experienced developers hired | DataTalks.Club',
   metaDescription:
-    'Three free online sessions with Alexey Grigorev for developers in Berlin who are job hunting or want to upskill. Mondays 23 November, 30 November and 7 December 2026 at 17:00 Berlin time.',
-  eyebrow: 'For developers in Berlin who are job hunting or want to upskill',
-  factLine: 'Free, online on Zoom and in English. Everyone who registers gets the recording.',
+    '3 free online sessions for developers with 2+ years of experience who were laid off, are in their notice period or are looking for a job. Mondays 23 Nov, 30 Nov and 7 Dec at 17:00 Berlin time, on Zoom.',
+  eyebrow: 'Free online sessions for developers in Berlin and beyond',
+  factLine: '',
   speakerLine:
-    'Taught by Alexey Grigorev, founder of DataTalks.Club, 15 years in software engineering and ML, teaching online since 2020.',
-  button: 'Save my seat',
-  underButton: 'Pick one, two or all three sessions in the form.',
+    "I'm Alexey Grigorev, founder of DataTalks.Club. 15 years in software engineering and ML, teaching online since 2020.",
+  button: 'Choose my sessions',
+  underButton:
+    'Your email gets you the recordings and materials. Meetup gives you the Zoom link and reminders, so RSVP there for each session you choose.',
 
   forHeading: 'Who these sessions are for',
   forIntro: 'I made these sessions for developers in Berlin who already write code:',
@@ -163,7 +161,7 @@ export const sessionsPage = {
     },
     {
       q: 'Is this a sales pitch for a course?',
-      a: "Each session starts with a 15 to 20 minute talk and Q&A. At the end I spend about 10 minutes on the full-time program for 15 people I'm planning for April 2027. A Bildungsgutschein can only pay for it once certification is granted, and your Agentur für Arbeit or Jobcenter decides whether you get a voucher.",
+      a: "Each session starts with a 15 to 20 minute talk and Q&A. At the end I spend about 10 minutes on the full-time program for 15 people I'm planning for April 2027 and how the Bildungsgutschein works.",
     },
     {
       q: "I've already done an AI bootcamp or a prompting course. Will this be the same?",
@@ -179,7 +177,7 @@ export const sessionsPage = {
     },
   ],
 
-  finalHeading: 'Save your seat',
+  finalHeading: 'Choose your sessions',
   finalText:
     'Free and online, Mondays 23 November, 30 November and 7 December at 17:00 Berlin time. Recordings go to everyone who registers.',
 };
@@ -217,7 +215,7 @@ export const form = {
   freeTextLabel: 'Optional: what do you want to learn?',
   optinLabel: 'Also tell me about the April 2027 full-time program',
   micro: "I'll email you the session details, a reminder before each session and the recording. Nothing else unless you tick the box above. You can unsubscribe any time.",
-  button: 'Save my seat',
+  button: 'Choose my sessions',
   success: {
     title: "You're in. Check your inbox.",
     text: "I've sent the details to your email. Please confirm your address with the link in that email. If it isn't there in five minutes, check your spam folder or write to alexey@datatalks.club.",

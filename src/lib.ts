@@ -25,6 +25,7 @@ export function rich(text: string): string {
 // Wrap one word of a headline in <em> (italic accent). Text is escaped first.
 export function emph(text: string, word: string): string {
   const safe = esc(text);
+  if (!word) return safe;
   const w = esc(word);
   return safe.replace(w, `<em>${w}</em>`);
 }

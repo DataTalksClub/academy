@@ -90,3 +90,27 @@ test('meta: canonical, og image, lang', async ({ page }) => {
   await page.goto('impressum/');
   await expect(page.locator('html')).toHaveAttribute('lang', 'de');
 });
+
+test('rendered marketing pages have no dashes, disclaimers, or internal markers', async ({ page }) => {
+  await mockApi(page);
+  const marketingPages = ['', ...TRACKS.map((t) => `${t}/`), 'sessions/', 'sessions/materials/'];
+  for (const p of marketingPages) {
+    await page.goto(p);
+    await page.locator('details').evaluateAll((els) => els.forEach((e) => ((e as HTMLDetailsElement).open = true)));
+    const text = await page.locator('body').innerText();
+    const title = await page.title();
+    const desc = (await page.locator('meta[name="description"]').getAttribute('content')) || '';
+    const alts = await page.locator('img[alt]').evaluateAll((imgs) => imgs.map((i) => i.getAttribute('alt') || '').join(' '));
+    const combined = `${title}\n${desc}\n${alts}\n${text}`;
+    expect(combined, `${p}: em/en dash`).not.toMatch(/[—–]/);
+    expect(combined, `${p}: spaced hyphen`).not.toMatch(/ - /);
+    expect(combined, `${p}: middle dot`).not.toContain('·');
+    expect(combined, `${p}: semicolon`).not.toContain(';');
+    expect(combined, `${p}: disclaimer phrase`).not.toMatch(
+      /cannot guarantee|can't promise|won't promise|nobody can promise|no placement promises|not a job placement/i,
+    );
+    expect(combined, `${p}: internal marker`).not.toMatch(
+      /PLACEHOLDER|TODO|FIXME|\bt\d+u\b|\bAC\d+\b|candidate track|agentic software factory|SPEC\.md/i,
+    );
+  }
+});

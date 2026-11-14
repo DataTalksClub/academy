@@ -1,5 +1,4 @@
 ---
-import SectionHead from './SectionHead.astro';
 import { fit } from '../data/shared';
 import { rich } from '../lib';
 import type { Track } from '../data/tracks';
@@ -10,7 +9,6 @@ const forItems = [track.fitFirst, ...fit.forShared];
 
 <section id="fit" class="section" aria-labelledby="fit-title">
   <div class="wrap">
-    <SectionHead num="04" label="WHO IT IS FOR" />
     <div class="fit">
       <div class="fit__col">
         <h2 id="fit-title" class="h-col">{fit.forTitle}</h2>
