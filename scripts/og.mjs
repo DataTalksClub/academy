@@ -15,6 +15,7 @@ const items = [
   { file: 'agentic-engineering', head: 'Build, test and <em>ship</em> software with coding agents.', tag: 'AGENTIC ENGINEERING' },
   { file: 'ai-engineering', head: 'Build, <em>evaluate</em> and run applications on language models.', tag: 'AI ENGINEERING' },
   { file: 'home', head: 'One instructor. Fifteen seats. Which track runs <em>first</em>?', tag: 'FIRST COHORT · APRIL 2027' },
+  { file: 'layoff-proof', head: 'Layoff-Proof Developer: <em>free</em> online sessions for Berlin devs', tag: 'THREE SESSIONS · MONDAYS 17:00 BERLIN' },
 ];
 
 function grid() {
