@@ -8,7 +8,10 @@ const { other } = Astro.props;
 <footer class="footer dark">
   <div class="wrap">
     <div class="footer__top">
-      <p class="footer__name">DataTalks.Club Academy</p>
+      <div class="footer__brand">
+        <img class="footer__logo" src={url('/dtc-logo-white.svg')} alt="" width="103" height="36" loading="lazy" />
+        <p class="footer__name">DataTalks.Club Academy</p>
+      </div>
       <nav class="footer__nav mono" aria-label="Footer">
         <a href={url('/impressum/')}>Impressum</a>
         <a href={url('/privacy/')}>Privacy</a>
@@ -30,22 +33,35 @@ const { other } = Astro.props;
 
 <style>
   .footer {
-    background: var(--green-900);
-    color: rgba(245, 241, 232, 0.78);
-    padding-block: 32px 40px;
-    border-top: 1px solid var(--line-dark);
+    background: var(--ink);
+    color: #fff;
+    padding-block: 48px 40px;
   }
   .footer__top {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding-bottom: 24px;
+    gap: 20px;
+    padding-bottom: 32px;
+  }
+  .footer__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .footer__logo {
+    display: block;
+    height: 36px;
+    width: auto;
   }
   .footer__name {
     margin: 0;
     font-family: var(--display);
-    font-size: 1.25rem;
-    color: var(--paper);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 650;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    color: #fff;
   }
   .footer__nav {
     display: flex;
@@ -57,29 +73,36 @@ const { other } = Astro.props;
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    color: var(--paper);
+    color: #fff;
     text-underline-offset: 4px;
+  }
+  .footer a:hover {
+    color: var(--blue-light);
   }
   .footer__bottom {
     display: flex;
     flex-direction: column;
     gap: 2px;
     padding-top: 16px;
-    border-top: 1px solid var(--line-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
     font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.78);
   }
   .footer__bottom a {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    color: var(--mint);
+    color: var(--blue-light);
     text-decoration: underline;
   }
   @media (min-width: 768px) {
+    .footer {
+      padding-block: 72px 40px;
+    }
     .footer__top {
       flex-direction: row;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-end;
     }
     .footer__bottom {
       flex-direction: row;

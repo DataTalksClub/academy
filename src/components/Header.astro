@@ -7,10 +7,10 @@ interface Props {
 const { cta = false, tagline = true } = Astro.props;
 ---
 
-<header class="site-header dark">
+<header class="site-header">
   <div class="wrap site-header__row">
     <a class="brand" href={url('/')} aria-label="DataTalks.Club Academy, home">
-      <img src={url('/logo.svg')} alt="" width="32" height="32" />
+      <img class="brand__logo" src={url('/dtc-logo.svg')} alt="" width="92" height="32" />
       <span class="brand__name">Academy</span>
     </a>
     {
@@ -30,42 +30,55 @@ const { cta = false, tagline = true } = Astro.props;
 
 <style>
   .site-header {
-    background: var(--green-900);
-    color: var(--paper);
-    border-bottom: 1px solid var(--line-dark);
+    background: var(--white);
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink);
   }
   .site-header__row {
     display: flex;
     align-items: center;
-    gap: 20px;
-    min-height: 68px;
+    gap: 24px;
+    min-height: 72px;
   }
   .brand {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    color: var(--paper);
+    gap: 14px;
+    color: var(--ink);
     text-decoration: none;
     margin-right: auto;
     min-height: 44px;
   }
-  .brand img {
+  .brand__logo {
     display: block;
-    border-radius: 2px;
+    height: 32px;
+    width: auto;
   }
   .brand__name {
-    font-family: var(--display);
-    font-size: 1.5rem;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1;
+    padding-left: 14px;
+    border-left: 1px solid var(--ink);
+    font-family: var(--sans);
+    font-size: 1.375rem;
+    font-weight: 650;
+    letter-spacing: -0.035em;
+    line-height: 32px;
   }
   .site-header__tag {
     display: none;
     margin: 0;
-    color: rgba(245, 241, 232, 0.72);
+    color: var(--ink);
   }
   @media (min-width: 768px) {
+    .site-header__row {
+      min-height: 84px;
+    }
+    .brand__logo {
+      height: 38px;
+    }
+    .brand__name {
+      font-size: 1.625rem;
+      line-height: 38px;
+    }
     .site-header__tag {
       display: block;
       text-transform: uppercase;
@@ -73,7 +86,7 @@ const { cta = false, tagline = true } = Astro.props;
   }
   .btn--sm {
     min-height: 44px;
-    padding: 0 16px;
+    padding: 0 18px;
     font-size: 0.9375rem;
   }
   @media (max-width: 767px) {

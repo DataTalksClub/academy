@@ -53,10 +53,6 @@ const seats = Array.from({ length: 15 }, (_, i) => ({
     fill: none;
     stroke: currentColor;
     stroke-width: 1.6;
-    stroke-dasharray: 1;
-    stroke-dashoffset: 0;
-    animation: draw 160ms ease-out backwards;
-    animation-delay: calc(var(--i) * 32ms);
   }
   .seats--sm rect {
     stroke-width: 3.2;
@@ -67,26 +63,5 @@ const seats = Array.from({ length: 15 }, (_, i) => ({
     font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 0.06em;
-    animation: fade 200ms ease-out backwards;
-    animation-delay: calc(var(--i) * 32ms + 80ms);
-  }
-  @keyframes draw {
-    from {
-      stroke-dashoffset: 1;
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-  @keyframes fade {
-    from {
-      opacity: 0;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    rect,
-    text {
-      animation: none;
-    }
   }
 </style>

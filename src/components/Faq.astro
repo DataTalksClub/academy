@@ -28,10 +28,10 @@ const { track } = Astro.props;
 
 <style>
   .faq {
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid var(--ink);
   }
   details {
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--ink);
   }
   summary {
     list-style: none;
@@ -42,9 +42,10 @@ const { track } = Astro.props;
     min-height: 44px;
     padding: 18px 0;
     cursor: pointer;
-    font-weight: 500;
-    font-size: 1.0625rem;
-    line-height: 1.4;
+    font-weight: 600;
+    font-size: 1.1875rem;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
   }
   summary::-webkit-details-marker {
     display: none;
@@ -78,8 +79,11 @@ const { track } = Astro.props;
     max-width: 38rem;
     color: var(--ink);
   }
+  summary:hover {
+    color: var(--blue);
+  }
   details p :global(a) {
-    color: var(--green-700);
+    color: var(--blue);
     text-decoration: underline;
     text-underline-offset: 3px;
   }

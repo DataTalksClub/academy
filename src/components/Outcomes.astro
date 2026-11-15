@@ -31,22 +31,22 @@ const { track } = Astro.props;
     padding: 0;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--ink);
   }
   li {
     display: grid;
     grid-template-columns: 56px minmax(0, 1fr);
     gap: 8px;
     padding: 22px 0;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid var(--ink);
   }
   .num {
-    font-family: var(--mono);
-    font-weight: 500;
-    font-size: 1.5rem;
-    line-height: 1.2;
-    color: var(--green-700);
-    letter-spacing: -0.02em;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 2.25rem;
+    line-height: 0.9;
+    color: var(--blue);
+    letter-spacing: -0.06em;
   }
   .outcomes__text {
     padding-top: 4px;
@@ -59,17 +59,19 @@ const { track } = Astro.props;
       margin-top: 36px;
     }
     li {
-      grid-template-columns: 72px minmax(0, 1fr);
+      grid-template-columns: 96px minmax(0, 1fr);
       padding: 28px 24px 28px 0;
     }
     li:nth-child(2n) {
       padding-left: 0;
     }
     .num {
-      font-size: 2rem;
+      font-size: 3.25rem;
     }
     .outcomes__text {
-      padding-top: 8px;
+      padding-top: 6px;
+      font-size: 1.1875rem;
+      line-height: 1.45;
     }
   }
 </style>
