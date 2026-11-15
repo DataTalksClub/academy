@@ -13,8 +13,9 @@ interface Props {
   lead: string;
   basis?: string;
   form?: boolean;
+  chooseProgram?: boolean;
 }
-const { eyebrow, headline, emphasis, lead, basis, form = true } = Astro.props;
+const { eyebrow, headline, emphasis, lead, basis, form = true, chooseProgram = false } = Astro.props;
 ---
 
 <section id="hero" class="hero" aria-labelledby="hero-title">
@@ -29,7 +30,7 @@ const { eyebrow, headline, emphasis, lead, basis, form = true } = Astro.props;
     {
       form && (
         <div class="hero__form">
-          <SignupForm id="hero" />
+          <SignupForm id="hero" chooseProgram={chooseProgram} />
           <p class="mono hero__honesty">{heroHonesty}</p>
         </div>
       )

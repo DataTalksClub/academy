@@ -17,7 +17,7 @@ const items = [
   { file: 'home', head: 'Live full-time courses in Berlin or online, starting April 2027', tag: 'APRIL 2027' },
   {
     file: 'sessions',
-    head: 'Between jobs: the AI skills that get experienced developers hired',
+    head: 'Hireable With AI',
     tag: 'MONDAYS 23 NOV, 30 NOV, 7 DEC AT 17:00 BERLIN TIME',
     dates: ['23 NOV', '30 NOV', '7 DEC'],
   },

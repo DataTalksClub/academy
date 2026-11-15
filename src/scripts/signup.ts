@@ -13,7 +13,7 @@ const TRACK_OPTION: Record<string, string> = {
 const SURVEY =
   'https://docs.google.com/forms/d/e/1FAIpQLSdl4f48ZsEV_9VBjUD8dHTHm9qMddnW75_2P7Uj5B6hC1IInQ/viewform?usp=pp_url';
 
-const track = document.body.dataset.track || '';
+let track = document.body.dataset.track || '';
 const $$ = <T extends HTMLElement>(sel: string, root: ParentNode = document) =>
   Array.from(root.querySelectorAll<T>(sel));
 
@@ -164,6 +164,7 @@ for (const el of signups) {
     button.disabled = true;
     button.textContent = 'Joining…';
 
+    track = form.querySelector<HTMLSelectElement>('[name=program]')?.value || track;
     const ok = await post('/signup', {
       email,
       name,

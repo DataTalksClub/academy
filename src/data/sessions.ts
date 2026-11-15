@@ -1,6 +1,6 @@
-// All copy, dates, links and flags for /sessions ("Hireable with AI") live here, so
+// All copy, dates, links and flags for /sessions ("Hireable With AI") live here, so
 // Marketer can swap them in one file. Session titles and descriptions come verbatim from
-// bots-management context/courses/academy/copy-bank/sessions.md (approved 14 November 2026).
+// bots-management context/courses/academy/copy-bank/sessions.md (updated 15 November 2026).
 //
 // Rules: plain copy, no dashes as punctuation.
 //
@@ -10,7 +10,7 @@
 
 export const SOURCE = 'layoff_proof';
 export const CAMPAIGN = 'hireable_with_ai';
-export const SERIES = 'Hireable with AI';
+export const SERIES = 'Hireable With AI';
 
 export type SessionId = 'session-1' | 'session-2' | 'session-3';
 
@@ -44,9 +44,9 @@ export const sessions: Session[] = [
     weekdayDate: 'Monday 23 November',
     startUtc: '20261123T160000Z',
     endUtc: '20261123T170000Z',
-    title: 'AI Engineering vs Agentic Engineering',
-    heroTopic: 'AI Engineering vs Agentic Engineering',
-    shortLabel: 'Mon 23 Nov: AI Engineering vs Agentic Engineering',
+    title: 'AI Engineering vs Agentic Engineering for Experienced Developers',
+    heroTopic: 'AI Engineering vs Agentic Engineering for Experienced Developers',
+    shortLabel: 'Mon 23 Nov: AI Engineering vs Agentic Engineering for Experienced Developers',
     description:
       "AI engineering is building apps that use LLMs, like chatbots, search over documents or agents. Agentic engineering is using tools like Claude Code or Cursor to write and ship code faster.\n\nIn the first 15 to 20 minutes I'll explain:\n\n- how they are different\n- what companies want for each\n- which one to pick if you are a backend, frontend or data person\n- how to get a Bildungsgutschein for your training\n\nThen I'll answer your questions.",
     zoomUrl: 'https://us06web.zoom.us/j/84099607571?pwd=afNorKbnnXre2oWcsOpmrPWWKZEiHj.1',
@@ -59,9 +59,9 @@ export const sessions: Session[] = [
     weekdayDate: 'Monday 30 November',
     startUtc: '20261130T160000Z',
     endUtc: '20261130T170000Z',
-    title: 'Agentic Engineering: How I Build Software with Coding Agents',
-    heroTopic: 'Agentic Engineering: How I Build Software with Coding Agents',
-    shortLabel: 'Mon 30 Nov: Agentic Engineering',
+    title: 'How I Build Software with Claude Code and Other Coding Agents',
+    heroTopic: 'How I Build Software with Claude Code and Other Coding Agents',
+    shortLabel: 'Mon 30 Nov: How I Build Software with Claude Code and Other Coding Agents',
     description:
       "Agentic engineering is using tools like Claude Code or Cursor to write most of the code, while you decide what to build and check the result.\n\nIn the first 15 to 20 minutes I'll explain:\n\n- how my work changed since I started using agents\n- what I still do myself and where agents make mistakes\n- what companies expect from developers who use them\n- how to get a Bildungsgutschein for your training\n\nThen I'll answer your questions.",
     zoomUrl: 'https://us06web.zoom.us/j/86910927132?pwd=kBoaU0pv5ATHmXH5sEyA1k1VMqPdPJ.1',
@@ -74,9 +74,9 @@ export const sessions: Session[] = [
     weekdayDate: 'Monday 7 December',
     startUtc: '20261207T160000Z',
     endUtc: '20261207T170000Z',
-    title: 'AI Engineering: How to Build Apps on Top of LLMs',
-    heroTopic: 'AI Engineering: How to Build Apps on Top of LLMs',
-    shortLabel: 'Mon 7 Dec: AI Engineering',
+    title: 'AI Engineering for Experienced Developers: How to Build Apps on Top of LLMs',
+    heroTopic: 'AI Engineering for Experienced Developers: How to Build Apps on Top of LLMs',
+    shortLabel: 'Mon 7 Dec: AI Engineering for Experienced Developers: How to Build Apps on Top of LLMs',
     description:
       "AI engineering is building products that use LLMs, like chatbots, search over your company's documents or agents that do tasks for users.\n\nIn the first 15 to 20 minutes I'll explain:\n\n- what AI engineers build day to day\n- which skills from backend, frontend or data work you already have\n- what to learn first if you want to move into it\n- how to get a Bildungsgutschein for your training\n\nThen I'll answer your questions.",
     zoomUrl: 'https://us06web.zoom.us/j/89929618442?pwd=xjMMnER39hbJudSCMZ9bUXbCwvwrWI.1',
@@ -92,7 +92,7 @@ export const CHANNELS = ['genau', 'handpicked', '20berlin', 'linkedin', 'x', 'ne
 export type Variant = 'a' | 'b' | 'c';
 
 const approvedHero = {
-  headline: 'Between jobs: the AI skills that get experienced developers hired',
+  headline: 'Hireable With AI',
   subhead:
     "3 free online sessions for developers with 2+ years of experience who were laid off, are in their notice period or are looking for a job. They're for Berlin first, and anyone can join online. I skip the basics and assume you already ship code at work. Mondays 23 Nov, 30 Nov and 7 Dec at 17:00 Berlin time, on Zoom.",
 };
@@ -110,7 +110,7 @@ export function variantFor(utmContent: string | null | undefined): Variant {
 }
 
 export const sessionsPage = {
-  metaTitle: 'Between jobs: the AI skills that get experienced developers hired | DataTalks.Club',
+  metaTitle: 'Hireable With AI: Free Sessions for Experienced Developers | DataTalks.Club',
   metaDescription:
     '3 free online sessions for developers with 2+ years of experience who were laid off, are in their notice period or are looking for a job. Mondays 23 Nov, 30 Nov and 7 Dec at 17:00 Berlin time, on Zoom.',
   eyebrow: 'Free online sessions for developers in Berlin and beyond',
@@ -133,11 +133,11 @@ export const sessionsPage = {
 
   sessionsHeading: 'Three Mondays, 17:00 to 18:00 Berlin time',
   afterSessions:
-    "After the talk and Q&A I spend about ten minutes on the full-time program I'm planning for April 2027 and on how the Bildungsgutschein works. If you're not interested, you can leave before that part.",
+    "After the talk and Q&A I spend about ten minutes on the full-time program starting April 2027 and on how the Bildungsgutschein works. If you're not interested, you can leave before that part.",
 
   whoHeading: 'Who runs the sessions',
   whoText:
-    "I'm Alexey Grigorev. I've worked in software engineering and machine learning for 15 years and have been teaching online since 2020, when I founded DataTalks.Club. Since 2024, 12,755 students have enrolled on our course platform and 1,848 have graduated with certificates across free Zoomcamps on data engineering, machine learning, MLOps, LLMs and AI dev tools. I also wrote Machine Learning Bookcamp.",
+    "I'm Alexey Grigorev. I've worked in software engineering and machine learning for 15 years and have been teaching online since 2020, when I founded DataTalks.Club. I have taught more than 100,000 students in DataTalks.Club courses. I also wrote Machine Learning Bookcamp.",
 
   numbersHeading: 'Numbers behind session 1',
   numbers: [
@@ -229,7 +229,7 @@ export const form = {
 
 export const qrForm = {
   metaTitle: 'Get the recording and materials | DataTalks.Club',
-  metaDescription: 'Leave your email and get the recording and the slides from the Hireable with AI session.',
+  metaDescription: 'Leave your email and get the recording and the slides from the Hireable With AI session.',
   heading: 'Get the recording and materials',
   text: "Leave your email and I'll send you today's recording and the slides from the session.",
   button: 'Send me the recording',

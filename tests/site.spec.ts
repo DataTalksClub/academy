@@ -142,8 +142,8 @@ test('AZAV, length and location copy stays positive and consistent', async ({ pa
     const text = await page.locator('body').innerText();
     expect(text, t).toContain('Full-time, live, 3 months (13 weeks)');
     expect(text, t).toContain('for 3 months (13 weeks)');
-    expect(text, t).toContain("I'm applying for AZAV certification so the Agentur für Arbeit can pay with a Bildungsgutschein.");
-    expect(text.match(/Berlin \(Prenzlauer Berg\) or live online/g)?.length, t).toBeGreaterThanOrEqual(2);
+    expect(text, t).toContain("Designed for Bildungsgutschein funding (AZAV).");
+    expect(text.match(/Berlin or live online/g)?.length, t).toBeGreaterThanOrEqual(2);
   }
 });
 
@@ -161,4 +161,16 @@ test('sitemap.xml and robots.txt list all public pages under the base path', asy
   expect(robotsRes.status()).toBe(200);
   const robots = await robotsRes.text();
   expect(robots).toContain(`Sitemap: ${origin}${path}sitemap.xml`);
+});
+
+test('home waitlist submits the chosen program and canonical facts are visible', async ({ page }) => {
+  const api = await mockApi(page);
+  await page.goto('');
+  await expect(page.locator('#facts')).toContainText('Start: April 2027');
+  await expect(page.locator('#funding')).toContainText('Designed for Bildungsgutschein funding (AZAV).');
+  await page.selectOption('[name=program]', 'ai-engineering');
+  await page.fill('#email-hero', 'test@example.com');
+  await page.click('#signup-hero button[type=submit]');
+  await expect(page.locator('#signup-hero [data-success]')).toBeVisible();
+  expect(api.signups[0].postDataJSON().track).toBe('ai-engineering');
 });

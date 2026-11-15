@@ -3,12 +3,20 @@ import { url } from '../lib';
 import { form } from '../data/shared';
 interface Props {
   id: 'hero' | 'join';
+  chooseProgram?: boolean;
 }
-const { id } = Astro.props;
+const { id, chooseProgram = false } = Astro.props;
 ---
 
 <div class="signup card" id={`signup-${id}`} data-signup={id}>
   <form class="signup__form" novalidate>
+    {chooseProgram && <div class="signup__field">
+      <label class="mono field-label" for={`program-${id}`}>Program</label>
+      <select class="input" id={`program-${id}`} name="program">
+        <option value="agentic-engineering">Agentic Engineering</option>
+        <option value="ai-engineering">AI Engineering</option>
+      </select>
+    </div>}
     <div class="signup__field">
       <label class="mono field-label" for={`name-${id}`}>{form.nameLabel}</label>
       <input
