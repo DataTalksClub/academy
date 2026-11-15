@@ -146,3 +146,19 @@ test('AZAV, length and location copy stays positive and consistent', async ({ pa
     expect(text.match(/Berlin \(Prenzlauer Berg\) or live online/g)?.length, t).toBeGreaterThanOrEqual(2);
   }
 });
+
+test('sitemap.xml and robots.txt list all public pages under the base path', async ({ request, baseURL }) => {
+  const { origin, pathname: path } = new URL(baseURL!);
+  const sitemapRes = await request.get('sitemap.xml');
+  expect(sitemapRes.status()).toBe(200);
+  const sitemap = await sitemapRes.text();
+  for (const p of ['', ...TRACKS.map((t) => `${t}/`), 'sessions/', 'privacy/', 'impressum/']) {
+    expect(sitemap).toContain(`<loc>${origin}${path}${p}</loc>`);
+  }
+  expect(sitemap).not.toContain('/sessions/materials/');
+
+  const robotsRes = await request.get('robots.txt');
+  expect(robotsRes.status()).toBe(200);
+  const robots = await robotsRes.text();
+  expect(robots).toContain(`Sitemap: ${origin}${path}sitemap.xml`);
+});

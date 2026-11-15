@@ -23,6 +23,8 @@ jobs:
       SITE_URL: ${{ vars.SITE_URL || 'https://datatalksclub.github.io' }}
       BASE_PATH: ${{ vars.BASE_PATH || '/academy/' }}
       PUBLIC_API_URL: ${{ vars.API_URL }}
+      PUBLIC_UMAMI_SCRIPT_URL: ${{ vars.UMAMI_SCRIPT_URL }}
+      PUBLIC_UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
