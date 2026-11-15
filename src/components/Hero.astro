@@ -12,10 +12,11 @@ interface Props {
   emphasis: string;
   lead: string;
   basis?: string;
+  links?: { label: string; href: string }[];
   form?: boolean;
   chooseProgram?: boolean;
 }
-const { eyebrow, headline, emphasis, lead, basis, form = true, chooseProgram = false } = Astro.props;
+const { eyebrow, headline, emphasis, lead, basis, links, form = true, chooseProgram = false } = Astro.props;
 ---
 
 <section id="hero" class="hero" aria-labelledby="hero-title">
@@ -25,6 +26,13 @@ const { eyebrow, headline, emphasis, lead, basis, form = true, chooseProgram = f
       <h1 id="hero-title" set:html={emph(headline, emphasis)} />
       <p class="lead">{lead}</p>
       {basis && <p class="hero__basis">{basis}</p>}
+      {links && links.length > 0 && (
+        <p class="hero__links mono">
+          {links.map((l) => (
+            <a href={l.href}>{l.label}</a>
+          ))}
+        </p>
+      )}
     </div>
 
     {
@@ -116,6 +124,20 @@ const { eyebrow, headline, emphasis, lead, basis, form = true, chooseProgram = f
     line-height: 1.55;
     font-weight: 500;
     color: var(--black);
+  }
+  .hero__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    margin: 16px 0 0;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.6;
+  }
+  .hero__links a {
+    color: var(--black);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
   }
   .hero__form :global(.signup) {
     box-shadow: var(--shadow);

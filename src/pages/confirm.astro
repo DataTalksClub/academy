@@ -69,6 +69,12 @@ import { url } from '../lib';
       });
       const data = await res.json().catch(() => null);
       if (res.ok && data?.ok) {
+        try {
+          const u = (window as unknown as { umami?: { track?: (e: string, d?: Record<string, string>) => void } }).umami;
+          if (typeof u?.track === 'function') {
+            u.track('waitlist_confirmed', { page: '/confirm/', track: String(data.track || data.source || 'waitlist') });
+          }
+        } catch {}
         const backPath = data.source === 'layoff_proof' ? '/sessions/' : data.track ? `/${data.track}/` : '/';
         show('Confirmed', data.title || 'Email Confirmed', data.message || 'Your email is confirmed.', false, backPath);
       } else {

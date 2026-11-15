@@ -64,6 +64,13 @@ async function post(path: string, body: unknown, keepalive = false): Promise<boo
   }
 }
 
+function trackUmami(event: string, data?: Record<string, string>) {
+  try {
+    const u = (window as unknown as { umami?: { track?: (e: string, d?: Record<string, string>) => void } }).umami;
+    if (typeof u?.track === 'function') u.track(event, data);
+  } catch {}
+}
+
 function sendPv(page: string) {
   if (!API || navigator.webdriver) return;
   const u = utm();
@@ -197,6 +204,7 @@ for (const el of signups) {
     button.textContent = label;
     if (ok) {
       joinedEmail = email;
+      trackUmami('waitlist_submit', { page: pagePath(), track: track || 'home' });
       showSuccess(el);
     } else {
       errFailed.hidden = false;
@@ -357,6 +365,7 @@ for (const el of $$<HTMLElement>('[data-layoff-form]')) {
       return;
     }
     sendPv(`/form/${prefix}-success`);
+    if (kind === 'main') trackUmami('sessions_submit', { page: pagePath() });
     form.hidden = true;
     okBox.hidden = false;
     if (kind === 'main') {
@@ -392,12 +401,28 @@ function nearestForm(): HTMLElement | undefined {
 }
 for (const b of $$('[data-scroll-to-form]')) {
   b.addEventListener('click', (e) => {
+    const position = b.closest('[data-sticky]') ? 'sticky' : b.closest('header') ? 'header' : 'page';
+    trackUmami('cta_click', { page: pagePath(), position });
     const form = b.closest('[data-sticky]') ? nearestForm() : signups[0];
     if (!form) return;
     e.preventDefault();
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     form.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
     $$<HTMLInputElement>('input[name="email"]', form)[0]?.focus({ preventScroll: true });
+  });
+}
+
+for (const b of $$<HTMLElement>('.btn, [data-scroll-to-form-lp]')) {
+  if (b.hasAttribute('data-scroll-to-form')) continue;
+  b.addEventListener('click', () => {
+    const position = b.closest('#hero, .hero')
+      ? 'hero'
+      : b.closest('[data-signup="join"]')
+        ? 'final'
+        : b.closest('#tracks')
+          ? 'tracks'
+          : 'page';
+    trackUmami('cta_click', { page: pagePath(), position });
   });
 }
 

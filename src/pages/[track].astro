@@ -15,11 +15,62 @@ import FinalCta from '../components/FinalCta.astro';
 import Footer from '../components/Footer.astro';
 import StickyCta from '../components/StickyCta.astro';
 import { tracks, otherTrack, type Track } from '../data/tracks';
+import { faq as sharedFaq } from '../data/shared';
+import { absoluteUrl } from '../lib';
 
 export function getStaticPaths() {
   return tracks.map((track) => ({ params: { track: track.slug }, props: { track } }));
 }
 const { track } = Astro.props as { track: Track };
+
+const plainText = (s: string) => s.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+const courseUrl = absoluteUrl(`/${track.slug}/`);
+const courseJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: track.name,
+  description: track.lead,
+  url: courseUrl,
+  inLanguage: 'en',
+  provider: {
+    '@type': 'Organization',
+    name: 'DataTalks.Club',
+    url: 'https://datatalks.club',
+  },
+  hasCourseInstance: [
+    {
+      '@type': 'CourseInstance',
+      courseMode: ['full-time', 'Online', 'Onsite'],
+      inLanguage: 'en',
+      startDate: '2027-04',
+      location: [
+        { '@type': 'VirtualLocation', url: courseUrl },
+        {
+          '@type': 'Place',
+          name: 'Berlin',
+          address: { '@type': 'PostalAddress', addressLocality: 'Berlin', addressCountry: 'DE' },
+        },
+      ],
+      instructor: {
+        '@type': 'Person',
+        name: 'Alexey Grigorev',
+      },
+    },
+  ],
+};
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: sharedFaq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: plainText(item.a ?? track.prerequisites),
+    },
+  })),
+};
 ---
 
 <Base
@@ -28,6 +79,7 @@ const { track } = Astro.props as { track: Track };
   path={`/${track.slug}/`}
   ogImage={`/og/${track.slug}.png`}
   track={track.slug}
+  jsonLd={[courseJsonLd, faqJsonLd]}
 >
   <Header cta />
   <main id="main">

@@ -37,12 +37,12 @@ export const tracks: Track[] = [
     surveyOption: 'A. Agentic engineering',
     headline: 'Ship Software with Coding Agents',
     emphasis: '',
-    lead: "Agentic engineering is using tools like Claude Code or Cursor to write most of the code, while you decide what to build and check the result. A 3-month (13-week) full-time course in English for developers with 2+ years of experience in Germany. 15 seats, taught live by me, Alexey Grigorev.",
+    lead: 'Agentic Engineering is a 3-month full-time live program in English for developers with 2+ years of experience in Germany. You learn to use coding agents like Claude Code or Cursor to write most of the code, while you decide what to build and check the result. Start: April 2027, 15 seats, designed for Bildungsgutschein funding (AZAV), coming soon.',
     basis:
       'This program is based on AI Dev Tools Zoomcamp and my experience running coding agents 24/7 for the last year. I write a lot about that on my Substack.',
-    metaTitle: 'Agentic Engineering | DataTalks.Club Academy',
+    metaTitle: 'Agentic Engineering Course in English for Experienced Developers | DataTalks.Club Academy',
     metaDescription:
-      'Agentic engineering is using tools like Claude Code or Cursor to write most of the code, while you decide what to build and check the result. Full-time, live, 15 seats, taught by Alexey Grigorev. Berlin or live online. Join the waitlist.',
+      'Learn to ship software with coding agents like Claude Code. Full-time live program in English for developers with 2+ years in Germany. Start: April 2027.',
     outcomesTitle: 'By the end you can run a software project with agents, and answer for the result.',
     outcomes: [
       'Turn a product idea into a spec and a set of small tasks.',
@@ -108,12 +108,12 @@ export const tracks: Track[] = [
     surveyOption: 'B. AI engineering',
     headline: 'Build and Evaluate LLM Applications',
     emphasis: '',
-    lead: "AI engineering is building products that use LLMs, like chatbots, search over your company's documents or agents that do tasks for users. A 3-month (13-week) full-time course in English for developers with 2+ years of experience in Germany. 15 seats, taught live by me, Alexey Grigorev.",
+    lead: 'AI Engineering is a 3-month full-time live program in English for developers with 2+ years of experience in Germany. You learn to build and evaluate products that use LLMs, like chatbots, search over company documents and agents. Start: April 2027, 15 seats, designed for Bildungsgutschein funding (AZAV), coming soon.',
     basis:
       'This program is based on LLM Zoomcamp, AI Engineering Buildcamp, and my experience building AI products and putting them in production.',
-    metaTitle: 'AI Engineering | DataTalks.Club Academy',
+    metaTitle: 'AI Engineering Course in English for Experienced Developers | DataTalks.Club Academy',
     metaDescription:
-      "AI engineering is building products that use LLMs, like chatbots, search over your company's documents or agents that do tasks for users. Full-time, live, 15 seats, taught by Alexey Grigorev. Berlin or live online. Join the waitlist.",
+      'Learn to build and evaluate LLM products. Full-time live program in English for developers with 2+ years in Germany. Start: April 2027, 15 seats.',
     outcomesTitle: 'By the end you can build an AI application, and show where it works and where it fails.',
     outcomes: [
       'Build an assistant in Python on an LLM API.',

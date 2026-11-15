@@ -91,13 +91,30 @@ const { id, chooseProgram = false } = Astro.props;
       I sent a confirmation link to your email. Click it to confirm your spot on the waitlist.
     </p>
 
-    <p class="mono label-green success__q">One quick question (optional)</p>
+    <p class="mono label-green success__q">Quick questions (optional)</p>
     <div class="chips" role="group" aria-label="Where are you based?">
       <span class="chips__q">Where are you based?</span>
       <span class="chips__set">
         <button type="button" class="chip" data-group="location" data-value="berlin" aria-pressed="false">Berlin</button>
         <button type="button" class="chip" data-group="location" data-value="germany" aria-pressed="false">Elsewhere in Germany</button>
         <button type="button" class="chip" data-group="location" data-value="outside-germany" aria-pressed="false">Outside Germany</button>
+      </span>
+    </div>
+    <div class="chips" role="group" aria-label="German level">
+      <span class="chips__q">German level</span>
+      <span class="chips__set">
+        <button type="button" class="chip" data-group="german_level" data-value="a2-or-below" aria-pressed="false">A2 or below</button>
+        <button type="button" class="chip" data-group="german_level" data-value="b1" aria-pressed="false">B1</button>
+        <button type="button" class="chip" data-group="german_level" data-value="b2" aria-pressed="false">B2</button>
+        <button type="button" class="chip" data-group="german_level" data-value="c1-plus" aria-pressed="false">C1+</button>
+        <button type="button" class="chip" data-group="german_level" data-value="native" aria-pressed="false">Native</button>
+      </span>
+    </div>
+    <div class="chips" role="group" aria-label="Can you study full days, Monday to Friday, 09:00 to 16:30, for 3 months?">
+      <span class="chips__q">Can you study full days, Monday to Friday, 09:00 to 16:30, for 3 months?</span>
+      <span class="chips__set">
+        <button type="button" class="chip" data-group="full_day_availability" data-value="yes" aria-pressed="false">Yes</button>
+        <button type="button" class="chip" data-group="full_day_availability" data-value="no" aria-pressed="false">No</button>
       </span>
     </div>
 

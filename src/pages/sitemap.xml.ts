@@ -8,6 +8,7 @@ export const GET: APIRoute = () => {
     ...tracks.map((t) => `/${t.slug}/`),
     '/sessions/',
     '/bildungsgutschein/',
+    '/faq/',
     '/privacy/',
     '/impressum/',
   ];

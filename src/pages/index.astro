@@ -8,12 +8,35 @@ import SectionHead from '../components/SectionHead.astro';
 import { tracks } from '../data/tracks';
 import { home, funding } from '../data/shared';
 import { url } from '../lib';
+const orgJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'DataTalks.Club',
+  url: 'https://datatalks.club',
+  sameAs: [
+    'https://x.com/DataTalksClub',
+    'https://www.linkedin.com/company/datatalks-club/',
+    'https://www.youtube.com/@DataTalksClub',
+    'https://github.com/DataTalksClub',
+    'https://datatalks.club/slack.html',
+  ],
+};
 ---
 
-<Base title={home.metaTitle} description={home.metaDescription} path="/" ogImage="/og/home.png">
+<Base title={home.metaTitle} description={home.metaDescription} path="/" ogImage="/og/home.png" jsonLd={orgJsonLd}>
   <Header cta tagline />
   <main id="main">
-    <Hero eyebrow={home.eyebrow} headline={home.headline} emphasis={home.emphasis} lead={home.lead} chooseProgram />
+    <Hero
+      eyebrow={home.eyebrow}
+      headline={home.headline}
+      emphasis={home.emphasis}
+      lead={home.lead}
+      links={[
+        { label: 'Free sessions: Hireable With AI', href: url('/sessions/') },
+        { label: 'Bildungsgutschein (Deutsch)', href: url('/bildungsgutschein/') },
+      ]}
+      chooseProgram
+    />
 
     <section id="tracks" class="section tracks-section" aria-label="Choose a track">
       <div class="wrap">

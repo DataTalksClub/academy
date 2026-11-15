@@ -134,6 +134,6 @@ export const home = {
   eyebrow: 'DataTalks.Club Academy',
   headline: 'Live Full-Time Courses in Berlin or Online',
   emphasis: '',
-  lead: "DataTalks.Club Academy offers full-time live programs in English for developers with 2+ years of experience in Germany, taught by Alexey Grigorev. Two programs: Agentic Engineering and AI Engineering. Start: April 2027.",
+  lead: "DataTalks.Club Academy is a full-time live program in English for experienced developers in Germany, taught by Alexey Grigorev, who has taught more than 100,000 students in DataTalks.Club courses. There are two programs, Agentic Engineering and AI Engineering, each 3 months, Monday to Friday, 09:00 to 16:30 Berlin time, in Berlin or live online, with 15 seats. Start: April 2027, and the programs are designed for Bildungsgutschein funding (AZAV), coming soon.",
   cta: 'Read about the track',
 };

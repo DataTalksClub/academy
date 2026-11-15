@@ -94,7 +94,7 @@ export type Variant = 'a' | 'b' | 'c';
 const approvedHero = {
   headline: 'Hireable With AI',
   subhead:
-    "3 free online sessions for developers with 2+ years of experience who were laid off, are in their notice period or are looking for a job. They're for Berlin first, and anyone can join online. I skip the basics and assume you already ship code at work. Mondays 23 Nov, 30 Nov and 7 Dec at 17:00 Berlin time, on Zoom.",
+    'Hireable With AI is a series of three free online sessions for developers with 2+ years of experience who were laid off, are in their notice period or are looking for a job. They run on Mondays 23 Nov, 30 Nov and 7 Dec 2026 at 17:00 Berlin time, on Zoom, in English. Each one is a 15 to 20 minute talk by Alexey Grigorev, then Q&A.',
 };
 
 /** Approved copy-bank hero (hero.md) for all utm_content values. */

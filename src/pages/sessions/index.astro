@@ -6,10 +6,41 @@ import SectionHead from '../../components/SectionHead.astro';
 import SessionsForm from '../../components/SessionsForm.astro';
 import alexeyImg from '../../assets/alexey.jpg';
 import { sessions, sessionsPage as c, variants, HERO_TIME } from '../../data/sessions';
-import { url, rich } from '../../lib';
+import { url, rich, absoluteUrl } from '../../lib';
+
+const toBerlinIso = (utc: string) =>
+  `${utc.slice(0, 4)}-${utc.slice(4, 6)}-${utc.slice(6, 8)}T${String(Number(utc.slice(9, 11)) + 1).padStart(2, '0')}:${utc.slice(11, 13)}:00+01:00`;
+
+const sessionsUrl = absoluteUrl('/sessions/');
+const eventsJsonLd = sessions.map((s) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: s.title,
+  description: s.description,
+  startDate: toBerlinIso(s.startUtc),
+  endDate: toBerlinIso(s.endUtc),
+  eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+  eventStatus: 'https://schema.org/EventScheduled',
+  isAccessibleForFree: true,
+  inLanguage: 'en',
+  location: {
+    '@type': 'VirtualLocation',
+    name: 'Zoom',
+    url: sessionsUrl,
+  },
+  organizer: {
+    '@type': 'Organization',
+    name: 'DataTalks.Club',
+    url: 'https://datatalks.club',
+  },
+  performer: {
+    '@type': 'Person',
+    name: 'Alexey Grigorev',
+  },
+}));
 ---
 
-<Base title={c.metaTitle} description={c.metaDescription} path="/sessions/" ogImage="/og/sessions.png">
+<Base title={c.metaTitle} description={c.metaDescription} path="/sessions/" ogImage="/og/sessions.png" jsonLd={eventsJsonLd}>
   <Header cta tagline={false} />
   <main id="main">
     <section class="hero dark">

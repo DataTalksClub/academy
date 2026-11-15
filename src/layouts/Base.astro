@@ -16,8 +16,10 @@ interface Props {
   hreflang?: string;
   track?: string;
   noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
-const { title, description, path, ogImage, lang = 'en', hreflang, track, noindex = false } = Astro.props;
+const { title, description, path, ogImage, lang = 'en', hreflang, track, noindex = false, jsonLd } = Astro.props;
+const jsonLdItems = Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [];
 const canonical = absoluteUrl(path);
 const og = ogImage ? absoluteUrl(ogImage) : undefined;
 const umamiScriptUrl = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL?.trim();
@@ -54,6 +56,9 @@ const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID?.trim();
     {umamiScriptUrl && umamiWebsiteId && (
       <script defer src={umamiScriptUrl} data-website-id={umamiWebsiteId}></script>
     )}
+    {jsonLdItems.map((entry) => (
+      <script type="application/ld+json" set:html={JSON.stringify(entry)} />
+    ))}
   </head>
   <body data-track={track}>
     <a class="skip" href="#main">Skip to content</a>
