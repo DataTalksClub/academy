@@ -34,6 +34,6 @@ Every internal link and asset goes through `url()` in `src/lib.ts`, which applie
 
 ## Deploy and the domain switch
 
-`.github/workflows/deploy.yml` builds on every push to `main` and publishes with GitHub Pages (`build_type: workflow`). It reads the repository variables `SITE_URL`, `BASE_PATH` and `API_URL`. When they are unset it builds for `https://datatalksclub.github.io/academy/`.
+`https://datatalks.club/academy/` is the live site. The datatalks.club deploy (`DataTalksClub/datatalksclub.github.io`, `deploy-s3.yml`) checks out this repo at `main`, builds it with `SITE_URL=https://datatalks.club BASE_PATH=/academy/` and publishes `dist/` under `/academy/` in the datatalks.club bucket.
 
-To switch to the custom domain: set `SITE_URL=https://academy.datatalks.club`, `BASE_PATH=/`, set `API_URL`, add the `CNAME` file or custom domain in the Pages settings once DNS exists, then re-run the Deploy workflow.
+`.github/workflows/deploy.yml` runs on every push to `main`. It publishes `academy.datatalks.club` (GitHub Pages) as a redirect site: `scripts/redirects.mjs` writes a stub for every page that sends the visitor to the same path under `https://datatalks.club/academy/`, keeping the query string and hash, plus a `404.html` that does the same for any other path. It then triggers the datatalks.club deploy when the `DTC_SITE_DISPATCH_TOKEN` secret (a token allowed to run workflows in `datatalksclub.github.io`) is set; otherwise run that workflow by hand.
