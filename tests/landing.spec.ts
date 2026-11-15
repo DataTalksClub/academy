@@ -161,3 +161,15 @@ test('UTM parameters are carried to internal links', async ({ page }) => {
   expect(href).toContain('utm_source=s');
   expect(href).toContain('utm_campaign=c');
 });
+
+test('track hero shows approved basis line', async ({ page }) => {
+  await mockApi(page);
+  await page.goto('agentic-engineering/');
+  await expect(page.locator('#hero')).toContainText(
+    'This program is based on AI Dev Tools Zoomcamp and my experience running coding agents 24/7 for the last year. I write a lot about that on my Substack.',
+  );
+  await page.goto('ai-engineering/');
+  await expect(page.locator('#hero')).toContainText(
+    'This program is based on LLM Zoomcamp, AI Engineering Buildcamp, and my experience building AI products and putting them in production.',
+  );
+});
