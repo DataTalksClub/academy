@@ -5,30 +5,29 @@ export const seatCaption = '15 seats, 1 instructor';
 export const contactEmail = 'alexey@datatalks.club';
 
 export const facts: { label: string; value: string }[] = [
-  { label: 'COHORT', value: 'Waitlist open' },
+  { label: 'START', value: 'Start: April 2027' },
   { label: 'FORMAT', value: 'Full-time, live, 3 months (13 weeks)' },
-  { label: 'WHERE', value: 'Berlin (Prenzlauer Berg) or live online' },
+  { label: 'WHERE', value: 'Berlin or live online' },
   { label: 'LANGUAGE', value: 'English' },
   { label: 'SEATS', value: '15' },
-  { label: 'TUITION', value: 'Bildungsgutschein (approval pending) or €9,000 to €10,000 self-pay' },
+  { label: 'TUITION', value: 'Designed for Bildungsgutschein funding (AZAV). €9,000 to €10,000 self-pay' },
 ];
 
 export const heroInstructorLine =
   "I'm Alexey Grigorev. I have taught more than 100,000 students in DataTalks.Club courses.";
 
 export const heroHonesty =
-  'Join the waitlist to hear when the next cohort opens.';
+  'Start: April 2027. Join the waitlist and you hear first when applications open.';
 
 export const instructor = {
   heading: 'I Teach Every Session and Review Every Project',
   paragraphs: [
-    "I'm Alexey Grigorev. I have taught more than 100,000 students in DataTalks.Club courses. I founded DataTalks.Club and created its free Zoomcamps on data engineering, machine learning, MLOps, LLMs and AI dev tools. I also wrote Machine Learning Bookcamp and teach paid cohort courses on Maven.",
+    "I'm Alexey Grigorev. I have taught more than 100,000 students in DataTalks.Club courses. I founded DataTalks.Club and created its free Zoomcamps on data engineering, machine learning, MLOps, LLMs and AI dev tools. I also wrote Machine Learning Bookcamp.",
     "This cohort has 15 seats. I teach every day myself and look at every participant's project every week. There are no teaching assistants and no pre-recorded lectures.",
   ],
   proof: [
     { label: 'DATATALKS.CLUB ON GITHUB', href: 'https://github.com/DataTalksClub' },
     { label: 'MACHINE LEARNING BOOKCAMP', href: 'https://www.manning.com/books/machine-learning-bookcamp' },
-    { label: 'COHORT COURSES ON MAVEN', href: 'https://maven.com/alexey-grigorev' },
   ],
 };
 
@@ -57,7 +56,7 @@ export const syllabus = {
 export const funding = {
   heading: 'How Tuition and the Bildungsgutschein Work',
   paragraphs: [
-    "I'm applying for AZAV certification so the Agentur für Arbeit can cover tuition with a Bildungsgutschein.",
+    "Designed for Bildungsgutschein funding (AZAV).",
     'The voucher and the seat are separate decisions. The Agentur decides whether it pays, and I decide who is in the cohort.',
     'If you pay yourself, the full program costs €9,000 to €10,000.',
   ],
@@ -83,25 +82,25 @@ export const faqHeading = 'Questions';
 export const faq: { q: string; a: string | null }[] = [
   {
     q: 'When does the next cohort start?',
-    a: "There is no active cohort right now. Join the waitlist and I'll write to you when dates open.",
+    a: "Start: April 2027. Join the waitlist and you hear first when applications open.",
   },
   {
     q: 'What do I get for joining the waitlist?',
-    a: 'You get the application before it opens publicly, and updates on dates, format and funding approval. Nothing else, and no obligation.',
+    a: 'You get the application before it opens publicly, and updates on dates, format and funding. Nothing else, and no obligation.',
   },
   { q: 'What do I need to know before I start?', a: null },
   {
     q: 'Will the Agentur für Arbeit pay for it?',
-    a: "That is the plan. I'm applying for AZAV certification so the Agentur für Arbeit can pay with a Bildungsgutschein. Talk to your adviser early.",
+    a: "Designed for Bildungsgutschein funding (AZAV). Talk to your adviser early.",
   },
   { q: 'What does it cost if I pay myself?', a: '€9,000 to €10,000 for the full program.' },
   {
     q: 'Is it online or in Berlin?',
-    a: 'Berlin (Prenzlauer Berg) or live online. In person, it is near S+U Schönhauser Allee. Online, you join live from Germany. The survey after you join asks which one you could attend.',
+    a: 'Berlin or live online. Online, you join live from Germany. The survey after you join asks which one you could attend.',
   },
   {
     q: 'What is the schedule?',
-    a: "Full-time: Monday to Friday, 09:00 to 16:00 Berlin time, live, for 3 months (13 weeks). I'm also considering a part-time version. Tell me in the survey if you need one.",
+    a: "Full-time: Monday to Friday, 09:00 to 16:30 Berlin time, live, for 3 months (13 weeks).",
   },
   {
     q: 'Do I have to live in Germany?',
@@ -119,7 +118,7 @@ export const faq: { q: string; a: string | null }[] = [
 
 export const join = {
   heading: 'Join the Waitlist',
-  text: "Leave your name and email and I'll write to you when the next cohort opens.",
+  text: "Start: April 2027. Join the waitlist and you hear first when applications open.",
 };
 
 export const form = {
@@ -133,10 +132,10 @@ export const form = {
 export const home = {
   metaTitle: 'DataTalks.Club Academy | Live Full-Time Courses with Alexey Grigorev',
   metaDescription:
-    'A full-time, live program for developers who already write code, taught by Alexey Grigorev. Two tracks: Agentic Engineering and AI Engineering. 15 seats, Berlin (Prenzlauer Berg) or live online.',
+    'Full-time live programs in English for experienced developers in Germany: Agentic Engineering and AI Engineering. Designed for Bildungsgutschein funding (AZAV).',
   eyebrow: 'DataTalks.Club Academy',
   headline: 'Live Full-Time Courses in Berlin or Online',
   emphasis: '',
-  lead: "I'm Alexey Grigorev. I'm building full-time, live courses for developers who already write code, in Berlin or online. Pick a track and join its waitlist.",
+  lead: "DataTalks.Club Academy offers full-time live programs in English for developers with 2+ years of experience in Germany, taught by Alexey Grigorev. Two programs: Agentic Engineering and AI Engineering. Start: April 2027.",
   cta: 'Read about the track',
 };

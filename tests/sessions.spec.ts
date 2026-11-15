@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { existsSync, readFileSync } from 'node:fs';
 import { mockApi } from './helpers';
 
-const APPROVED_HEADLINE = 'Between jobs: the AI skills that get experienced developers hired';
+const APPROVED_HEADLINE = 'Hireable With AI';
 
 const H = {
   a: APPROVED_HEADLINE,
@@ -50,8 +50,8 @@ test('page copy has no placeholders, no dashes as punctuation and no live-coding
   expect(text).not.toContain('·');
   expect(text).not.toMatch(/live coding|live demo|hands-on|merged pull request|build live|one-hour/i);
   expect(text).toContain('AI Engineering vs Agentic Engineering');
-  expect(text).toContain('Agentic Engineering: How I Build Software with Coding Agents');
-  expect(text).toContain('AI Engineering: How to Build Apps on Top of LLMs');
+  expect(text).toContain('How I Build Software with Claude Code and Other Coding Agents');
+  expect(text).toContain('AI Engineering for Experienced Developers: How to Build Apps on Top of LLMs');
   expect(text.match(/how to get a Bildungsgutschein for your training/g)).toHaveLength(3);
   await page.goto('sessions/materials/');
   const qr = await page.locator('main').innerText();
@@ -165,8 +165,8 @@ test('QR form without a valid session does not post', async ({ page }) => {
 test('ics files carry the per-session Zoom link and the right times', async ({ request, baseURL }) => {
   const zoom = {
     'session-1': ['84099607571', '20261123T160000Z', 'AI Engineering vs Agentic Engineering'],
-    'session-2': ['86910927132', '20261130T160000Z', 'Agentic Engineering: How I Build Software with Coding Agents'],
-    'session-3': ['89929618442', '20261207T160000Z', 'AI Engineering: How to Build Apps on Top of LLMs'],
+    'session-2': ['86910927132', '20261130T160000Z', 'How I Build Software with Claude Code and Other Coding Agents'],
+    'session-3': ['89929618442', '20261207T160000Z', 'AI Engineering for Experienced Developers: How to Build Apps on Top of LLMs'],
   } as const;
   for (const [id, [meeting, start, title]] of Object.entries(zoom)) {
     const res = await request.get(`${baseURL}sessions/${id}.ics`);
@@ -174,7 +174,7 @@ test('ics files carry the per-session Zoom link and the right times', async ({ r
     const body = (await res.text()).replace(/\r\n /g, '');
     expect(body).toContain('BEGIN:VCALENDAR');
     expect(body).toContain(`DTSTART:${start}`);
-    expect(body).toContain(`SUMMARY:Hireable with AI #`);
+    expect(body).toContain(`SUMMARY:Hireable With AI #`);
     expect(body).toContain(title);
     expect(body).toContain(`zoom.us/j/${meeting}`);
     expect(body).not.toMatch(/live coding|live demo|hands-on|merged pull request/i);

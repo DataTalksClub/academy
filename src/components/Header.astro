@@ -4,7 +4,8 @@ interface Props {
   cta?: boolean;
   tagline?: boolean;
 }
-const { cta = false, tagline = true } = Astro.props;
+const { cta = true, tagline = true } = Astro.props;
+const onProgram = /\/(agentic-engineering|ai-engineering)\/$/.test(Astro.url.pathname);
 ---
 
 <header class="site-header">
@@ -20,7 +21,7 @@ const { cta = false, tagline = true } = Astro.props;
     }
     {
       cta && (
-        <a class="btn btn--mint btn--sm" href="#signup-hero" data-scroll-to-form>
+        <a class="btn btn--mint btn--sm" href={onProgram ? '#signup-hero' : url('/#signup-hero')} data-scroll-to-form={onProgram || undefined}>
           Join the Waitlist
         </a>
       )
@@ -93,8 +94,6 @@ const { cta = false, tagline = true } = Astro.props;
     font-size: 0.9375rem;
   }
   @media (max-width: 767px) {
-    .btn--sm {
-      display: none;
-    }
+    .btn--sm { padding: 0 8px; font-size: 0.75rem; }
   }
 </style>
