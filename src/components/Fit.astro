@@ -29,14 +29,17 @@ const forItems = [track.fitFirst, ...fit.forShared];
 <style>
   .fit {
     display: grid;
-    gap: 48px;
+    gap: 56px;
     grid-template-columns: minmax(0, 1fr);
   }
   .h-col {
-    font-size: clamp(1.4rem, 2.4vw, 1.85rem);
-    margin: 0 0 24px;
+    font-size: clamp(2rem, 3.6vw, 3rem);
+    margin: 0 0 28px;
     padding-bottom: 20px;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 2px solid var(--rule);
+  }
+  .fit__col:last-child .h-col {
+    font-style: italic;
   }
   .ticks {
     list-style: none;
@@ -45,26 +48,47 @@ const forItems = [track.fitFirst, ...fit.forShared];
   }
   .ticks li {
     position: relative;
-    padding: 0 0 18px 28px;
+    padding: 0 0 16px 30px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--line);
     max-width: 34rem;
+  }
+  .ticks li:last-child {
+    border-bottom: 0;
   }
   .ticks li::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 0.5em;
-    width: 11px;
-    height: 11px;
-    border: 1.5px solid var(--green-700);
+    top: 0.55em;
+    width: 12px;
+    height: 12px;
   }
   .ticks--yes li::before {
-    background: var(--green-700);
+    background: var(--red);
+    border-radius: 50%;
+  }
+  .ticks--no li::before {
+    top: 0.85em;
+    height: 0;
+    width: 14px;
+    border-top: 2px solid var(--ink);
+  }
+  .ticks :global(a) {
+    color: var(--red-ink);
+    text-underline-offset: 3px;
   }
   @media (min-width: 768px) {
     .fit {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      column-gap: 48px;
-      margin-top: 8px;
+      column-gap: 0;
+    }
+    .fit__col:first-child {
+      padding-right: 56px;
+    }
+    .fit__col:last-child {
+      padding-left: 56px;
+      border-left: 1px solid var(--rule);
     }
   }
 </style>

@@ -18,10 +18,16 @@ import { join, seatCaption } from '../data/shared';
 
 <style>
   .join {
-    background: var(--green-900);
-    color: var(--paper);
+    --seat: #fff;
+    background: var(--red);
+    color: #fff;
     padding-block: 64px;
-    border-top: 1px solid var(--line-dark);
+    border-top: 6px solid var(--ink);
+  }
+  .join h2 {
+    font-size: clamp(2.8rem, 6.4vw, 5.5rem);
+    line-height: 0.95;
+    max-width: 11ch;
   }
   .join__grid {
     display: grid;
@@ -31,7 +37,8 @@ import { join, seatCaption } from '../data/shared';
   .join__text {
     margin: 20px 0 0;
     max-width: 30rem;
-    color: rgba(245, 241, 232, 0.86);
+    color: #fff;
+    font-size: 1.1875rem;
   }
   .join__seats {
     margin-top: 32px;
@@ -39,8 +46,11 @@ import { join, seatCaption } from '../data/shared';
   }
   .caption {
     margin: 12px 0 0;
-    color: var(--mint);
-    font-size: 0.6875rem;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  .join__form :global(.signup) {
+    box-shadow: 10px 10px 0 var(--ink);
   }
   @media (min-width: 768px) {
     .join {

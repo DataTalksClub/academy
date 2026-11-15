@@ -1,22 +1,28 @@
 :root {
-  --paper: #f5f1e8;
-  --paper-2: #ece6d8;
-  --ink: #17201b;
-  --ink-2: #4a564f;
-  --green-900: #16301f;
-  --green-700: #2c573e;
-  --mint: #8ed8ad;
-  --mint-100: #dcefe3;
-  --line: rgba(23, 32, 27, 0.16);
-  --line-dark: rgba(245, 241, 232, 0.22);
+  --paper: #fbfaf7;
+  --paper-2: #f3f0e9;
+  --ink: #111111;
+  --ink-2: #4b4844;
+  --red: #d9361e;
+  --red-ink: #b02a15;
+  --red-100: #fbe6df;
+  /* legacy names kept so secondary pages stay on-palette */
+  --green-900: #111111;
+  --green-700: #b02a15;
+  --mint: #ff9b85;
+  --mint-100: #fbe6df;
+  --line: rgba(17, 17, 17, 0.14);
+  --rule: #111111;
+  --line-dark: rgba(251, 250, 247, 0.28);
   --error: #b3261e;
 
-  --display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
-  --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --display: 'Instrument Serif', 'Times New Roman', Georgia, serif;
+  --serif: 'Newsreader Variable', 'Iowan Old Style', Georgia, serif;
+  --sans: 'Inter Tight Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --mono: 'Inter Tight Variable', 'Helvetica Neue', Arial, system-ui, sans-serif;
 
   --gutter: 20px;
-  --focus: var(--green-700);
+  --focus: var(--red-ink);
 }
 
 *,
@@ -34,7 +40,8 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font: 400 1.0625rem/1.6 var(--sans);
+  font: 400 1.0625rem/1.6 var(--serif);
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-wrap: break-word;
@@ -42,10 +49,10 @@ body {
 
 @media (min-width: 768px) {
   body {
-    font-size: 1.125rem;
+    font-size: 1.1875rem;
   }
   :root {
-    --gutter: 32px;
+    --gutter: 40px;
   }
 }
 @media (max-width: 767px) {
@@ -67,7 +74,11 @@ a {
   outline-offset: 3px;
 }
 .dark {
-  --focus: var(--mint);
+  --focus: var(--paper);
+}
+::selection {
+  background: var(--red);
+  color: #fff;
 }
 
 .skip {
@@ -76,10 +87,9 @@ a {
   top: -100px;
   z-index: 100;
   padding: 12px 16px;
-  background: var(--mint);
-  color: var(--green-900);
-  font-weight: 600;
-  border-radius: 2px;
+  background: var(--ink);
+  color: var(--paper);
+  font: 600 0.875rem/1 var(--sans);
 }
 .skip:focus {
   top: 12px;
@@ -87,7 +97,7 @@ a {
 
 .wrap {
   width: 100%;
-  max-width: calc(1120px + var(--gutter) * 2);
+  max-width: calc(1200px + var(--gutter) * 2);
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
@@ -97,46 +107,53 @@ h1,
 h2,
 h3 {
   font-family: var(--display);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  font-optical-sizing: auto;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   margin: 0;
 }
 h1 {
-  font-size: clamp(2.4rem, 6.2vw, 4.6rem);
-  line-height: 1.02;
-  letter-spacing: -0.025em;
+  font-size: clamp(3.2rem, 9vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
 }
 h2 {
-  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
-  line-height: 1.1;
+  font-size: clamp(2.2rem, 4.6vw, 3.75rem);
+  line-height: 1;
 }
 em {
   font-style: italic;
   font-weight: 400;
 }
+h1 em,
+h2 em {
+  color: var(--red);
+}
 
 .mono {
-  font-family: var(--mono);
-  font-weight: 400;
-  font-size: 0.75rem;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.6875rem;
   line-height: 1.5;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.14em;
 }
 .label {
   margin: 0 0 20px;
-  color: var(--green-700);
+  color: var(--red-ink);
   text-transform: uppercase;
-  font-weight: 500;
 }
 .dark .label {
-  color: var(--mint);
+  color: var(--paper);
 }
 
 /* Sections */
 .section {
-  padding-block: 64px;
-  border-top: 1px solid var(--line);
+  padding-block: 72px;
+  border-top: 0;
+  background: linear-gradient(var(--rule), var(--rule)) top center / min(1200px, calc(100% - var(--gutter) * 2)) 1px no-repeat;
+}
+.facts + .section,
+.tracks-section {
+  background-image: none;
 }
 .section--band {
   background: var(--paper-2);
@@ -147,7 +164,7 @@ em {
 }
 @media (min-width: 768px) {
   .section {
-    padding-block: 112px;
+    padding-block: 120px;
   }
 }
 
@@ -163,7 +180,7 @@ em {
   }
   .split > .section-head {
     grid-column: 1 / span 5;
-    padding-right: 32px;
+    padding-right: 40px;
     align-self: start;
     position: sticky;
     top: 32px;
@@ -179,46 +196,48 @@ em {
   align-items: center;
   justify-content: center;
   min-height: 52px;
-  padding: 0 24px;
+  padding: 0 26px;
   border: 1px solid transparent;
-  border-radius: 2px;
-  font: 600 1rem/1.2 var(--sans);
+  border-radius: 0;
+  font: 600 0.9375rem/1.2 var(--sans);
+  letter-spacing: 0.01em;
   text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
   transition: background-color 140ms, color 140ms, border-color 140ms;
 }
 .btn--green {
-  background: var(--green-700);
+  background: var(--ink);
   color: var(--paper);
 }
 .btn--green:hover {
-  background: var(--green-900);
+  background: var(--red-ink);
 }
 .btn--green:disabled {
   opacity: 0.75;
   cursor: progress;
 }
 .btn--mint {
-  background: var(--mint);
-  color: var(--green-900);
+  background: var(--red);
+  color: #fff;
 }
 .btn--mint:hover {
-  background: var(--mint-100);
+  background: var(--ink);
 }
 .btn--outline {
-  border-color: var(--green-700);
-  color: var(--green-700);
+  border-color: var(--ink);
+  color: var(--ink);
   background: transparent;
 }
 .btn--outline:hover {
-  background: var(--mint-100);
+  background: var(--red-100);
 }
 
 /* Prose links */
 .prose a,
 .legal a {
-  color: var(--green-700);
+  color: var(--red-ink);
+  text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 
@@ -227,14 +246,14 @@ em {
   padding-block: 56px 96px;
 }
 .legal h1 {
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
   margin-bottom: 40px;
 }
 .legal h2 {
-  font-size: 1.5rem;
-  margin: 40px 0 12px;
+  font-size: 1.9rem;
+  margin: 48px 0 12px;
   padding-top: 24px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--rule);
 }
 .legal p,
 .legal ol {
@@ -246,6 +265,9 @@ em {
 
 .section-head h2 {
   margin-bottom: 28px;
+}
+.section-head .label + h2 {
+  margin-top: 0;
 }
 .split > .section-head h2:last-child {
   margin-bottom: 0;

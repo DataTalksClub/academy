@@ -31,7 +31,7 @@ import { url } from '../lib';
                     </li>
                   ))}
                 </ol>
-                <a class="btn btn--green" href={url(`/${t.slug}/`)} data-track-click={t.slug}>
+                <a class="feature-link" href={url(`/${t.slug}/`)} data-track-click={t.slug}>
                   Read about {t.name}
                 </a>
               </article>
@@ -64,76 +64,109 @@ import { url } from '../lib';
 <style>
   .tracks-section {
     border-top: 0;
-    padding-top: 64px;
-    padding-bottom: 64px;
+    padding-top: 8px;
+    padding-bottom: 72px;
   }
   .tracks {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
+    gap: 56px;
   }
   .panel {
     display: flex;
     flex-direction: column;
-    padding: 28px 24px 28px;
-    border: 1px solid var(--line);
-    border-top: 3px solid var(--green-700);
-    border-radius: 2px;
-    background: #faf7f0;
+    padding-top: 28px;
+    border-top: 6px solid var(--red);
+    position: relative;
+  }
+  .panel::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 4px;
+    border-top: 1px solid var(--rule);
   }
   .panel h2 {
-    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
-  }
-  .panel .label {
-    margin-bottom: 16px;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    line-height: 0.95;
   }
   .panel__headline {
-    margin: 16px 0 28px;
-    font-family: var(--display);
-    font-size: 1.25rem;
-    line-height: 1.35;
-    letter-spacing: -0.005em;
+    margin: 18px 0 32px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.3125rem;
+    line-height: 1.4;
     color: var(--ink-2);
   }
   .panel__list {
     list-style: none;
-    margin: 0 0 32px;
+    margin: 0 0 36px;
     padding: 0;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--rule);
   }
   .panel__list li {
     display: grid;
-    grid-template-columns: 2.25rem minmax(0, 1fr);
+    grid-template-columns: 3rem minmax(0, 1fr);
     gap: 8px;
-    padding: 14px 0;
+    padding: 16px 0;
     border-bottom: 1px solid var(--line);
-    font-size: 1rem;
+    font-size: 1.0625rem;
     line-height: 1.5;
   }
   .panel__list .mono {
-    color: var(--green-700);
-    padding-top: 3px;
-    font-weight: 500;
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.75rem;
+    letter-spacing: 0;
+    line-height: 0.9;
+    color: var(--red);
   }
-  .panel .btn {
+  .feature-link {
+    align-self: flex-start;
     margin-top: auto;
-    white-space: normal;
-    text-align: center;
-    padding-block: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    padding-bottom: 4px;
+    color: var(--ink);
+    font: 600 1rem/1.3 var(--sans);
+    text-decoration: none;
+    border-bottom: 2px solid var(--red);
+    transition: color 140ms, gap 140ms;
+  }
+  .feature-link::after {
+    content: '';
+    flex: none;
+    width: 22px;
+    height: 12px;
+    background: var(--red);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 12'%3E%3Cpath d='M0 6h20M15 1l5 5-5 5' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat center / contain;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 12'%3E%3Cpath d='M0 6h20M15 1l5 5-5 5' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat center / contain;
+  }
+  .feature-link:hover {
+    color: var(--red-ink);
+    gap: 18px;
   }
   @media (min-width: 768px) {
     .tracks-section {
-      padding-block: 96px;
+      padding-block: 16px 112px;
     }
     .tracks {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 32px;
-    }
-    .panel__headline {
-      min-height: 2.7em;
+      gap: 0;
     }
     .panel {
-      padding: 36px 36px 36px;
+      padding: 36px 48px 8px 0;
+    }
+    .panel + .panel {
+      padding: 36px 0 8px 48px;
+      box-shadow: inset 1px 0 0 var(--rule);
+    }
+    .panel__headline {
+      min-height: 2.8em;
     }
   }
 </style>

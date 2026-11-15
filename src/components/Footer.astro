@@ -5,10 +5,10 @@ interface Props { other?: Track }
 const { other } = Astro.props;
 ---
 
-<footer class="footer dark">
+<footer class="footer">
   <div class="wrap">
     <div class="footer__top">
-      <p class="footer__name">DataTalks.Club Academy</p>
+      <p class="footer__name"><img src={url('/dtc-logo.svg')} alt="" width="104" height="36" />DataTalks.Club Academy</p>
       <nav class="footer__nav mono" aria-label="Footer">
         <a href={url('/impressum/')}>Impressum</a>
         <a href={url('/privacy/')}>Privacy</a>
@@ -30,10 +30,10 @@ const { other } = Astro.props;
 
 <style>
   .footer {
-    background: var(--green-900);
-    color: rgba(245, 241, 232, 0.78);
-    padding-block: 32px 40px;
-    border-top: 1px solid var(--line-dark);
+    background: var(--paper);
+    color: var(--ink-2);
+    padding-block: 36px 40px;
+    border-top: 8px solid var(--ink);
   }
   .footer__top {
     display: flex;
@@ -42,10 +42,20 @@ const { other } = Astro.props;
     padding-bottom: 24px;
   }
   .footer__name {
+    display: flex;
+    align-items: center;
+    gap: 16px;
     margin: 0;
     font-family: var(--display);
-    font-size: 1.25rem;
-    color: var(--paper);
+    font-size: 1.5rem;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .footer__name img {
+    display: block;
+    height: 36px;
+    width: auto;
+    flex: none;
   }
   .footer__nav {
     display: flex;
@@ -57,7 +67,7 @@ const { other } = Astro.props;
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    color: var(--paper);
+    color: var(--ink);
     text-underline-offset: 4px;
   }
   .footer__bottom {
@@ -65,14 +75,13 @@ const { other } = Astro.props;
     flex-direction: column;
     gap: 2px;
     padding-top: 16px;
-    border-top: 1px solid var(--line-dark);
-    font-size: 0.75rem;
+    border-top: 1px solid var(--rule);
   }
   .footer__bottom a {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    color: var(--mint);
+    color: var(--red-ink);
     text-decoration: underline;
   }
   @media (min-width: 768px) {

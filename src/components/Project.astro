@@ -16,15 +16,43 @@ const { track } = Astro.props;
 </section>
 
 <style>
+  #project :global(.split) {
+    display: block;
+    text-align: center;
+  }
+  #project :global(.section-head) {
+    position: static;
+    padding: 0;
+  }
+  #project :global(.section-head h2) {
+    font-size: clamp(1rem, 1.4vw, 1.125rem);
+    font-family: var(--sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--red-ink);
+    margin-bottom: 36px;
+  }
   .project {
-    margin: 0;
-    padding-left: 24px;
-    border-left: 4px solid var(--mint);
+    margin: 0 auto;
+    max-width: 22em;
     font-family: var(--display);
+    font-style: italic;
     font-weight: 400;
-    font-size: clamp(1.25rem, 2.2vw, 1.5rem);
-    line-height: 1.45;
-    letter-spacing: -0.005em;
-    max-width: 38rem;
+    font-size: clamp(2rem, 4.4vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .project::before,
+  .project::after {
+    content: '';
+    display: block;
+    width: 64px;
+    margin: 0 auto 36px;
+    border-top: 3px solid var(--red);
+  }
+  .project::after {
+    margin: 36px auto 0;
   }
 </style>

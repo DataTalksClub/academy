@@ -20,12 +20,31 @@ import { funding } from '../data/shared';
     margin: 0 0 1.1em;
     max-width: 38rem;
   }
+  .prose p:first-child {
+    font-size: 1.1875em;
+    line-height: 1.5;
+  }
+  @media (min-width: 1024px) {
+    .prose {
+      column-count: 2;
+      column-gap: 40px;
+      column-rule: 1px solid var(--line);
+    }
+    .prose p {
+      break-inside: avoid-column;
+    }
+    .prose p:first-child {
+      column-span: all;
+      max-width: none;
+      margin-bottom: 1.4em;
+    }
+  }
   .small {
     margin-top: 28px !important;
     font-size: 0.9375rem;
   }
   .small a {
-    color: var(--green-700);
+    color: var(--red-ink);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
