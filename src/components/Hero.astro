@@ -16,7 +16,7 @@ interface Props {
 const { eyebrow, headline, emphasis, lead, form = true } = Astro.props;
 ---
 
-<section id="hero" class="hero dark" aria-labelledby="hero-title">
+<section id="hero" class="hero" aria-labelledby="hero-title">
   <div class="wrap hero__grid">
     <div class="hero__copy">
       <p class="mono eyebrow">{eyebrow}</p>
@@ -52,9 +52,13 @@ const { eyebrow, headline, emphasis, lead, form = true } = Astro.props;
 
 <style>
   .hero {
-    background: var(--green-900);
-    color: var(--paper);
+    --focus: var(--black);
+    position: relative;
+    background: var(--yellow);
+    color: var(--black);
     padding-block: 40px 56px;
+    border-bottom: var(--border);
+    overflow: hidden;
   }
   .hero__grid {
     display: grid;
@@ -62,39 +66,72 @@ const { eyebrow, headline, emphasis, lead, form = true } = Astro.props;
     gap: 28px;
   }
   .eyebrow {
-    margin: 0 0 20px;
-    color: var(--mint);
+    display: inline-block;
+    margin: 0 0 22px;
+    padding: 6px 12px;
+    background: var(--black);
+    color: var(--yellow);
+    border-radius: 999px;
     text-transform: uppercase;
+    font-weight: 700;
   }
   h1 {
     margin: 0;
-    max-width: 14ch;
+    max-width: 15ch;
+    line-height: 1;
+    text-wrap: wrap;
+  }
+  h1::first-line {
+    background: var(--black);
+    color: var(--white);
   }
   h1 :global(em) {
-    color: var(--mint);
+    background: var(--black);
+    color: var(--white);
+    padding: 0 0.14em 0.04em;
+    margin: 0 -0.04em;
+    border-radius: 0.12em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
   .lead {
-    margin: 24px 0 0;
-    max-width: 34rem;
+    margin: 28px 0 0;
+    max-width: 36rem;
+    padding: 18px 20px;
+    background: var(--white);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
     font-size: 1.0625rem;
-    line-height: 1.6;
-    color: rgba(245, 241, 232, 0.86);
+    line-height: 1.55;
+    color: var(--black);
+  }
+  .hero__form :global(.signup) {
+    box-shadow: var(--shadow);
   }
   .hero__seats-lg {
     display: none;
   }
   .hero__seats-sm {
-    max-width: 150px;
+    max-width: 160px;
   }
   .caption {
-    margin: 14px 0 0;
-    color: var(--mint);
-    font-size: 0.6875rem;
+    display: inline-block;
+    margin: 18px 0 0;
+    padding: 8px 14px;
+    background: var(--white);
+    border: var(--border);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    color: var(--black);
+    font-size: 0.75rem;
+    font-weight: 700;
     text-transform: none;
+    transform: rotate(-2deg);
   }
   .hero__honesty {
-    margin: 12px 0 0;
-    color: var(--mint);
+    margin: 14px 0 0;
+    color: var(--black);
     font-size: 0.75rem;
     line-height: 1.6;
     max-width: 34rem;
@@ -104,30 +141,32 @@ const { eyebrow, headline, emphasis, lead, form = true } = Astro.props;
     gap: 14px;
     align-items: center;
     margin: 4px 0 0;
-    font-size: 0.875rem;
-    line-height: 1.55;
-    color: rgba(245, 241, 232, 0.78);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--black);
     max-width: 34rem;
   }
   .hero__instructor :global(.avatar) {
     flex: none;
-    width: 48px;
-    height: 48px;
-    border-radius: 2px;
+    width: 56px;
+    height: 56px;
+    border: var(--border);
+    border-radius: 50%;
     object-fit: cover;
-    filter: grayscale(1) contrast(1.05);
+    background: var(--coral);
   }
 
   @media (min-width: 768px) {
     .hero {
-      padding-block: 72px 112px;
+      padding-block: 72px 104px;
     }
     .hero__grid {
       grid-template-columns: repeat(12, minmax(0, 1fr));
       column-gap: 24px;
       row-gap: 0;
       grid-template-areas:
-        'copy copy copy copy copy copy copy . seats seats seats seats'
+        'copy copy copy copy copy copy copy copy seats seats seats seats'
         'form form form form form form form . seats seats seats seats'
         'inst inst inst inst inst inst inst . seats seats seats seats';
     }
@@ -139,14 +178,15 @@ const { eyebrow, headline, emphasis, lead, form = true } = Astro.props;
       align-self: center;
       justify-self: end;
       width: 100%;
+      text-align: right;
     }
     .hero__form {
       grid-area: form;
-      margin-top: 40px;
+      margin-top: 44px;
     }
     .hero__instructor {
       grid-area: inst;
-      margin-top: 28px;
+      margin-top: 32px;
     }
     .hero__seats-lg {
       display: block;
@@ -155,8 +195,8 @@ const { eyebrow, headline, emphasis, lead, form = true } = Astro.props;
       display: none;
     }
     .caption {
-      margin-top: 22px;
-      font-size: 0.75rem;
+      margin-top: 28px;
+      font-size: 0.8125rem;
     }
   }
 </style>

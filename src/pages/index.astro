@@ -62,78 +62,103 @@ import { url } from '../lib';
 </Base>
 
 <style>
+  #funding {
+    background: var(--tint-coral);
+  }
   .tracks-section {
     border-top: 0;
-    padding-top: 64px;
-    padding-bottom: 64px;
+    padding-top: 56px;
+    padding-bottom: 0;
   }
   .tracks {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
+    gap: 28px;
   }
   .panel {
+    --focus: var(--black);
     display: flex;
     flex-direction: column;
-    padding: 28px 24px 28px;
-    border: 1px solid var(--line);
-    border-top: 3px solid var(--green-700);
-    border-radius: 2px;
-    background: #faf7f0;
+    padding: 28px 22px;
+    border: var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    background: var(--white);
+    color: var(--black);
+  }
+  .panel[data-track-panel='ai-engineering'] {
+    --focus: var(--yellow);
+    background: var(--blue);
+    color: var(--white);
+  }
+  .panel[data-track-panel='agentic-engineering'] {
+    background: var(--coral);
   }
   .panel h2 {
-    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
-  }
-  .panel .label {
-    margin-bottom: 16px;
+    font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+    line-height: 0.95;
   }
   .panel__headline {
-    margin: 16px 0 28px;
+    align-self: flex-start;
+    margin: 18px 0 28px;
+    padding: 6px 12px;
+    background: var(--white);
+    color: var(--black);
+    border: var(--border);
+    border-radius: 8px;
     font-family: var(--display);
-    font-size: 1.25rem;
-    line-height: 1.35;
-    letter-spacing: -0.005em;
-    color: var(--ink-2);
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
   }
   .panel__list {
     list-style: none;
     margin: 0 0 32px;
     padding: 0;
-    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 16px;
   }
   .panel__list li {
     display: grid;
-    grid-template-columns: 2.25rem minmax(0, 1fr);
-    gap: 8px;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--line);
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
     font-size: 1rem;
-    line-height: 1.5;
+    line-height: 1.45;
+    font-weight: 500;
   }
   .panel__list .mono {
-    color: var(--green-700);
-    padding-top: 3px;
-    font-weight: 500;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: var(--border);
+    border-radius: 50%;
+    background: var(--yellow);
+    color: var(--black);
+    font-family: var(--display);
+    font-size: 1.125rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
   }
   .panel .btn {
     margin-top: auto;
+    align-self: flex-start;
     white-space: normal;
     text-align: center;
     padding-block: 12px;
   }
   @media (min-width: 768px) {
     .tracks-section {
-      padding-block: 96px;
+      padding-block: 88px 0;
     }
     .tracks {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 32px;
-    }
-    .panel__headline {
-      min-height: 2.7em;
+      gap: 36px;
     }
     .panel {
-      padding: 36px 36px 36px;
+      padding: 40px 36px 36px;
     }
   }
 </style>

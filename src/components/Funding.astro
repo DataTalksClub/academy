@@ -16,6 +16,9 @@ import { funding } from '../data/shared';
 </section>
 
 <style>
+  #funding {
+    background: var(--tint-coral);
+  }
   .prose p {
     margin: 0 0 1.1em;
     max-width: 38rem;
@@ -25,7 +28,16 @@ import { funding } from '../data/shared';
     font-size: 0.9375rem;
   }
   .small a {
-    color: var(--green-700);
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 16px;
+    background: var(--white);
+    border: var(--border);
+    border-radius: 999px;
+    box-shadow: 3px 3px 0 var(--black);
+    color: var(--black);
+    font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 3px;
   }

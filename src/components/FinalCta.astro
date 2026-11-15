@@ -18,33 +18,48 @@ import { join, seatCaption } from '../data/shared';
 
 <style>
   .join {
-    background: var(--green-900);
-    color: var(--paper);
+    background: var(--blue);
+    color: var(--white);
     padding-block: 64px;
-    border-top: 1px solid var(--line-dark);
+    border-top: var(--border);
   }
   .join__grid {
     display: grid;
     gap: 36px;
     grid-template-columns: minmax(0, 1fr);
   }
+  .join h2 {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 0.95;
+  }
   .join__text {
     margin: 20px 0 0;
     max-width: 30rem;
-    color: rgba(245, 241, 232, 0.86);
+    color: var(--white);
   }
   .join__seats {
     margin-top: 32px;
-    max-width: 120px;
+    max-width: 130px;
   }
   .caption {
-    margin: 12px 0 0;
-    color: var(--mint);
-    font-size: 0.6875rem;
+    display: inline-block;
+    margin: 18px 0 0;
+    padding: 6px 12px;
+    background: var(--yellow);
+    color: var(--black);
+    border: var(--border);
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 var(--black);
+    font-size: 0.75rem;
+    font-weight: 700;
+    transform: rotate(-2deg);
+  }
+  .join__form :global(.signup) {
+    box-shadow: 8px 8px 0 var(--black);
   }
   @media (min-width: 768px) {
     .join {
-      padding-block: 112px;
+      padding-block: 104px;
     }
     .join__grid {
       grid-template-columns: repeat(12, minmax(0, 1fr));

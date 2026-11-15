@@ -13,9 +13,9 @@
     position: fixed;
     inset: auto 0 0 0;
     z-index: 20;
-    background: var(--green-900);
-    color: var(--paper);
-    border-top: 1px solid var(--line-dark);
+    background: var(--black);
+    color: var(--white);
+    border-top: var(--border);
     padding: 10px 20px calc(10px + env(safe-area-inset-bottom));
     transform: translateY(110%);
     visibility: hidden;
@@ -34,14 +34,16 @@
   }
   .sticky p {
     margin: 0;
-    color: var(--mint);
+    color: var(--yellow);
     text-transform: uppercase;
     font-size: 0.75rem;
+    font-weight: 700;
   }
   .sticky .btn {
     min-height: 44px;
     padding: 0 18px;
     font-size: 0.9375rem;
+    box-shadow: none;
   }
   @media (min-width: 768px) {
     .sticky {

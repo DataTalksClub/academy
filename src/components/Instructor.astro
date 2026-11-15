@@ -27,13 +27,16 @@ import { instructor } from '../data/shared';
 </section>
 
 <style>
+  #instructor {
+    background: var(--green);
+  }
   .instructor {
     display: grid;
-    gap: 32px;
+    gap: 36px;
     grid-template-columns: minmax(0, 1fr);
   }
   .instructor__photo {
-    max-width: 200px;
+    max-width: 220px;
   }
   .instructor__photo :global(.portrait) {
     display: block;
@@ -41,36 +44,44 @@ import { instructor } from '../data/shared';
     height: auto;
     aspect-ratio: 1;
     object-fit: cover;
-    border-radius: 2px;
-    filter: grayscale(1) contrast(1.05);
+    border: var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    background: var(--yellow);
+    transform: rotate(-2deg);
   }
   .prose {
     margin: 0 0 1em;
     max-width: 38rem;
   }
   .instructor__text :global(h2) {
-    max-width: 22ch;
+    max-width: 20ch;
   }
   .proof {
     list-style: none;
-    margin: 32px 0 0;
-    padding: 20px 0 0;
-    border-top: 1px solid var(--line);
+    margin: 28px 0 0;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 4px 28px;
+    gap: 12px;
   }
   .proof a {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    color: var(--green-700);
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-color: rgba(44, 87, 62, 0.4);
+    padding: 0 14px;
+    background: var(--white);
+    border: var(--border);
+    border-radius: 999px;
+    box-shadow: 3px 3px 0 var(--black);
+    color: var(--black);
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 90ms, box-shadow 90ms;
   }
   .proof a:hover {
-    text-decoration-color: currentColor;
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--black);
   }
   @media (min-width: 768px) {
     .instructor {
@@ -79,7 +90,7 @@ import { instructor } from '../data/shared';
     }
     .instructor__photo {
       grid-column: 1 / span 4;
-      max-width: 280px;
+      max-width: 300px;
     }
     .instructor__text {
       grid-column: 5 / span 8;
