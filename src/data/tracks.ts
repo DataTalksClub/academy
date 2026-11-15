@@ -36,10 +36,10 @@ export const tracks: Track[] = [
     surveyOption: 'A. Agentic engineering',
     headline: 'Ship software with coding agents',
     emphasis: '',
-    lead: "A 16-week full-time course for developers who already write code. You'll learn to turn specs into tasks, run coding agents like Claude Code and Cursor, review their changes, and ship to production. 15 seats, taught live by me, Alexey Grigorev.",
+    lead: "A 3-month (13-week) full-time course for developers who already write code. You'll learn to turn specs into tasks, run coding agents like Claude Code and Cursor, review their changes, and ship to production. 15 seats, taught live by me, Alexey Grigorev.",
     metaTitle: 'Agentic Engineering: a 15-seat live program, April 2027 | DataTalks.Club Academy',
     metaDescription:
-      'Learn to build, test and ship software with coding agents. Full-time, live, 15 seats, taught by Alexey Grigorev. Berlin or online, April 2027. Join the shortlist.',
+      'Learn to build, test and ship software with coding agents. Full-time, live, 15 seats, taught by Alexey Grigorev. Berlin (Prenzlauer Berg) or live online, April 2027. Join the shortlist.',
     outcomesTitle: 'By the end you can run a software project with agents, and answer for the result.',
     outcomes: [
       'Turn a product idea into a spec and a set of small tasks.',
@@ -67,7 +67,7 @@ export const tracks: Track[] = [
         ],
       },
       {
-        weeks: 'Weeks 5 to 8',
+        weeks: 'Weeks 5 to 7',
         title: 'Build and verify',
         modules: [
           { title: 'Testing, verification and debugging.', produce: 'a test suite, and a seeded bug reproduced, fixed and covered.' },
@@ -77,7 +77,7 @@ export const tracks: Track[] = [
         ],
       },
       {
-        weeks: 'Weeks 9 to 12',
+        weeks: 'Weeks 8 to 9',
         title: 'Operate and automate',
         modules: [
           { title: 'Environments, logs, metrics and an on-call agent.', produce: 'dashboards, one alert, and a failure investigated from telemetry.' },
@@ -87,7 +87,7 @@ export const tracks: Track[] = [
         ],
       },
       {
-        weeks: 'Weeks 13 to 16',
+        weeks: 'Weeks 10 to 13',
         title: 'Capstone and interviews',
         modules: [
           { title: 'Technical interviews and hiring prep (full week, 30 hours).', produce: 'algorithm coding drills without AI, a timed take-home, a project presentation and first peer mocks.' },
@@ -105,10 +105,10 @@ export const tracks: Track[] = [
     surveyOption: 'B. AI engineering',
     headline: 'Build and evaluate LLM applications',
     emphasis: '',
-    lead: "A 16-week full-time course for developers who want to build LLM systems in Python. You'll build retrieval over messy documents, tool-calling agents, and evaluation suites that catch regressions before users do. 15 seats, taught live by me, Alexey Grigorev.",
+    lead: "A 3-month (13-week) full-time course for developers who want to build LLM systems in Python. You'll build retrieval over messy documents, tool-calling agents, and evaluation suites that catch regressions before users do. 15 seats, taught live by me, Alexey Grigorev.",
     metaTitle: 'AI Engineering: a 15-seat live program, April 2027 | DataTalks.Club Academy',
     metaDescription:
-      'Learn to build, evaluate and run LLM applications: RAG, agents, evals, deployment. Full-time, live, 15 seats, taught by Alexey Grigorev. Berlin or online, April 2027. Join the shortlist.',
+      'Learn to build, evaluate and run LLM applications: RAG, agents, evals, deployment. Full-time, live, 15 seats, taught by Alexey Grigorev. Berlin (Prenzlauer Berg) or live online, April 2027. Join the shortlist.',
     outcomesTitle: 'By the end you can build an AI application, and show where it works and where it fails.',
     outcomes: [
       'Build an assistant in Python on an LLM API.',
@@ -136,7 +136,7 @@ export const tracks: Track[] = [
         ],
       },
       {
-        weeks: 'Weeks 5 to 8',
+        weeks: 'Weeks 5 to 7',
         title: 'Agents',
         modules: [
           { title: 'Agentic engineering workflow, tools and the agent loop.', produce: 'the full agent workflow on your project repo (spec to tasks, tests, diff review, CI) and an assistant that calls an API through a tool.' },
@@ -146,7 +146,7 @@ export const tracks: Track[] = [
         ],
       },
       {
-        weeks: 'Weeks 9 to 12',
+        weeks: 'Weeks 8 to 9',
         title: 'Quality and production',
         modules: [
           { title: 'Testing LLM applications and CI/CD.', produce: 'a regression suite running in CI.' },
@@ -156,7 +156,7 @@ export const tracks: Track[] = [
         ],
       },
       {
-        weeks: 'Weeks 13 to 16',
+        weeks: 'Weeks 10 to 13',
         title: 'Capstone and interviews',
         modules: [
           { title: 'Technical interviews and hiring prep (full week, 30 hours).', produce: 'algorithm coding drills without AI, a timed take-home, a project presentation and first peer mocks.' },
