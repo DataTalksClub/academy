@@ -7,6 +7,7 @@ set -euo pipefail
 name="${1:?usage: preview-deploy.sh <name>}"
 host_root="${PREVIEW_ROOT:-/var/www/html/academy-previews}"
 origin="${PREVIEW_ORIGIN:-http://135.181.114.209}"
+mkdir -p .local/preview-dist
 out=".local/preview-dist/$name"
 rm -rf -- "$out"
 SITE_URL="$origin" BASE_PATH="/academy-previews/$name/" PUBLIC_API_URL="" \
