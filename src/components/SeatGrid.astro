@@ -43,50 +43,30 @@ const seats = Array.from({ length: 15 }, (_, i) => ({
     display: block;
     width: 100%;
     height: auto;
-    color: var(--seat, var(--mint));
     overflow: visible;
+    filter: drop-shadow(4px 4px 0 var(--black));
   }
   .seats--sm {
     max-width: 150px;
   }
   rect {
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.6;
-    stroke-dasharray: 1;
-    stroke-dashoffset: 0;
-    animation: draw 160ms ease-out backwards;
-    animation-delay: calc(var(--i) * 32ms);
+    fill: var(--white);
+    stroke: var(--black);
+    stroke-width: 3;
+    rx: 8px;
   }
+  g:nth-child(4n + 1) rect { fill: var(--blue); }
+  g:nth-child(4n + 2) rect { fill: var(--coral); }
+  g:nth-child(4n + 3) rect { fill: var(--green); }
+  g:nth-child(4n + 4) rect { fill: var(--white); }
   .seats--sm rect {
-    stroke-width: 3.2;
+    stroke-width: 5;
   }
   text {
-    fill: currentColor;
-    opacity: 0.7;
+    fill: var(--black);
     font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    animation: fade 200ms ease-out backwards;
-    animation-delay: calc(var(--i) * 32ms + 80ms);
+    font-weight: 700;
+    font-size: 12px;
   }
-  @keyframes draw {
-    from {
-      stroke-dashoffset: 1;
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-  @keyframes fade {
-    from {
-      opacity: 0;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    rect,
-    text {
-      animation: none;
-    }
-  }
+  g:nth-child(4n + 1) text { fill: var(--white); }
 </style>
