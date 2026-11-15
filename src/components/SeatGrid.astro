@@ -53,10 +53,6 @@ const seats = Array.from({ length: 15 }, (_, i) => ({
     fill: none;
     stroke: currentColor;
     stroke-width: 1.6;
-    stroke-dasharray: 1;
-    stroke-dashoffset: 0;
-    animation: draw 160ms ease-out backwards;
-    animation-delay: calc(var(--i) * 32ms);
   }
   .seats--sm rect {
     stroke-width: 3.2;
