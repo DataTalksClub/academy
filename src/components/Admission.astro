@@ -29,53 +29,61 @@ import { admission } from '../data/shared';
 <style>
   .admission {
     display: grid;
-    gap: 56px;
+    gap: 48px;
     grid-template-columns: minmax(0, 1fr);
   }
   .paper-seats {
-    --seat: var(--green-700);
+    --seat: var(--lime);
     margin: 28px 0 24px;
     max-width: 150px;
   }
   .admission__body {
     margin: 0;
     max-width: 30rem;
+    color: #c9d1d9;
   }
   .steps {
     list-style: none;
     margin: 0;
     padding: 0;
-    border-top: 1px solid var(--line);
     align-self: start;
+    display: grid;
+    gap: 12px;
   }
   .steps li {
     display: grid;
-    grid-template-columns: 56px minmax(0, 1fr);
+    grid-template-columns: 52px minmax(0, 1fr);
     gap: 8px;
-    padding: 24px 0;
-    border-bottom: 1px solid var(--line);
+    padding: 20px 18px 20px 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--panel);
   }
   .num {
+    align-self: start;
+    text-align: right;
+    padding-right: 12px;
     font-family: var(--mono);
-    font-weight: 500;
-    font-size: 1.5rem;
-    line-height: 1.2;
-    color: var(--green-700);
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.9;
+    color: var(--lime);
   }
   .steps p {
     margin: 0;
-    padding-top: 3px;
+    padding-left: 6px;
     max-width: 32rem;
+    color: var(--muted);
   }
   .steps strong {
     display: block;
     font-family: var(--display);
-    font-weight: 500;
+    font-weight: 700;
     font-size: 1.3125rem;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.025em;
     line-height: 1.25;
     margin-bottom: 4px;
+    color: var(--fg);
   }
   @media (min-width: 768px) {
     .admission {
@@ -89,10 +97,7 @@ import { admission } from '../data/shared';
       grid-column: 7 / span 6;
     }
     .steps li {
-      grid-template-columns: 72px minmax(0, 1fr);
-    }
-    .num {
-      font-size: 2rem;
+      grid-template-columns: 64px minmax(0, 1fr);
     }
   }
 </style>

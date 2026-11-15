@@ -19,55 +19,67 @@ import { facts } from '../data/shared';
 
 <style>
   .facts {
-    border-bottom: 1px solid var(--line);
+    padding-block: 32px;
+    border-bottom: 1px solid var(--border);
   }
   .facts__grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     margin: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--panel);
+    font-family: var(--mono);
+    overflow: hidden;
   }
   .fact {
-    padding: 22px 16px 22px 0;
-    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, 1fr);
+    gap: 12px;
+    align-items: baseline;
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--border);
   }
-  .fact:nth-child(2n) {
-    padding-left: 16px;
-    border-left: 1px solid var(--line);
-  }
-  .fact:nth-last-child(-n + 2) {
+  .fact:last-child {
     border-bottom: 0;
   }
   dt {
-    color: var(--ink-2);
-    text-transform: uppercase;
-    margin-bottom: 6px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    font-size: 0.8125rem;
+  }
+  dt::after {
+    content: ':';
+    color: #6e7681;
   }
   dd {
     margin: 0;
+    font-family: var(--mono);
     font-weight: 500;
-    font-size: 1rem;
-    line-height: 1.4;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--lime);
   }
   @media (min-width: 768px) {
+    .facts {
+      padding-block: 48px;
+    }
     .facts__grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    .fact,
+    .fact {
+      grid-template-columns: 8.5rem minmax(0, 1fr);
+      padding: 16px 22px;
+    }
     .fact:nth-child(2n) {
-      padding: 28px 24px 28px 0;
-      border-left: 0;
-      border-bottom: 1px solid var(--line);
+      border-left: 1px solid var(--border);
     }
-    .fact:nth-child(3n + 2),
-    .fact:nth-child(3n) {
-      padding-left: 24px;
-      border-left: 1px solid var(--line);
-    }
-    .fact:nth-last-child(-n + 3) {
+    .fact:nth-last-child(-n + 2):nth-child(2n + 1),
+    .fact:last-child {
       border-bottom: 0;
     }
     dd {
-      font-size: 1.125rem;
+      font-size: 0.9375rem;
     }
   }
 </style>

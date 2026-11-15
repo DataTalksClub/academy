@@ -18,29 +18,50 @@ import { join, seatCaption } from '../data/shared';
 
 <style>
   .join {
-    background: var(--green-900);
-    color: var(--paper);
+    background:
+      linear-gradient(180deg, var(--bg) 0%, rgba(1, 4, 9, 0) 40%),
+      var(--dots),
+      var(--bg-deep);
+    color: var(--fg);
     padding-block: 64px;
-    border-top: 1px solid var(--line-dark);
+    border-top: 1px solid var(--border);
   }
   .join__grid {
     display: grid;
     gap: 36px;
     grid-template-columns: minmax(0, 1fr);
   }
+  #join-title {
+    font-size: clamp(2.1rem, 4.6vw, 3.6rem);
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+  #join-title::after {
+    content: '';
+    display: inline-block;
+    width: 0.42em;
+    height: 0.78em;
+    margin-left: 0.12em;
+    vertical-align: -0.04em;
+    background: var(--lime);
+  }
   .join__text {
     margin: 20px 0 0;
     max-width: 30rem;
-    color: rgba(245, 241, 232, 0.86);
+    color: #c9d1d9;
   }
   .join__seats {
     margin-top: 32px;
-    max-width: 120px;
+    max-width: 130px;
   }
   .caption {
     margin: 12px 0 0;
-    color: var(--mint);
-    font-size: 0.6875rem;
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+  .caption::before {
+    content: '// ';
+    color: var(--lime);
   }
   @media (min-width: 768px) {
     .join {
@@ -55,7 +76,7 @@ import { join, seatCaption } from '../data/shared';
       grid-column: 1 / span 6;
     }
     .join__form {
-      grid-column: 8 / span 5;
+      grid-column: 7 / span 6;
       margin-top: 6px;
     }
   }

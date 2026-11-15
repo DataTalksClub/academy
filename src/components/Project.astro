@@ -17,14 +17,18 @@ const { track } = Astro.props;
 
 <style>
   .project {
+    position: relative;
     margin: 0;
-    padding-left: 24px;
-    border-left: 4px solid var(--mint);
+    padding: 24px 22px 24px 26px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--lime);
+    border-radius: var(--radius);
+    background: var(--panel);
     font-family: var(--display);
-    font-weight: 400;
-    font-size: clamp(1.25rem, 2.2vw, 1.5rem);
-    line-height: 1.45;
-    letter-spacing: -0.005em;
-    max-width: 38rem;
+    font-weight: 500;
+    font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    max-width: 40rem;
   }
 </style>

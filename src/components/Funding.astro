@@ -18,15 +18,24 @@ import { funding } from '../data/shared';
 <style>
   .prose p {
     margin: 0 0 1.1em;
-    max-width: 38rem;
+    max-width: 40rem;
+    color: #c9d1d9;
   }
   .small {
     margin-top: 28px !important;
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
+    font-family: var(--mono);
   }
   .small a {
-    color: var(--green-700);
+    display: inline-block;
+    padding-block: 10px;
+    color: var(--cyan);
     text-decoration: underline;
     text-underline-offset: 3px;
+  }
+  .small::before {
+    content: '\2197';
+    margin-right: 8px;
+    color: var(--muted);
   }
 </style>

@@ -28,48 +28,53 @@ const { track } = Astro.props;
   .outcomes {
     list-style: none;
     margin: 20px 0 0;
-    padding: 0;
+    padding: 10px 0;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    border-top: 1px solid var(--line);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--panel);
   }
   li {
     display: grid;
-    grid-template-columns: 56px minmax(0, 1fr);
-    gap: 8px;
-    padding: 22px 0;
-    border-bottom: 1px solid var(--line);
+    grid-template-columns: 3.25rem minmax(0, 1fr);
+    gap: 0;
+    padding: 10px 16px 10px 0;
   }
   .num {
+    padding-right: 12px;
+    border-right: 1px solid var(--border);
+    text-align: right;
     font-family: var(--mono);
     font-weight: 500;
-    font-size: 1.5rem;
-    line-height: 1.2;
-    color: var(--green-700);
-    letter-spacing: -0.02em;
+    font-size: 0.8125rem;
+    line-height: 1.9;
+    color: #7d8590;
   }
   .outcomes__text {
-    padding-top: 4px;
+    padding-left: 16px;
     max-width: 34rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  li:hover .num {
+    color: var(--lime);
   }
   @media (min-width: 768px) {
     .outcomes {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      column-gap: 24px;
-      margin-top: 36px;
+      margin-top: 40px;
+      padding: 16px 0;
     }
     li {
-      grid-template-columns: 72px minmax(0, 1fr);
-      padding: 28px 24px 28px 0;
+      grid-template-columns: 4rem minmax(0, 1fr);
+      padding: 14px 28px 14px 0;
     }
     li:nth-child(2n) {
-      padding-left: 0;
-    }
-    .num {
-      font-size: 2rem;
+      border-left: 1px solid var(--border);
     }
     .outcomes__text {
-      padding-top: 8px;
+      padding-left: 20px;
     }
   }
 </style>

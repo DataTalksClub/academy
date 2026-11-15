@@ -34,6 +34,10 @@ import { instructor } from '../data/shared';
   }
   .instructor__photo {
     max-width: 200px;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg);
   }
   .instructor__photo :global(.portrait) {
     display: block;
@@ -41,36 +45,43 @@ import { instructor } from '../data/shared';
     height: auto;
     aspect-ratio: 1;
     object-fit: cover;
-    border-radius: 2px;
-    filter: grayscale(1) contrast(1.05);
+    border-radius: 3px;
+    filter: grayscale(1) contrast(1.1) brightness(0.95);
   }
   .prose {
     margin: 0 0 1em;
-    max-width: 38rem;
+    max-width: 40rem;
+    color: #c9d1d9;
   }
   .instructor__text :global(h2) {
     max-width: 22ch;
   }
   .proof {
     list-style: none;
-    margin: 32px 0 0;
-    padding: 20px 0 0;
-    border-top: 1px solid var(--line);
+    margin: 28px 0 0;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 4px 28px;
+    gap: 10px;
   }
   .proof a {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    color: var(--green-700);
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-color: rgba(44, 87, 62, 0.4);
+    padding: 0 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg);
+    color: var(--cyan);
+    text-decoration: none;
+  }
+  .proof a::before {
+    content: '\2197';
+    margin-right: 8px;
+    color: var(--muted);
   }
   .proof a:hover {
-    text-decoration-color: currentColor;
+    border-color: var(--cyan);
   }
   @media (min-width: 768px) {
     .instructor {
@@ -79,7 +90,8 @@ import { instructor } from '../data/shared';
     }
     .instructor__photo {
       grid-column: 1 / span 4;
-      max-width: 280px;
+      max-width: 300px;
+      align-self: start;
     }
     .instructor__text {
       grid-column: 5 / span 8;
