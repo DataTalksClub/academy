@@ -5,19 +5,19 @@ export const seatCaption = '15 seats, 1 instructor';
 export const contactEmail = 'alexey@datatalks.club';
 
 export const facts: { label: string; value: string }[] = [
-  { label: 'COHORT', value: 'Waitlist open' },
+  { label: 'START', value: 'April 2027' },
   { label: 'FORMAT', value: 'Full-time, live, 3 months (13 weeks)' },
-  { label: 'WHERE', value: 'Berlin (Prenzlauer Berg) or live online' },
+  { label: 'WHERE', value: 'Berlin or live online' },
   { label: 'LANGUAGE', value: 'English' },
   { label: 'SEATS', value: '15' },
-  { label: 'TUITION', value: 'Bildungsgutschein (approval pending) or €9,000 to €10,000 self-pay' },
+  { label: 'TUITION', value: 'Bildungsgutschein, once AZAV certified, or €9,000 to €10,000 if you pay yourself' },
 ];
 
 export const heroInstructorLine =
   "I'm Alexey Grigorev. I have taught more than 100,000 students in DataTalks.Club courses.";
 
 export const heroHonesty =
-  'Join the waitlist to hear when the next cohort opens.';
+  "There is no active cohort right now. I'll email you when applications open for April 2027. I'll email you only about this program. Unsubscribe any time.";
 
 export const instructor = {
   heading: 'I Teach Every Session and Review Every Project',

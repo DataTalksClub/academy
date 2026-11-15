@@ -36,7 +36,7 @@ export const tracks: Track[] = [
     surveyOption: 'A. Agentic engineering',
     headline: 'Ship Software with Coding Agents',
     emphasis: '',
-    lead: "Agentic engineering is using tools like Claude Code or Cursor to write most of the code, while you decide what to build and check the result. A 3-month (13-week) full-time course for developers who already write code. 15 seats, taught live by me, Alexey Grigorev.",
+    lead: "A 3-month (13-week) full-time course for developers with 2+ years of experience who already write code. Agentic engineering is using tools like Claude Code or Cursor to write most of the code, while you decide what to build and check the result. You'll learn to turn specs into tasks, run coding agents, review their changes, and ship to production. 15 seats, taught live by me.",
     metaTitle: 'Agentic Engineering | DataTalks.Club Academy',
     metaDescription:
       'Agentic engineering is using tools like Claude Code or Cursor to write most of the code, while you decide what to build and check the result. Full-time, live, 15 seats, taught by Alexey Grigorev. Berlin (Prenzlauer Berg) or live online. Join the waitlist.',
@@ -105,7 +105,7 @@ export const tracks: Track[] = [
     surveyOption: 'B. AI engineering',
     headline: 'Build and Evaluate LLM Applications',
     emphasis: '',
-    lead: "AI engineering is building products that use LLMs, like chatbots, search over your company's documents or agents that do tasks for users. A 3-month (13-week) full-time course for developers who already write code. 15 seats, taught live by me, Alexey Grigorev.",
+    lead: "A 3-month (13-week) full-time course for developers with 2+ years of experience who want to build LLM systems in Python. AI engineering is building apps that use LLMs, like chatbots, search over documents or agents. You'll build retrieval over messy documents, tool-calling agents, and evaluation suites that catch regressions before users do. 15 seats, taught live by me.",
     metaTitle: 'AI Engineering | DataTalks.Club Academy',
     metaDescription:
       "AI engineering is building products that use LLMs, like chatbots, search over your company's documents or agents that do tasks for users. Full-time, live, 15 seats, taught by Alexey Grigorev. Berlin (Prenzlauer Berg) or live online. Join the waitlist.",
