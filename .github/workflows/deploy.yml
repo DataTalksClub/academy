@@ -1,5 +1,14 @@
 name: Deploy
 
+# The academy is served at https://datatalks.club/academy/. The main site's
+# deploy (DataTalksClub/datatalksclub.github.io, deploy-s3.yml) builds this repo
+# at main and publishes it under /academy/ in the datatalks.club bucket.
+#
+# This workflow keeps academy.datatalks.club (GitHub Pages) as a redirect site:
+# every old URL sends visitors to the same path under datatalks.club/academy/,
+# query string included (scripts/redirects.mjs). It then asks the main site to
+# redeploy so academy changes go live.
+
 on:
   push:
     branches: [main]
@@ -14,14 +23,15 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+env:
+  TARGET_BASE: https://datatalks.club/academy
+
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      # Until the custom domain is switched on, serve from GitHub Pages under /academy/.
-      # Set the repository variables SITE_URL, BASE_PATH and API_URL to change this.
-      SITE_URL: ${{ vars.SITE_URL || 'https://datatalksclub.github.io' }}
-      BASE_PATH: ${{ vars.BASE_PATH || '/academy/' }}
+      SITE_URL: https://datatalks.club
+      BASE_PATH: /academy/
       PUBLIC_API_URL: ${{ vars.API_URL }}
       PUBLIC_UMAMI_SCRIPT_URL: ${{ vars.UMAMI_SCRIPT_URL }}
       PUBLIC_UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
@@ -33,9 +43,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+      - name: Build redirect site for academy.datatalks.club
+        run: node scripts/redirects.mjs dist dist-redirects "$TARGET_BASE"
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: dist-redirects
 
   deploy:
     needs: build
@@ -46,3 +58,17 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  publish-main-site:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger the datatalks.club deploy
+        env:
+          GH_TOKEN: ${{ secrets.DTC_SITE_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::warning::DTC_SITE_DISPATCH_TOKEN is not set; run 'Deploy site to S3' in DataTalksClub/datatalksclub.github.io to publish this academy commit."
+            exit 0
+          fi
+          gh workflow run deploy-s3.yml -R DataTalksClub/datatalksclub.github.io --ref main
