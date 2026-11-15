@@ -24,7 +24,7 @@ for (const [vpName, viewport, dpr] of viewports) {
     const res = await page.goto(base.replace(/\/?$/, '/') + path, { waitUntil: 'networkidle' });
     if (!res || res.status() !== 200) throw new Error(`${path} -> ${res && res.status()}`);
     await page.evaluate(() => document.fonts.ready);
-    await page.waitForTimeout(300);
+    await page.waitForTimeout(3000); // let entry animations (seat grid) finish
     const file = join(outDir, `${prefix}-${pName}-${vpName}.png`);
     await page.screenshot({ path: file, fullPage: true });
     console.log(file);
