@@ -14,7 +14,7 @@ export const facts: { label: string; value: string }[] = [
 ];
 
 export const heroInstructorLine =
-  "I'm Alexey Grigorev, founder of DataTalks.Club. Since 2024, 12,755 students have enrolled on our course platform.";
+  "I'm Alexey Grigorev. I have taught more than 100,000 students in DataTalks.Club courses.";
 
 export const heroHonesty =
   'Join the waitlist to hear when the next cohort opens.';
@@ -22,7 +22,7 @@ export const heroHonesty =
 export const instructor = {
   heading: 'I Teach Every Session and Review Every Project',
   paragraphs: [
-    "I'm Alexey Grigorev. I founded DataTalks.Club and created its free Zoomcamps on data engineering, machine learning, MLOps, LLMs and AI dev tools. Since 2024, 12,755 students have enrolled on our course platform and 1,848 have graduated with certificates. I also wrote Machine Learning Bookcamp and teach paid cohort courses on Maven.",
+    "I'm Alexey Grigorev. I have taught more than 100,000 students in DataTalks.Club courses. I founded DataTalks.Club and created its free Zoomcamps on data engineering, machine learning, MLOps, LLMs and AI dev tools. I also wrote Machine Learning Bookcamp and teach paid cohort courses on Maven.",
     "This cohort has 15 seats. I teach every day myself and look at every participant's project every week. There are no teaching assistants and no pre-recorded lectures.",
   ],
   proof: [
