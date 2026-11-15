@@ -52,7 +52,7 @@ for (const t of TRACKS) {
     test('3. valid signup posts, shows success in both places, chips and survey link', async ({ page }) => {
       const api = await mockApi(page);
       await page.goto(`${t}/?utm_source=test&utm_campaign=c1&utm_content=a`);
-      await join(page, ' ada@example.com ');
+      await join(page, ' ada@example.com ', ' Ada ');
       await expect(page.locator('#signup-hero [data-success]')).toBeVisible();
       await expect(page.locator('#signup-join [data-success]')).toBeAttached();
       await expect(page.locator('#signup-hero [data-success-title]')).toBeFocused();
@@ -60,6 +60,7 @@ for (const t of TRACKS) {
       const body = api.signups[0].postDataJSON();
       expect(body).toMatchObject({
         email: 'ada@example.com',
+        name: 'Ada',
         track: t,
         consent_version: '2026-11-13.v1',
         utm_source: 'test',

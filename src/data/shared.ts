@@ -5,7 +5,7 @@ export const seatCaption = '15 seats, 1 instructor';
 export const contactEmail = 'alexey@datatalks.club';
 
 export const facts: { label: string; value: string }[] = [
-  { label: 'START', value: 'April 2027' },
+  { label: 'COHORT', value: 'Waitlist open' },
   { label: 'FORMAT', value: 'Full-time, live, 3 months (13 weeks)' },
   { label: 'WHERE', value: 'Berlin (Prenzlauer Berg) or live online' },
   { label: 'LANGUAGE', value: 'English' },
@@ -17,10 +17,10 @@ export const heroInstructorLine =
   "I'm Alexey Grigorev, founder of DataTalks.Club. Since 2024, 12,755 students have enrolled on our course platform.";
 
 export const heroHonesty =
-  'Planned for April 2027. Your signup counts as a vote for this track.';
+  'Join the waitlist to hear when the next cohort opens.';
 
 export const instructor = {
-  heading: 'I teach every session and review every project',
+  heading: 'I Teach Every Session and Review Every Project',
   paragraphs: [
     "I'm Alexey Grigorev. I founded DataTalks.Club and created its free Zoomcamps on data engineering, machine learning, MLOps, LLMs and AI dev tools. Since 2024, 12,755 students have enrolled on our course platform and 1,848 have graduated with certificates. I also wrote Machine Learning Bookcamp and teach paid cohort courses on Maven.",
     "This cohort has 15 seats. I teach every day myself and look at every participant's project every week. There are no teaching assistants and no pre-recorded lectures.",
@@ -32,11 +32,11 @@ export const instructor = {
   ],
 };
 
-export const project = { heading: 'The final project' };
+export const project = { heading: 'The Final Project' };
 
 export const fit = {
-  forTitle: 'This is for you if',
-  notTitle: 'This is not for you if',
+  forTitle: 'This Is for You If',
+  notTitle: 'This Is Not for You If',
   forShared: [
     'You can study full-time, Monday to Friday, for the whole program.',
     'You can follow technical teaching and work with others in English.',
@@ -50,12 +50,12 @@ export const fit = {
 };
 
 export const syllabus = {
-  heading: 'Sixteen modules, one project that grows every week',
-  intro: "This is the draft syllabus. I use the shortlist's survey answers to shape the final version.",
+  heading: 'Sixteen Modules, One Project That Grows Every Week',
+  intro: "This is the draft syllabus. I use the waitlist's survey answers to shape the final version.",
 };
 
 export const funding = {
-  heading: 'How tuition and the Bildungsgutschein work',
+  heading: 'How Tuition and the Bildungsgutschein Work',
   paragraphs: [
     "I'm applying for AZAV certification so the Agentur für Arbeit can cover tuition with a Bildungsgutschein.",
     'The voucher and the seat are separate decisions. The Agentur decides whether it pays, and I decide who is in the cohort.',
@@ -66,12 +66,12 @@ export const funding = {
 };
 
 export const admission = {
-  heading: 'Why 15 seats',
+  heading: 'Why 15 Seats',
   body: "I teach this cohort myself and review every project. I can do that properly for about 15 people, not for more. If more people qualify than there are seats, there is a waitlist and a later cohort. I won't add seats.",
-  stepsHeading: 'How you get in',
+  stepsHeading: 'How You Get In',
   steps: [
-    { title: 'Join the shortlist.', text: 'Leave your email on this page. There is no commitment.' },
-    { title: 'Apply first.', text: 'When applications open, the shortlist gets them before anyone else.' },
+    { title: 'Join the waitlist.', text: 'Leave your name and email on this page. There is no commitment.' },
+    { title: 'Apply first.', text: 'When applications open, the waitlist gets them before anyone else.' },
     { title: 'Short task and a conversation.', text: 'A small practical exercise and a 20-minute call, so we both know the level fits.' },
     { title: 'Seats are offered in rounds.', text: 'Everyone who applies gets an answer.' },
   ],
@@ -82,11 +82,11 @@ export const faqHeading = 'Questions';
 /** `null` answer = taken from the track (prerequisites). */
 export const faq: { q: string; a: string | null }[] = [
   {
-    q: 'Is this program confirmed?',
-    a: "It is planned for April 2027. Two tracks are on the table, Agentic Engineering and AI Engineering, and I'll run the one with more serious interest first. Joining a shortlist is how you vote.",
+    q: 'When does the next cohort start?',
+    a: "There is no active cohort right now. Join the waitlist and I'll write to you when dates open.",
   },
   {
-    q: 'What do I get for joining the shortlist?',
+    q: 'What do I get for joining the waitlist?',
     a: 'You get the application before it opens publicly, and updates on dates, format and funding approval. Nothing else, and no obligation.',
   },
   { q: 'What do I need to know before I start?', a: null },
@@ -118,24 +118,25 @@ export const faq: { q: string; a: string | null }[] = [
 ];
 
 export const join = {
-  heading: 'Join the shortlist for April 2027',
-  text: "Leave your email and I'll write to you before applications open.",
+  heading: 'Join the Waitlist',
+  text: "Leave your name and email and I'll write to you when the next cohort opens.",
 };
 
 export const form = {
+  nameLabel: 'Name',
   label: 'Email address',
-  button: 'Join the shortlist',
-  micro: "Shortlist members get the application before it opens publicly. I'll email you only about this program. Unsubscribe any time.",
+  button: 'Join the Waitlist',
+  micro: "Waitlist members hear first when the next cohort opens. I'll email you only about this program. Unsubscribe any time.",
   error: 'Please enter a valid email address.',
 };
 
 export const home = {
-  metaTitle: 'DataTalks.Club Academy: live full-time courses with Alexey Grigorev, April 2027',
+  metaTitle: 'DataTalks.Club Academy | Live Full-Time Courses with Alexey Grigorev',
   metaDescription:
-    'A full-time, live program for developers who already write code, taught by Alexey Grigorev. Two tracks: Agentic Engineering and AI Engineering. 15 seats, Berlin (Prenzlauer Berg) or live online, April 2027.',
-  eyebrow: 'DataTalks.Club Academy, April 2027',
-  headline: 'Live full-time courses in Berlin or online, starting April 2027',
+    'A full-time, live program for developers who already write code, taught by Alexey Grigorev. Two tracks: Agentic Engineering and AI Engineering. 15 seats, Berlin (Prenzlauer Berg) or live online.',
+  eyebrow: 'DataTalks.Club Academy',
+  headline: 'Live Full-Time Courses in Berlin or Online',
   emphasis: '',
-  lead: "I'm Alexey Grigorev. In April 2027 I'll teach a full-time, live program for developers who already write code, in Berlin or online. Two tracks are on the table and I'll run the one with more interest first. Pick a track and join its shortlist.",
+  lead: "I'm Alexey Grigorev. I'm building full-time, live courses for developers who already write code, in Berlin or online. Pick a track and join its waitlist.",
   cta: 'Read about the track',
 };

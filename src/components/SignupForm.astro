@@ -9,6 +9,18 @@ const { id } = Astro.props;
 
 <div class="signup card" id={`signup-${id}`} data-signup={id}>
   <form class="signup__form" novalidate>
+    <div class="signup__field">
+      <label class="mono field-label" for={`name-${id}`}>{form.nameLabel}</label>
+      <input
+        class="input"
+        id={`name-${id}`}
+        type="text"
+        name="name"
+        autocomplete="name"
+        maxlength="60"
+        placeholder="Your name"
+      />
+    </div>
     <label class="mono field-label" for={`email-${id}`}>{form.label}</label>
     <div class="signup__row">
       <input
@@ -49,7 +61,7 @@ const { id } = Astro.props;
       Confirm your email
     </h3>
     <p>
-      I sent a confirmation link to your email. Click it to confirm your spot on the shortlist.
+      I sent a confirmation link to your email. Click it to confirm your spot on the waitlist.
     </p>
 
     <p class="mono label-green success__q">Two quick questions (optional)</p>
@@ -99,6 +111,9 @@ const { id } = Astro.props;
     margin-bottom: 8px;
     color: var(--ink-2);
     text-transform: uppercase;
+  }
+  .signup__field {
+    margin-bottom: 14px;
   }
   .signup__row {
     display: flex;
