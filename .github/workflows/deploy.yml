@@ -1,14 +1,7 @@
-name: Deploy
+name: Publish academy changes
 
-# The academy is served at https://datatalks.club/academy/. The main site's
-# deploy (DataTalksClub/datatalksclub.github.io, deploy-s3.yml) builds this repo
-# at main and publishes it under /academy/ in the datatalks.club bucket.
-#
-# This workflow keeps academy.datatalks.club (GitHub Pages) as a redirect site:
-# every old URL sends visitors to the same path under datatalks.club/academy/,
-# query string included (scripts/redirects.mjs). It then asks the main site to
-# redeploy so academy changes go live.
-
+# datatalks.club/academy/ is built and hosted by the main site.
+# Alexey t3595u: delete the old subdomain without redirects.
 on:
   push:
     branches: [main]
@@ -16,51 +9,13 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: publish-main-site
   cancel-in-progress: false
 
-env:
-  TARGET_BASE: https://datatalks.club/academy
-
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    env:
-      SITE_URL: https://datatalks.club
-      BASE_PATH: /academy/
-      PUBLIC_API_URL: ${{ vars.API_URL }}
-      PUBLIC_UMAMI_SCRIPT_URL: ${{ vars.UMAMI_SCRIPT_URL }}
-      PUBLIC_UMAMI_WEBSITE_ID: ${{ vars.UMAMI_WEBSITE_ID }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run build
-      - name: Build redirect site for academy.datatalks.club
-        run: node scripts/redirects.mjs dist dist-redirects "$TARGET_BASE"
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist-redirects
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
-
   publish-main-site:
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Trigger the datatalks.club deploy

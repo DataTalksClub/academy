@@ -24,14 +24,9 @@ jobs:
         run: npm test
       - name: Tests (site under /academy/)
         run: npm run test:base
-      - name: Redirect site for academy.datatalks.club
+      - name: Build the live academy path
         run: |
           SITE_URL=https://datatalks.club BASE_PATH=/academy/ npm run build
-          node scripts/redirects.mjs dist dist-redirects https://datatalks.club/academy
-          for p in index.html sessions/index.html agentic-engineering/index.html ai-engineering/index.html 404.html; do
-            grep -q 'location.replace("https://datatalks.club/academy" + location.pathname + location.search + location.hash)' "dist-redirects/$p"
-          done
-          grep -q 'rel="canonical" href="https://datatalks.club/academy/sessions/"' dist-redirects/sessions/index.html
           grep -q 'https://datatalks.club/academy/sitemap.xml' dist/robots.txt
       - uses: actions/upload-artifact@v4
         if: failure()

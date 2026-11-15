@@ -1,6 +1,6 @@
 # DataTalks.Club Academy: landing site
 
-Static site for academy.datatalks.club. It is a demand test for a selective, full-time program starting April 2027 (about 15 seats). Two candidate tracks each get one landing page, and the only conversion is leaving an email to join the shortlist. The full design, copy and test plan is in [`docs/SPEC.md`](docs/SPEC.md).
+Static site for https://datatalks.club/academy/. It is a demand test for a selective, full-time program starting April 2027 (about 15 seats). Two candidate tracks each get one landing page, and the only conversion is leaving an email to join the shortlist. The full design, copy and test plan is in [`docs/SPEC.md`](docs/SPEC.md).
 
 Stack: Astro (static output), plain CSS, one small vanilla TypeScript module (`src/scripts/signup.ts`). No cookies, no storage, no third-party requests; fonts and images are self-hosted.
 
@@ -36,4 +36,4 @@ Every internal link and asset goes through `url()` in `src/lib.ts`, which applie
 
 `https://datatalks.club/academy/` is the live site. The datatalks.club deploy (`DataTalksClub/datatalksclub.github.io`, `deploy-s3.yml`) checks out this repo at `main`, builds it with `SITE_URL=https://datatalks.club BASE_PATH=/academy/` and publishes `dist/` under `/academy/` in the datatalks.club bucket.
 
-`.github/workflows/deploy.yml` runs on every push to `main`. It publishes `academy.datatalks.club` (GitHub Pages) as a redirect site: `scripts/redirects.mjs` writes a stub for every page that sends the visitor to the same path under `https://datatalks.club/academy/`, keeping the query string and hash, plus a `404.html` that does the same for any other path. It then triggers the datatalks.club deploy when the `DTC_SITE_DISPATCH_TOKEN` secret (a token allowed to run workflows in `datatalksclub.github.io`) is set; otherwise run that workflow by hand.
+`.github/workflows/deploy.yml` requests the main site deploy when the `DTC_SITE_DISPATCH_TOKEN` secret is configured; otherwise run that workflow by hand. It does not deploy GitHub Pages. Per Alexey t3595u, `academy.datatalks.club` is retired without redirects. Registration and waitlist storage, the signup API, and Relay contacts are retained (t3596u).
