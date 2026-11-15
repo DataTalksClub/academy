@@ -34,12 +34,12 @@ export const tracks: Track[] = [
     label: 'A',
     name: 'Agentic Engineering',
     surveyOption: 'A. Agentic engineering',
-    headline: 'Ship software with coding agents',
+    headline: 'Ship Software with Coding Agents',
     emphasis: '',
-    lead: "A 3-month (13-week) full-time course for developers who already write code. You'll learn to turn specs into tasks, run coding agents like Claude Code and Cursor, review their changes, and ship to production. 15 seats, taught live by me, Alexey Grigorev.",
-    metaTitle: 'Agentic Engineering: a 15-seat live program, April 2027 | DataTalks.Club Academy',
+    lead: "Agentic engineering is using tools like Claude Code or Cursor to write most of the code, while you decide what to build and check the result. A 3-month (13-week) full-time course for developers who already write code. 15 seats, taught live by me, Alexey Grigorev.",
+    metaTitle: 'Agentic Engineering | DataTalks.Club Academy',
     metaDescription:
-      'Learn to build, test and ship software with coding agents. Full-time, live, 15 seats, taught by Alexey Grigorev. Berlin (Prenzlauer Berg) or live online, April 2027. Join the shortlist.',
+      'Agentic engineering is using tools like Claude Code or Cursor to write most of the code, while you decide what to build and check the result. Full-time, live, 15 seats, taught by Alexey Grigorev. Berlin (Prenzlauer Berg) or live online. Join the waitlist.',
     outcomesTitle: 'By the end you can run a software project with agents, and answer for the result.',
     outcomes: [
       'Turn a product idea into a spec and a set of small tasks.',
@@ -103,12 +103,12 @@ export const tracks: Track[] = [
     label: 'B',
     name: 'AI Engineering',
     surveyOption: 'B. AI engineering',
-    headline: 'Build and evaluate LLM applications',
+    headline: 'Build and Evaluate LLM Applications',
     emphasis: '',
-    lead: "A 3-month (13-week) full-time course for developers who want to build LLM systems in Python. You'll build retrieval over messy documents, tool-calling agents, and evaluation suites that catch regressions before users do. 15 seats, taught live by me, Alexey Grigorev.",
-    metaTitle: 'AI Engineering: a 15-seat live program, April 2027 | DataTalks.Club Academy',
+    lead: "AI engineering is building products that use LLMs, like chatbots, search over your company's documents or agents that do tasks for users. A 3-month (13-week) full-time course for developers who already write code. 15 seats, taught live by me, Alexey Grigorev.",
+    metaTitle: 'AI Engineering | DataTalks.Club Academy',
     metaDescription:
-      'Learn to build, evaluate and run LLM applications: RAG, agents, evals, deployment. Full-time, live, 15 seats, taught by Alexey Grigorev. Berlin (Prenzlauer Berg) or live online, April 2027. Join the shortlist.',
+      "AI engineering is building products that use LLMs, like chatbots, search over your company's documents or agents that do tasks for users. Full-time, live, 15 seats, taught by Alexey Grigorev. Berlin (Prenzlauer Berg) or live online. Join the waitlist.",
     outcomesTitle: 'By the end you can build an AI application, and show where it works and where it fails.',
     outcomes: [
       'Build an assistant in Python on an LLM API.',

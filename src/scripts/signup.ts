@@ -136,6 +136,7 @@ function showSuccess(from: HTMLElement) {
 
 for (const el of signups) {
   const form = $$<HTMLFormElement>('form', el)[0];
+  const nameInput = $$<HTMLInputElement>('input[name="name"]', form)[0];
   const input = $$<HTMLInputElement>('input[name="email"]', form)[0];
   const hp = $$<HTMLInputElement>('input[name="website"]', form)[0];
   const button = $$<HTMLButtonElement>('button[type="submit"]', form)[0];
@@ -150,6 +151,7 @@ for (const el of signups) {
     e.preventDefault();
     errFailed.hidden = true;
     const email = input.value.trim();
+    const name = nameInput?.value.trim() || '';
     input.value = email;
     if (!input.checkValidity() || !EMAIL_RE.test(email)) {
       errInvalid.hidden = false;
@@ -164,6 +166,7 @@ for (const el of signups) {
 
     const ok = await post('/signup', {
       email,
+      name,
       track,
       ...utm(),
       referrer: referrer(),
