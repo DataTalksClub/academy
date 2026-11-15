@@ -8,7 +8,10 @@ const { other } = Astro.props;
 <footer class="footer dark">
   <div class="wrap">
     <div class="footer__top">
-      <p class="footer__name">DataTalks.Club Academy</p>
+      <div class="footer__brand">
+        <img src={url('/dtc-logo-white.svg')} alt="" width="103" height="36" />
+        <p class="footer__name">DataTalks.Club Academy</p>
+      </div>
       <nav class="footer__nav mono" aria-label="Footer">
         <a href={url('/impressum/')}>Impressum</a>
         <a href={url('/privacy/')}>Privacy</a>
@@ -30,34 +33,63 @@ const { other } = Astro.props;
 
 <style>
   .footer {
-    background: var(--green-900);
-    color: rgba(245, 241, 232, 0.78);
-    padding-block: 32px 40px;
-    border-top: 1px solid var(--line-dark);
+    position: relative;
+    background: var(--navy);
+    color: var(--on-navy-2);
+    padding-block: 56px 40px;
+    overflow: hidden;
+  }
+  .footer::after {
+    content: '';
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: var(--orange);
+    pointer-events: none;
+  }
+  .footer .wrap {
+    position: relative;
+    z-index: 1;
   }
   .footer__top {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding-bottom: 24px;
+    gap: 20px;
+    padding-bottom: 28px;
+  }
+  .footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .footer__brand img {
+    display: block;
+    height: 36px;
+    width: auto;
   }
   .footer__name {
     margin: 0;
+    padding-left: 16px;
+    border-left: 1px solid var(--line-dark);
     font-family: var(--display);
-    font-size: 1.25rem;
-    color: var(--paper);
+    font-size: 1.3rem;
+    line-height: 1.1;
+    color: var(--white);
   }
   .footer__nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 0 24px;
+    gap: 0 28px;
     text-transform: uppercase;
   }
   .footer a {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    color: var(--paper);
+    color: var(--white);
     text-underline-offset: 4px;
   }
   .footer__bottom {
@@ -72,14 +104,23 @@ const { other } = Astro.props;
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    color: var(--mint);
+    color: var(--orange);
     text-decoration: underline;
+  }
+  @media (max-width: 767px) {
+    .footer::after {
+      right: -40px;
+      top: -40px;
+      width: 88px;
+      height: 88px;
+    }
   }
   @media (min-width: 768px) {
     .footer__top {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      padding-right: 120px;
     }
     .footer__bottom {
       flex-direction: row;

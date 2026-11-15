@@ -18,10 +18,35 @@ import { join, seatCaption } from '../data/shared';
 
 <style>
   .join {
-    background: var(--green-900);
-    color: var(--paper);
+    position: relative;
+    overflow: hidden;
+    background: var(--navy);
+    color: var(--on-navy);
     padding-block: 64px;
-    border-top: 1px solid var(--line-dark);
+  }
+  .join::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 120px;
+    height: 120px;
+    background: var(--orange);
+    border-radius: 0 120px 0 0;
+    opacity: 1;
+    pointer-events: none;
+  }
+  .join__grid {
+    position: relative;
+    z-index: 1;
+  }
+  .join__form :global(.signup) {
+    border-top: 4px solid var(--orange);
+  }
+  @media (max-width: 767px) {
+    .join::before {
+      display: none;
+    }
   }
   .join__grid {
     display: grid;
@@ -31,7 +56,7 @@ import { join, seatCaption } from '../data/shared';
   .join__text {
     margin: 20px 0 0;
     max-width: 30rem;
-    color: rgba(245, 241, 232, 0.86);
+    color: var(--on-navy-2);
   }
   .join__seats {
     margin-top: 32px;

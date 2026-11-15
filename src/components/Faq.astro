@@ -28,10 +28,13 @@ const { track } = Astro.props;
 
 <style>
   .faq {
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid var(--line-strong);
   }
   details {
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--line-strong);
+  }
+  details:first-child {
+    border-top-width: 2px;
   }
   summary {
     list-style: none;
@@ -40,9 +43,9 @@ const { track } = Astro.props;
     align-items: center;
     gap: 20px;
     min-height: 44px;
-    padding: 18px 0;
+    padding: 22px 0;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1.0625rem;
     line-height: 1.4;
   }
@@ -52,18 +55,26 @@ const { track } = Astro.props;
   .plus {
     position: relative;
     flex: none;
-    width: 14px;
-    height: 14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--navy);
+    transition: background-color 160ms, border-color 160ms;
+  }
+  details[open] .plus,
+  summary:hover .plus {
+    background: var(--orange);
+    border-color: var(--orange);
   }
   .plus::before,
   .plus::after {
     content: '';
     position: absolute;
-    background: var(--ink);
-    left: 0;
-    top: 6.25px;
-    width: 14px;
-    height: 1.5px;
+    background: var(--navy);
+    left: 6px;
+    top: 11px;
+    width: 12px;
+    height: 2px;
   }
   .plus::after {
     transform: rotate(90deg);

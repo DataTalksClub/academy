@@ -21,8 +21,11 @@ import { url } from '../lib';
           {
             tracks.map((t) => (
               <article class="panel" data-track-panel={t.slug}>
-                <h2>{t.name}</h2>
-                <p class="panel__headline">{t.headline}</p>
+                <span class="panel__badge" aria-hidden="true"><span /></span>
+                <div class="panel__head">
+                  <h2>{t.name}</h2>
+                  <p class="panel__headline">{t.headline}</p>
+                </div>
                 <ol class="panel__list">
                   {[0, 2, 4].map((o, n) => (
                     <li>
@@ -64,76 +67,172 @@ import { url } from '../lib';
 <style>
   .tracks-section {
     border-top: 0;
-    padding-top: 64px;
-    padding-bottom: 64px;
+    padding-top: 56px;
+    padding-bottom: 56px;
   }
   .tracks {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
+    gap: 20px;
   }
   .panel {
-    display: flex;
-    flex-direction: column;
-    padding: 28px 24px 28px;
-    border: 1px solid var(--line);
-    border-top: 3px solid var(--green-700);
-    border-radius: 2px;
-    background: #faf7f0;
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    grid-template-areas:
+      'badge head'
+      'list list'
+      'cta cta';
+    column-gap: 18px;
+    padding: 24px 20px;
+    border: 1px solid var(--navy);
+    background: var(--white);
+    color: var(--navy);
+    transition: background-color 200ms, color 200ms;
+  }
+  .panel__badge {
+    grid-area: badge;
+    position: relative;
+    display: block;
+    width: 56px;
+    height: 56px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+  .panel__badge > span {
+    position: absolute;
+    display: block;
+    width: 40%;
+    height: 40%;
+    right: 0;
+    bottom: 0;
+    background: var(--navy);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px var(--white);
+    transition: box-shadow 200ms;
+  }
+  [data-track-panel='ai-engineering'] .panel__badge {
+    background: var(--blue);
+    border-radius: 0;
+  }
+  [data-track-panel='ai-engineering'] .panel__badge > span {
+    width: 50%;
+    height: 50%;
+    right: 0;
+    bottom: 0;
+    background: var(--orange);
+    border-radius: 100% 0 0 0;
+    box-shadow: none;
+  }
+  .panel__head {
+    grid-area: head;
+    align-self: center;
   }
   .panel h2 {
-    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
-  }
-  .panel .label {
-    margin-bottom: 16px;
+    font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+    line-height: 1.02;
   }
   .panel__headline {
-    margin: 16px 0 28px;
-    font-family: var(--display);
-    font-size: 1.25rem;
-    line-height: 1.35;
-    letter-spacing: -0.005em;
+    margin: 10px 0 0;
+    font-size: 1.0625rem;
+    line-height: 1.45;
     color: var(--ink-2);
+    transition: color 200ms;
   }
   .panel__list {
+    grid-area: list;
     list-style: none;
-    margin: 0 0 32px;
+    margin: 24px 0 24px;
     padding: 0;
-    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
   }
   .panel__list li {
     display: grid;
     grid-template-columns: 2.25rem minmax(0, 1fr);
     gap: 8px;
     padding: 14px 0;
-    border-bottom: 1px solid var(--line);
+    border-top: 1px solid var(--line);
     font-size: 1rem;
     line-height: 1.5;
+    transition: border-color 200ms;
   }
   .panel__list .mono {
-    color: var(--green-700);
+    color: var(--blue);
     padding-top: 3px;
-    font-weight: 500;
+    font-weight: 600;
+    transition: color 200ms;
   }
   .panel .btn {
-    margin-top: auto;
+    grid-area: cta;
+    justify-self: stretch;
     white-space: normal;
     text-align: center;
     padding-block: 12px;
   }
-  @media (min-width: 768px) {
+  .panel:hover,
+  .panel:focus-within {
+    background: var(--navy);
+    color: var(--on-navy);
+  }
+  .panel:hover .panel__headline,
+  .panel:focus-within .panel__headline {
+    color: var(--on-navy-2);
+  }
+  .panel:hover .panel__list li,
+  .panel:focus-within .panel__list li {
+    border-color: var(--line-dark);
+  }
+  .panel:hover .panel__list .mono,
+  .panel:focus-within .panel__list .mono {
+    color: var(--orange);
+  }
+  .panel:hover .panel__badge > span,
+  .panel:focus-within .panel__badge > span {
+    box-shadow: 0 0 0 3px var(--navy);
+  }
+  [data-track-panel='ai-engineering']:hover .panel__badge > span {
+    box-shadow: none;
+  }
+  .panel:focus-within {
+    --focus: var(--orange);
+  }
+  @media (min-width: 900px) {
     .tracks-section {
-      padding-block: 96px;
+      padding-block: 104px;
     }
     .tracks {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 32px;
-    }
-    .panel__headline {
-      min-height: 2.7em;
+      gap: 28px;
     }
     .panel {
-      padding: 36px 36px 36px;
+      grid-template-columns: 112px minmax(0, 1fr) auto;
+      grid-template-areas:
+        'badge head cta'
+        'badge list list';
+      column-gap: 40px;
+      padding: 44px 48px 40px 44px;
+    }
+    .panel__badge {
+      width: 112px;
+      height: 112px;
+    }
+    .panel .btn {
+      justify-self: end;
+      align-self: center;
+    }
+    .panel__list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 32px;
+      margin: 32px 0 0;
+    }
+    .panel__list li {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+      padding: 18px 0 0;
+      border-top: 2px solid var(--navy);
+    }
+    .panel:hover .panel__list li,
+    .panel:focus-within .panel__list li {
+      border-color: var(--orange);
     }
   }
 </style>

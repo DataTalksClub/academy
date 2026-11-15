@@ -36,7 +36,7 @@ const forItems = [track.fitFirst, ...fit.forShared];
     font-size: clamp(1.4rem, 2.4vw, 1.85rem);
     margin: 0 0 24px;
     padding-bottom: 20px;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 2px solid var(--navy);
   }
   .ticks {
     list-style: none;
@@ -53,12 +53,15 @@ const forItems = [track.fitFirst, ...fit.forShared];
     position: absolute;
     left: 0;
     top: 0.5em;
-    width: 11px;
-    height: 11px;
-    border: 1.5px solid var(--green-700);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--orange);
   }
-  .ticks--yes li::before {
-    background: var(--green-700);
+  .ticks--no li::before {
+    border-radius: 0;
+    background: transparent;
+    border: 2px solid var(--navy);
   }
   @media (min-width: 768px) {
     .fit {

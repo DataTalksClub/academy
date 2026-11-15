@@ -41,8 +41,26 @@ import { instructor } from '../data/shared';
     height: auto;
     aspect-ratio: 1;
     object-fit: cover;
-    border-radius: 2px;
+    border-radius: 50% 50% 0 50%;
     filter: grayscale(1) contrast(1.05);
+  }
+  .instructor__photo {
+    position: relative;
+    align-self: start;
+    padding: 0 16px 16px 0;
+  }
+  .instructor__photo::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 45%;
+    height: 45%;
+    background: var(--orange);
+    border-radius: 0 0 0 0;
+  }
+  .instructor__photo :global(.portrait) {
+    position: relative;
   }
   .prose {
     margin: 0 0 1em;
@@ -64,10 +82,10 @@ import { instructor } from '../data/shared';
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    color: var(--green-700);
+    color: var(--blue);
     text-decoration: underline;
     text-underline-offset: 4px;
-    text-decoration-color: rgba(44, 87, 62, 0.4);
+    text-decoration-color: rgba(35, 90, 166, 0.4);
   }
   .proof a:hover {
     text-decoration-color: currentColor;

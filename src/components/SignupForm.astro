@@ -82,12 +82,11 @@ const { id } = Astro.props;
 
 <style>
   .signup {
-    --focus: var(--green-700);
-    background: var(--paper);
+    --focus: var(--blue);
+    background: var(--white);
     color: var(--ink);
-    border-radius: 2px;
+    border-radius: 0;
     padding: 22px 20px 20px;
-    box-shadow: 0 18px 48px -18px rgba(0, 0, 0, 0.45);
   }
   @media (min-width: 768px) {
     .signup {
@@ -118,14 +117,14 @@ const { id } = Astro.props;
     width: 100%;
     min-height: 52px;
     padding: 0 14px;
-    border: 1px solid rgba(23, 32, 27, 0.5);
-    border-radius: 2px;
-    background: #fff;
+    border: 1.5px solid var(--navy);
+    border-radius: 0;
+    background: var(--paper);
     color: var(--ink);
     font: 400 1rem/1.2 var(--sans);
   }
   .input::placeholder {
-    color: #6b756f;
+    color: #5f6578;
   }
   .input[aria-invalid='true'] {
     border-color: var(--error);
@@ -161,7 +160,7 @@ const { id } = Astro.props;
   }
   .success__title {
     font-family: var(--display);
-    font-weight: 500;
+    font-weight: 400;
     font-size: clamp(1.5rem, 2.6vw, 1.9rem);
     line-height: 1.15;
     letter-spacing: -0.015em;
@@ -200,8 +199,8 @@ const { id } = Astro.props;
   .chip {
     min-height: 44px;
     padding: 0 14px;
-    border: 1px solid rgba(23, 32, 27, 0.5);
-    border-radius: 2px;
+    border: 1.5px solid var(--navy);
+    border-radius: 999px;
     background: transparent;
     color: var(--ink);
     font: 500 0.9375rem/1 var(--sans);
@@ -212,9 +211,9 @@ const { id } = Astro.props;
     background: var(--mint-100);
   }
   .chip[aria-pressed='true'] {
-    background: var(--green-700);
-    border-color: var(--green-700);
-    color: var(--paper);
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
   }
   .success__survey {
     padding-top: 18px;
