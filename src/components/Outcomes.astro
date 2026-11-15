@@ -23,53 +23,61 @@ const { track } = Astro.props;
 
 <style>
   .section-head :global(h2) {
-    max-width: 24ch;
+    max-width: 22ch;
   }
   .outcomes {
     list-style: none;
-    margin: 20px 0 0;
+    margin: 32px 0 0;
     padding: 0;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    border-top: 1px solid var(--line);
+    gap: 16px;
   }
   li {
     display: grid;
-    grid-template-columns: 56px minmax(0, 1fr);
-    gap: 8px;
-    padding: 22px 0;
-    border-bottom: 1px solid var(--line);
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 16px;
+    align-items: center;
+    padding: 16px;
+    background: var(--white);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    font-weight: 500;
   }
   .num {
-    font-family: var(--mono);
-    font-weight: 500;
-    font-size: 1.5rem;
-    line-height: 1.2;
-    color: var(--green-700);
-    letter-spacing: -0.02em;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border: var(--border);
+    border-radius: 50%;
+    background: var(--yellow);
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
   }
+  li:nth-child(3n + 2) .num { background: var(--green); }
+  li:nth-child(3n) .num { background: var(--coral); }
   .outcomes__text {
-    padding-top: 4px;
     max-width: 34rem;
   }
   @media (min-width: 768px) {
     .outcomes {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      column-gap: 24px;
-      margin-top: 36px;
+      gap: 22px;
+      margin-top: 44px;
     }
     li {
-      grid-template-columns: 72px minmax(0, 1fr);
-      padding: 28px 24px 28px 0;
-    }
-    li:nth-child(2n) {
-      padding-left: 0;
+      grid-template-columns: 64px minmax(0, 1fr);
+      gap: 20px;
+      padding: 20px 22px;
     }
     .num {
-      font-size: 2rem;
-    }
-    .outcomes__text {
-      padding-top: 8px;
+      width: 64px;
+      height: 64px;
+      font-size: 1.5rem;
     }
   }
 </style>

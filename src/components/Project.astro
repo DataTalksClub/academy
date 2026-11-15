@@ -6,7 +6,7 @@ interface Props { track: Track }
 const { track } = Astro.props;
 ---
 
-<section id="project" class="section" aria-labelledby="project-title">
+<section id="project" class="section dark" aria-labelledby="project-title">
   <div class="wrap split">
     <SectionHead title={project.heading} titleId="project-title" />
     <div class="split__body">
@@ -16,15 +16,29 @@ const { track } = Astro.props;
 </section>
 
 <style>
+  #project {
+    --focus: var(--yellow);
+    background: var(--blue);
+    color: var(--white);
+  }
   .project {
     margin: 0;
-    padding-left: 24px;
-    border-left: 4px solid var(--mint);
+    padding: 24px 22px;
+    background: var(--white);
+    color: var(--black);
+    border: var(--border);
+    border-radius: 14px;
+    box-shadow: 8px 8px 0 var(--black);
     font-family: var(--display);
-    font-weight: 400;
-    font-size: clamp(1.25rem, 2.2vw, 1.5rem);
-    line-height: 1.45;
-    letter-spacing: -0.005em;
-    max-width: 38rem;
+    font-weight: 600;
+    font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+    line-height: 1.4;
+    letter-spacing: -0.015em;
+    max-width: 40rem;
+  }
+  @media (min-width: 768px) {
+    .project {
+      padding: 32px 34px;
+    }
   }
 </style>
