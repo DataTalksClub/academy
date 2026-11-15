@@ -11,9 +11,10 @@ interface Props {
   headline: string;
   emphasis: string;
   lead: string;
+  basis?: string;
   form?: boolean;
 }
-const { eyebrow, headline, emphasis, lead, form = true } = Astro.props;
+const { eyebrow, headline, emphasis, lead, basis, form = true } = Astro.props;
 ---
 
 <section id="hero" class="hero dark" aria-labelledby="hero-title">
@@ -22,6 +23,7 @@ const { eyebrow, headline, emphasis, lead, form = true } = Astro.props;
       <p class="mono eyebrow">{eyebrow}</p>
       <h1 id="hero-title" set:html={emph(headline, emphasis)} />
       <p class="lead">{lead}</p>
+      {basis && <p class="hero__basis">{basis}</p>}
     </div>
 
     {
@@ -79,6 +81,13 @@ const { eyebrow, headline, emphasis, lead, form = true } = Astro.props;
     font-size: 1.0625rem;
     line-height: 1.6;
     color: rgba(245, 241, 232, 0.86);
+  }
+  .hero__basis {
+    margin: 14px 0 0;
+    max-width: 34rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: rgba(245, 241, 232, 0.78);
   }
   .hero__seats-lg {
     display: none;
