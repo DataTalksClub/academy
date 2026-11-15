@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { faqEntries, faqPage } from '../data/faq';
+import { url } from '../lib';
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqEntries.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.a,
+    },
+  })),
+};
+---
+
+<Base
+  title={faqPage.metaTitle}
+  description={faqPage.metaDescription}
+  path="/faq/"
+  ogImage="/og/home.png"
+  jsonLd={faqJsonLd}
+>
+  <Header cta />
+  <main id="main">
+    <section class="hero faq-hero">
+      <div class="wrap">
+        <p class="mono eyebrow">{faqPage.eyebrow}</p>
+        <h1>{faqPage.heading}</h1>
+        <p class="lead">{faqPage.lead}</p>
+        <p class="faq-hero__cta">
+          <a class="btn btn--green" href={url('/#hero')}>Join the Waitlist</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Questions and answers">
+      <div class="wrap faq-list">
+        {
+          faqEntries.map((item) => (
+            <article class="faq-card">
+              <h2>{item.q}</h2>
+              <p>{item.a}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .faq-hero {
+    background: var(--yellow);
+    color: var(--black);
+    padding-block: 48px 56px;
+    border-bottom: var(--border);
+  }
+  .eyebrow {
+    display: inline-block;
+    margin: 0 0 18px;
+    padding: 6px 12px;
+    background: var(--black);
+    color: var(--yellow);
+    border-radius: 999px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .faq-hero h1 {
+    margin: 0;
+    max-width: 18ch;
+  }
+  .lead {
+    margin: 20px 0 0;
+    max-width: 42rem;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+  }
+  .faq-hero__cta {
+    margin: 24px 0 0;
+  }
+  .faq-list {
+    display: grid;
+    gap: 20px;
+    max-width: 52rem;
+  }
+  .faq-card {
+    background: var(--white);
+    color: var(--black);
+    border: var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .faq-card h2 {
+    margin: 0 0 10px;
+    font-size: 1.35rem;
+    line-height: 1.25;
+  }
+  .faq-card p {
+    margin: 0;
+    line-height: 1.6;
+  }
+</style>
