@@ -23,6 +23,8 @@ interface Props {
 const { title, description, path, ogImage, lang = 'en', track, noindex = false } = Astro.props;
 const canonical = absoluteUrl(path);
 const og = ogImage ? absoluteUrl(ogImage) : undefined;
+const umamiScriptUrl = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL?.trim();
+const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID?.trim();
 ---
 
 <!doctype html>
@@ -51,6 +53,9 @@ const og = ogImage ? absoluteUrl(ogImage) : undefined;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {og && <meta name="twitter:image" content={og} />}
+    {umamiScriptUrl && umamiWebsiteId && (
+      <script defer src={umamiScriptUrl} data-website-id={umamiWebsiteId}></script>
+    )}
   </head>
   <body data-track={track}>
     <a class="skip" href="#main">Skip to content</a>
