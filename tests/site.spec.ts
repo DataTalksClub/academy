@@ -114,3 +114,35 @@ test('rendered marketing pages have no dashes, disclaimers, or internal markers'
     );
   }
 });
+
+test('AZAV, length and location copy stays positive and consistent', async ({ page }) => {
+  await mockApi(page);
+  for (const p of ['', ...TRACKS.map((t) => `${t}/`)]) {
+    await page.goto(p);
+    await page.locator('details').evaluateAll((els) => els.forEach((e) => ((e as HTMLDetailsElement).open = true)));
+    const desc = (await page.locator('meta[name="description"]').getAttribute('content')) || '';
+    const combined = `${await page.title()}\n${desc}\n${await page.locator('body').innerText()}`;
+    for (const banned of [
+      'Approval is still pending',
+      "decides on each person's voucher individually",
+      'has not been granted yet',
+      "the Agentur decides each person's case",
+      '12 to 16 weeks',
+      '16 weeks',
+      '16-week',
+      'Weeks 13 to 16',
+      'Not decided yet',
+    ]) {
+      expect(combined, `${p}: ${banned}`).not.toContain(banned);
+    }
+  }
+  for (const t of TRACKS) {
+    await page.goto(`${t}/`);
+    await page.locator('details').evaluateAll((els) => els.forEach((e) => ((e as HTMLDetailsElement).open = true)));
+    const text = await page.locator('body').innerText();
+    expect(text, t).toContain('Full-time, live, 3 months (13 weeks)');
+    expect(text, t).toContain('for 3 months (13 weeks)');
+    expect(text, t).toContain("I'm applying for AZAV certification so the Agentur für Arbeit can pay with a Bildungsgutschein.");
+    expect(text.match(/Berlin \(Prenzlauer Berg\) or live online/g)?.length, t).toBeGreaterThanOrEqual(2);
+  }
+});

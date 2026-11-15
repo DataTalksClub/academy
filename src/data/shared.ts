@@ -6,7 +6,7 @@ export const contactEmail = 'alexey@datatalks.club';
 
 export const facts: { label: string; value: string }[] = [
   { label: 'START', value: 'April 2027' },
-  { label: 'FORMAT', value: 'Full-time, live, 16 weeks' },
+  { label: 'FORMAT', value: 'Full-time, live, 3 months (13 weeks)' },
   { label: 'WHERE', value: 'Berlin (Prenzlauer Berg) or live online' },
   { label: 'LANGUAGE', value: 'English' },
   { label: 'SEATS', value: '15' },
@@ -57,7 +57,7 @@ export const syllabus = {
 export const funding = {
   heading: 'How tuition and the Bildungsgutschein work',
   paragraphs: [
-    "I'm applying for AZAV certification so the Agentur für Arbeit can cover tuition with a Bildungsgutschein. Approval is still pending, and the Agentur decides on each person's voucher individually.",
+    "I'm applying for AZAV certification so the Agentur für Arbeit can cover tuition with a Bildungsgutschein.",
     'The voucher and the seat are separate decisions. The Agentur decides whether it pays, and I decide who is in the cohort.',
     'If you pay yourself, the full program costs €9,000 to €10,000.',
   ],
@@ -92,16 +92,16 @@ export const faq: { q: string; a: string | null }[] = [
   { q: 'What do I need to know before I start?', a: null },
   {
     q: 'Will the Agentur für Arbeit pay for it?',
-    a: "That is the plan. I'm applying for the approval that makes Bildungsgutschein funding possible, and it has not been granted yet. Even after approval, the Agentur decides each person's case. Talk to your adviser early.",
+    a: "That is the plan. I'm applying for AZAV certification so the Agentur für Arbeit can pay with a Bildungsgutschein. Talk to your adviser early.",
   },
   { q: 'What does it cost if I pay myself?', a: '€9,000 to €10,000 for the full program.' },
   {
     q: 'Is it online or in Berlin?',
-    a: 'Not decided yet. It will be either live online from Germany or in person in Berlin, in Prenzlauer Berg near S+U Schönhauser Allee. The survey after you join asks which one you could attend.',
+    a: 'Berlin (Prenzlauer Berg) or live online. In person, it is near S+U Schönhauser Allee. Online, you join live from Germany. The survey after you join asks which one you could attend.',
   },
   {
     q: 'What is the schedule?',
-    a: "Full-time: Monday to Friday, 09:00 to 16:00 Berlin time, live, for 12 to 16 weeks. The exact length is fixed together with the approval. I'm also considering a part-time version. Tell me in the survey if you need one.",
+    a: "Full-time: Monday to Friday, 09:00 to 16:00 Berlin time, live, for 3 months (13 weeks). I'm also considering a part-time version. Tell me in the survey if you need one.",
   },
   {
     q: 'Do I have to live in Germany?',
@@ -132,7 +132,7 @@ export const form = {
 export const home = {
   metaTitle: 'DataTalks.Club Academy: live full-time courses with Alexey Grigorev, April 2027',
   metaDescription:
-    'A full-time, live program for developers who already write code, taught by Alexey Grigorev. Two tracks: Agentic Engineering and AI Engineering. 15 seats, Berlin or online, April 2027.',
+    'A full-time, live program for developers who already write code, taught by Alexey Grigorev. Two tracks: Agentic Engineering and AI Engineering. 15 seats, Berlin (Prenzlauer Berg) or live online, April 2027.',
   eyebrow: 'DataTalks.Club Academy, April 2027',
   headline: 'Live full-time courses in Berlin or online, starting April 2027',
   emphasis: '',

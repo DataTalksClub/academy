@@ -146,7 +146,7 @@ Section ids, in this exact order: `hero`, `facts`, `outcomes`, `project`, `instr
 | Label | Value |
 |---|---|
 | START | April 2027 |
-| FORMAT | Full-time, live, 12 to 16 weeks |
+| FORMAT | Full-time, live, 3 months (13 weeks) |
 | WHERE | Berlin (Prenzlauer Berg) or live online |
 | LANGUAGE | English |
 | SEATS | 15 |
@@ -198,7 +198,7 @@ The track's 16 modules in four groups of four (`<details>` per group, the first 
 
 `h2`: `A Bildungsgutschein pays for a seat. It doesn't get you one.`
 
-> I'm applying for approval so that the Agentur für Arbeit can cover the tuition with a Bildungsgutschein. That approval is still pending, and the Agentur decides on each person's voucher individually. Nobody can promise you funding today, and I won't.
+> I'm applying for approval so that the Agentur für Arbeit can cover the tuition with a Bildungsgutschein.
 >
 > Funding and admission are two separate decisions. The Agentur decides whether it pays. I decide who is in the cohort. You need both.
 >
@@ -226,10 +226,10 @@ Right: four numbered steps.
 1. **Is this program confirmed?** It is planned for April 2027. Two tracks are on the table, agentic engineering and AI engineering, and I'll run the one with more serious interest first. Joining a shortlist is how you vote.
 2. **What do I get for joining the shortlist?** You get the application before it opens publicly, and updates on dates, format and funding approval. Nothing else, and no obligation.
 3. **What do I need to know before I start?** (track `prerequisites`)
-4. **Will the Agentur für Arbeit pay for it?** That is the plan. I'm applying for the approval that makes Bildungsgutschein funding possible, and it has not been granted yet. Even after approval, the Agentur decides each person's case. Talk to your adviser early.
+4. **Will the Agentur für Arbeit pay for it?** That is the plan. I'm applying for AZAV certification so the Agentur für Arbeit can pay with a Bildungsgutschein. Talk to your adviser early.
 5. **What does it cost if I pay myself?** €9,000 to €10,000 for the full program.
-6. **Is it online or in Berlin?** Not decided yet. It will be either live online from Germany or in person in Berlin, in Prenzlauer Berg near S+U Schönhauser Allee. The survey after you join asks which one you could attend.
-7. **What is the schedule?** Full-time: Monday to Friday, 09:00 to 16:00 Berlin time, live, for 12 to 16 weeks. The exact length is fixed together with the approval. I'm also considering a part-time version; tell me in the survey if you need one.
+6. **Is it online or in Berlin?** Berlin (Prenzlauer Berg) or live online. In person, it is near S+U Schönhauser Allee. Online, you join live from Germany. The survey after you join asks which one you could attend.
+7. **What is the schedule?** Full-time: Monday to Friday, 09:00 to 16:00 Berlin time, live, for 3 months (13 weeks). I'm also considering a part-time version; tell me in the survey if you need one.
 8. **Do I have to live in Germany?** The program is built for people in Germany, and a Bildungsgutschein is only available there.
 9. **How do you choose who gets a seat?** By the same published criteria for everyone: programming experience that fits the track, availability for the full schedule, English, a concrete goal, and the practical task. Your employment or benefit status is not a criterion.
 10. **What happens to my email?** I use it only to write to you about this program and its application. You can ask me to delete it at any time. Details are in the privacy notice (link).
@@ -272,17 +272,17 @@ SignupForm (same component), small seat grid.
     2. Working in a session and in an existing codebase. *You produce: a verified pull request in a repository you didn't write.*
     3. From idea to spec, backlog and full-stack foundation. *You produce: a product brief, a groomed backlog and a minimal full-stack scaffold with passing backend tests.*
     4. Introduction to AI engineering. *You produce: an LLM API app with a chatbot, RAG over documents and a simple tool-calling agent built with coding agents.*
-  - **Weeks 5–8 · Build and verify**
+  - **Weeks 5–7 · Build and verify**
     5. Testing, verification and debugging. *You produce: a test suite, and a seeded bug reproduced, fixed and covered.*
     6. Reviewing agent-generated changes. *You produce: a review record, a reviewer workflow and two automatic checks.*
     7. Containers, CI/CD and deployment. *You produce: your first version deployed through CI (midterm).*
     8. Permissions, sandboxing and safe operation. *You produce: a threat sketch and guardrails for your product.*
-  - **Weeks 9–12 · Operate and automate**
+  - **Weeks 8–9 · Operate and automate**
     9. Environments, logs, metrics and an on-call agent. *You produce: dashboards, one alert, and a failure investigated from telemetry.*
     10. Reusable workflows: skills, subagents and hooks. *You produce: packaged implementation and code-review workflows.*
     11. Connecting agents to tools through MCP. *You produce: your product's tools exposed through MCP and used by the agent.*
     12. Agent teams, loops and the software factory. *You produce: an agent-team backlog batch, configured factory and operating guide.*
-  - **Weeks 13–16 · Capstone and interviews**
+  - **Weeks 10–13 · Capstone and interviews**
     13. Technical interviews and hiring prep (full week, 40 UE). *You produce: algorithm coding drills without AI, a timed take-home, a project presentation and first peer mocks.*
     14. Capstone I and interview practice. *You produce: your 80 UE capstone core alongside weekly coding drills and squad mock interviews.*
     15. Capstone II and interview practice. *You produce: user-tested capstone improvements, mock interviews and project-talk rehearsals.*
@@ -314,17 +314,17 @@ SignupForm (same component), small seat grid.
     2. Retrieval, document processing and indexing. *You produce: a one-command ingestion pipeline and a knowledge assistant with sources.*
     3. Vector and hybrid search. *You produce: three retrieval variants, with examples of where each fails.*
     4. Evaluating retrieval. *You produce: a retrieval evaluation and a justified configuration.*
-  - **Weeks 5–8 · Agents**
+  - **Weeks 5–7 · Agents**
     5. Agentic engineering workflow, tools and the agent loop. *You produce: the full agent workflow on your project repo (spec to tasks, tests, diff review, CI) and an assistant that calls an API through a tool.*
     6. Agent frameworks, MCP and context. *You produce: the assistant rebuilt on a framework, with one MCP tool.*
     7. Serving and cloud deployment. *You produce: a deployed assistant with cited answers and one tool (midterm).*
     8. Agentic workflows and human approval. *You produce: a workflow action that waits for approval and handles refusal.*
-  - **Weeks 9–12 · Quality and production**
+  - **Weeks 8–9 · Quality and production**
     9. Testing LLM applications and CI/CD. *You produce: a regression suite running in CI.*
     10. Evaluating answers and agents. *You produce: an evaluation report comparing two configurations.*
     11. Tracing, monitoring, cost and latency. *You produce: traces, dashboards, and a cost/latency report with a measured improvement.*
     12. Safety: guardrails, injection and compliance. *You produce: tested guardrails and a short compliance checklist.*
-  - **Weeks 13–16 · Capstone and interviews**
+  - **Weeks 10–13 · Capstone and interviews**
     13. Technical interviews and hiring prep (full week, 40 UE). *You produce: algorithm coding drills without AI, a timed take-home, a project presentation and first peer mocks.*
     14. Capstone I and interview practice. *You produce: your 80 UE capstone assistant core alongside weekly coding drills and squad mock interviews.*
     15. Capstone II and interview practice. *You produce: evaluation evidence, improved assistant, mock interviews and project-talk rehearsals.*
