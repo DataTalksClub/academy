@@ -62,6 +62,7 @@ for (const t of TRACKS) {
         email: 'ada@example.com',
         name: 'Ada',
         track: t,
+        payment_plan: 'Bildungsgutschein',
         consent_version: '2026-11-13.v1',
         utm_source: 'test',
         utm_campaign: 'c1',
@@ -82,9 +83,6 @@ for (const t of TRACKS) {
       await expect(page.locator('#signup-hero .chip[data-value=berlin]')).toHaveAttribute('aria-pressed', 'true');
       await expect.poll(() => api.signups.length).toBe(2);
       expect(api.signups[1].postDataJSON()).toMatchObject({ email: 'ada@example.com', track: t, answers: { location: 'berlin' } });
-      await page.click('#signup-hero .chip[data-value=self]');
-      await expect.poll(() => api.signups.length).toBe(3);
-      expect(api.signups[2].postDataJSON().answers).toEqual({ funding: 'self' });
 
       const href = await page.locator('#signup-hero [data-survey]').getAttribute('href');
       const u = new URL(href!);

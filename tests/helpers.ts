@@ -33,8 +33,14 @@ export async function mockApi(page: Page, mode: 'ok' | '500' | 'abort' = 'ok', o
 }
 
 /** Simulate a signup. Uses the hero form. */
-export async function join(page: Page, email = 'ada@example.com', name = 'Ada') {
+export async function join(
+  page: Page,
+  email = 'ada@example.com',
+  name = 'Ada',
+  paymentPlan = 'Bildungsgutschein',
+) {
   if (name) await page.fill('#name-hero', name);
+  if (paymentPlan) await page.selectOption('#payment-plan-hero', paymentPlan);
   await page.fill('#email-hero', email);
   await page.click('#signup-hero button[type=submit]');
 }

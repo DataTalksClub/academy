@@ -29,6 +29,25 @@ const { id, chooseProgram = false } = Astro.props;
         placeholder="Your name"
       />
     </div>
+    <div class="signup__field">
+      <label class="mono field-label" for={`payment-plan-${id}`}>How do you plan to pay?</label>
+      <select
+        class="input"
+        id={`payment-plan-${id}`}
+        name="payment_plan"
+        required
+        aria-describedby={`payment-err-${id}`}
+      >
+        <option value="" selected disabled>Select an option</option>
+        <option value="Bildungsgutschein">Bildungsgutschein</option>
+        <option value="Self-funded">Self-funded</option>
+        <option value="Employer">Employer</option>
+        <option value="Not sure yet">Not sure yet</option>
+      </select>
+      <p class="field-error mono" id={`payment-err-${id}`} data-error="payment_plan" hidden>
+        Please choose how you plan to pay.
+      </p>
+    </div>
     <label class="mono field-label" for={`email-${id}`}>{form.label}</label>
     <div class="signup__row">
       <input
@@ -72,22 +91,13 @@ const { id, chooseProgram = false } = Astro.props;
       I sent a confirmation link to your email. Click it to confirm your spot on the waitlist.
     </p>
 
-    <p class="mono label-green success__q">Two quick questions (optional)</p>
+    <p class="mono label-green success__q">One quick question (optional)</p>
     <div class="chips" role="group" aria-label="Where are you based?">
       <span class="chips__q">Where are you based?</span>
       <span class="chips__set">
         <button type="button" class="chip" data-group="location" data-value="berlin" aria-pressed="false">Berlin</button>
         <button type="button" class="chip" data-group="location" data-value="germany" aria-pressed="false">Elsewhere in Germany</button>
         <button type="button" class="chip" data-group="location" data-value="outside-germany" aria-pressed="false">Outside Germany</button>
-      </span>
-    </div>
-    <div class="chips" role="group" aria-label="How would you pay?">
-      <span class="chips__q">How would you pay?</span>
-      <span class="chips__set">
-        <button type="button" class="chip" data-group="funding" data-value="bildungsgutschein" aria-pressed="false">Bildungsgutschein</button>
-        <button type="button" class="chip" data-group="funding" data-value="self" aria-pressed="false">Myself</button>
-        <button type="button" class="chip" data-group="funding" data-value="employer" aria-pressed="false">My employer</button>
-        <button type="button" class="chip" data-group="funding" data-value="unsure" aria-pressed="false">Not sure yet</button>
       </span>
     </div>
 

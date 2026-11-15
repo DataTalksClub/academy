@@ -1,0 +1,227 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { bildungsgutschein as b } from '../data/bildungsgutschein';
+import { url } from '../lib';
+---
+
+<Base
+  title={b.metaTitle}
+  description={b.metaDescription}
+  path="/bildungsgutschein/"
+  lang="de"
+  hreflang="de"
+>
+  <Header cta tagline />
+  <main id="main">
+    <section class="hero dark">
+      <div class="wrap">
+        <p class="mono hero__eyebrow">{b.eyebrow}</p>
+        <h1 class="hero__title">{b.headline}</h1>
+        <p class="hero__lead">{b.answerBlock}</p>
+        <p class="hero__funding">{b.fundingLine}</p>
+        <div class="hero__actions">
+          <a class="btn btn--green" href={url('/agentic-engineering/#signup-hero')}>{b.cta.primaryAgentic}</a>
+          <a class="btn btn--outline hero__secondary" href={url('/ai-engineering/#signup-hero')}>{b.cta.primaryAi}</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="facts" class="section" aria-label="Fakten im Überblick">
+      <div class="wrap">
+        <dl class="facts">
+          {
+            b.facts.map((item) => (
+              <div class="facts__item">
+                <dt class="mono">{item.label}</dt>
+                <dd>{item.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </section>
+
+    <section id="fit" class="section" aria-labelledby="fit-title">
+      <div class="wrap split">
+        <SectionHead title={b.fit.heading} titleId="fit-title" />
+        <div class="split__body fit-grid">
+          <div class="fit-card">
+            <h3>{b.fit.forTitle}</h3>
+            <ul>
+              {b.fit.forItems.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+          <div class="fit-card fit-card--not">
+            <h3>{b.fit.notTitle}</h3>
+            <ul>
+              {b.fit.notItems.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="programs" class="section" aria-labelledby="programs-title">
+      <div class="wrap split">
+        <SectionHead title={b.programs.heading} titleId="programs-title" />
+        <div class="split__body prose">
+          <p>{b.programs.intro}</p>
+          <div class="program-cards">
+            {
+              b.programs.items.map((p) => (
+                <article class="program-card">
+                  <h3>{p.name}</h3>
+                  <p>{p.summary}</p>
+                  <p>{p.basis}</p>
+                  <a class="btn btn--green" href={url(`/${p.slug}/`)}>{p.cta}</a>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="funding" class="section" aria-labelledby="guide-title">
+      <div class="wrap split">
+        <SectionHead title={b.guide.heading} titleId="guide-title" />
+        <div class="split__body prose">
+          {b.guide.paragraphs.map((p) => <p>{p}</p>)}
+          <h3>{b.guide.stepsTitle}</h3>
+          <ol>
+            {b.guide.steps.map((s) => <li>{s}</li>)}
+          </ol>
+          <ul>
+            {
+              b.guide.links.map((l) => (
+                <li>
+                  <a href={l.href} target="_blank" rel="noopener">{l.label}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="join" class="section join" aria-labelledby="join-title">
+      <div class="wrap split">
+        <SectionHead title={b.cta.heading} titleId="join-title" />
+        <div class="split__body prose">
+          <p>{b.cta.body}</p>
+          <div class="hero__actions">
+            <a class="btn btn--green" href={url('/agentic-engineering/#signup-hero')}>{b.cta.primaryAgentic}</a>
+            <a class="btn btn--outline" href={url('/ai-engineering/#signup-hero')}>{b.cta.primaryAi}</a>
+          </div>
+          <p>
+            <a href={url('/sessions/')}>{b.cta.sessionsLabel}</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .hero {
+    padding-block: 52px 56px;
+    border-bottom: var(--border);
+  }
+  .hero__eyebrow {
+    margin: 0 0 14px;
+    color: var(--yellow);
+    font-weight: 700;
+  }
+  .hero__title {
+    margin: 0 0 20px;
+    font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+    line-height: 1.02;
+    max-width: 20ch;
+  }
+  .hero__lead {
+    margin: 0 0 14px;
+    font-size: 1.125rem;
+    line-height: 1.55;
+    max-width: 64ch;
+  }
+  .hero__funding {
+    margin: 0 0 28px;
+    font-weight: 700;
+    color: var(--yellow);
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .hero__secondary {
+    background: var(--white);
+    color: var(--black);
+  }
+  .facts {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .facts__item {
+    padding: 18px;
+    background: var(--white);
+    border: var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+  }
+  .facts__item dt {
+    margin-bottom: 6px;
+    font-weight: 700;
+    color: var(--blue);
+  }
+  .facts__item dd {
+    margin: 0;
+    font-weight: 600;
+  }
+  #fit {
+    background: var(--tint-yellow);
+  }
+  .fit-grid {
+    display: grid;
+    gap: 20px;
+  }
+  @media (min-width: 768px) {
+    .fit-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .fit-card {
+    padding: 22px;
+    background: var(--white);
+    border: var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+  }
+  .fit-card h3 {
+    margin-top: 0;
+  }
+  .program-cards {
+    display: grid;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .program-card {
+    padding: 22px;
+    background: var(--white);
+    border: var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+  }
+  .program-card h3 {
+    margin-top: 0;
+  }
+  #funding {
+    background: var(--tint-coral);
+  }
+</style>

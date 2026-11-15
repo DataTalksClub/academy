@@ -13,10 +13,11 @@ interface Props {
   path: string;
   ogImage?: string;
   lang?: string;
+  hreflang?: string;
   track?: string;
   noindex?: boolean;
 }
-const { title, description, path, ogImage, lang = 'en', track, noindex = false } = Astro.props;
+const { title, description, path, ogImage, lang = 'en', hreflang, track, noindex = false } = Astro.props;
 const canonical = absoluteUrl(path);
 const og = ogImage ? absoluteUrl(ogImage) : undefined;
 const umamiScriptUrl = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL?.trim();
@@ -33,6 +34,7 @@ const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID?.trim();
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#FFD23F" />
     <link rel="canonical" href={canonical} />
+    {hreflang && <link rel="alternate" hreflang={hreflang} href={canonical} />}
     <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
     <link rel="icon" href={url('/favicon-32.png')} type="image/png" sizes="32x32" />
     <link rel="preload" href={bricolageUrl} as="font" type="font/woff2" crossorigin />

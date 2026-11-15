@@ -137,9 +137,11 @@ function showSuccess(from: HTMLElement) {
 for (const el of signups) {
   const form = $$<HTMLFormElement>('form', el)[0];
   const nameInput = $$<HTMLInputElement>('input[name="name"]', form)[0];
+  const paymentSelect = $$<HTMLSelectElement>('select[name="payment_plan"]', form)[0];
   const input = $$<HTMLInputElement>('input[name="email"]', form)[0];
   const hp = $$<HTMLInputElement>('input[name="website"]', form)[0];
   const button = $$<HTMLButtonElement>('button[type="submit"]', form)[0];
+  const errPayment = $$('[data-error="payment_plan"]', form)[0];
   const errInvalid = $$('[data-error="invalid"]', form)[0];
   const errFailed = $$('[data-error="failed"]', form)[0];
   const label = button.textContent || '';
@@ -152,8 +154,18 @@ for (const el of signups) {
     errFailed.hidden = true;
     const email = input.value.trim();
     const name = nameInput?.value.trim() || '';
+    const paymentPlan = paymentSelect?.value || '';
     input.value = email;
-    if (!input.checkValidity() || !EMAIL_RE.test(email)) {
+    const emailOk = input.checkValidity() && EMAIL_RE.test(email);
+    const paymentOk = !paymentSelect || !!paymentPlan;
+    if (!paymentOk && errPayment && paymentSelect) {
+      errPayment.hidden = false;
+      paymentSelect.setAttribute('aria-invalid', 'true');
+    } else if (errPayment && paymentSelect) {
+      errPayment.hidden = true;
+      paymentSelect.removeAttribute('aria-invalid');
+    }
+    if (!emailOk) {
       errInvalid.hidden = false;
       input.setAttribute('aria-invalid', 'true');
       input.focus();
@@ -161,6 +173,10 @@ for (const el of signups) {
     }
     errInvalid.hidden = true;
     input.removeAttribute('aria-invalid');
+    if (!paymentOk) {
+      paymentSelect?.focus();
+      return;
+    }
     button.disabled = true;
     button.textContent = 'Joining…';
 
@@ -169,6 +185,7 @@ for (const el of signups) {
       email,
       name,
       track,
+      payment_plan: paymentPlan,
       ...utm(),
       referrer: referrer(),
       page: pagePath(),
@@ -183,6 +200,13 @@ for (const el of signups) {
       showSuccess(el);
     } else {
       errFailed.hidden = false;
+    }
+  });
+
+  paymentSelect?.addEventListener('change', () => {
+    if (paymentSelect.value) {
+      paymentSelect.removeAttribute('aria-invalid');
+      if (errPayment) errPayment.hidden = true;
     }
   });
 
