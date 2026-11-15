@@ -161,7 +161,7 @@ export const sessionsPage = {
     },
     {
       q: 'Is this a sales pitch for a course?',
-      a: "Each session starts with a 15 to 20 minute talk and Q&A. At the end I spend about 10 minutes on the full-time program for 15 people I'm planning for April 2027 and how the Bildungsgutschein works.",
+      a: "Each session starts with a 15 to 20 minute talk and Q&A. At the end I spend about 10 minutes on the full-time program for 15 people starting April 2027. Designed for Bildungsgutschein funding (AZAV), coming soon.",
     },
     {
       q: "I've already done an AI bootcamp or a prompting course. Will this be the same?",

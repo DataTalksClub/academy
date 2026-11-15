@@ -10,7 +10,7 @@ export const facts: { label: string; value: string }[] = [
   { label: 'WHERE', value: 'Berlin or live online' },
   { label: 'LANGUAGE', value: 'English' },
   { label: 'SEATS', value: '15' },
-  { label: 'TUITION', value: 'Designed for Bildungsgutschein funding (AZAV). €9,000 to €10,000 self-pay' },
+  { label: 'FUNDING', value: 'Designed for Bildungsgutschein funding (AZAV), coming soon.' },
 ];
 
 export const heroInstructorLine =
@@ -54,11 +54,10 @@ export const syllabus = {
 };
 
 export const funding = {
-  heading: 'How Tuition and the Bildungsgutschein Work',
+  heading: 'How Funding and the Bildungsgutschein Work',
   paragraphs: [
-    "Designed for Bildungsgutschein funding (AZAV).",
+    'Designed for Bildungsgutschein funding (AZAV), coming soon.',
     'The voucher and the seat are separate decisions. The Agentur decides whether it pays, and I decide who is in the cohort.',
-    'If you pay yourself, the full program costs €9,000 to €10,000.',
   ],
   linkLabel: 'How the Bildungsgutschein works (arbeitsagentur.de)',
   linkHref: 'https://www.arbeitsagentur.de/karriere-und-weiterbildung/bildungsgutschein',
@@ -91,9 +90,8 @@ export const faq: { q: string; a: string | null }[] = [
   { q: 'What do I need to know before I start?', a: null },
   {
     q: 'Will the Agentur für Arbeit pay for it?',
-    a: "Designed for Bildungsgutschein funding (AZAV). Talk to your adviser early.",
+    a: 'Designed for Bildungsgutschein funding (AZAV), coming soon. Talk to your adviser early.',
   },
-  { q: 'What does it cost if I pay myself?', a: '€9,000 to €10,000 for the full program.' },
   {
     q: 'Is it online or in Berlin?',
     a: 'Berlin or live online. Online, you join live from Germany. The survey after you join asks which one you could attend.',
@@ -132,7 +130,7 @@ export const form = {
 export const home = {
   metaTitle: 'DataTalks.Club Academy | Live Full-Time Courses with Alexey Grigorev',
   metaDescription:
-    'Full-time live programs in English for experienced developers in Germany: Agentic Engineering and AI Engineering. Designed for Bildungsgutschein funding (AZAV).',
+    'Full-time live programs in English for experienced developers in Germany: Agentic Engineering and AI Engineering. Designed for Bildungsgutschein funding (AZAV), coming soon.',
   eyebrow: 'DataTalks.Club Academy',
   headline: 'Live Full-Time Courses in Berlin or Online',
   emphasis: '',

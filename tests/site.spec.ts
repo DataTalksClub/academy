@@ -142,9 +142,14 @@ test('AZAV, length and location copy stays positive and consistent', async ({ pa
     const text = await page.locator('body').innerText();
     expect(text, t).toContain('Full-time, live, 3 months (13 weeks)');
     expect(text, t).toContain('for 3 months (13 weeks)');
-    expect(text, t).toContain("Designed for Bildungsgutschein funding (AZAV).");
+    expect(text, t).toContain('Designed for Bildungsgutschein funding (AZAV), coming soon.');
+    expect(text, t).not.toContain('9,000');
+    expect(text, t).not.toContain('10,000');
     expect(text.match(/Berlin or live online/g)?.length, t).toBeGreaterThanOrEqual(2);
   }
+  await page.goto('sessions/');
+  const sessionsText = await page.locator('body').innerText();
+  expect(sessionsText).toContain('Designed for Bildungsgutschein funding (AZAV), coming soon.');
 });
 
 test('sitemap.xml and robots.txt list all public pages under the base path', async ({ request, baseURL }) => {
@@ -152,7 +157,7 @@ test('sitemap.xml and robots.txt list all public pages under the base path', asy
   const sitemapRes = await request.get('sitemap.xml');
   expect(sitemapRes.status()).toBe(200);
   const sitemap = await sitemapRes.text();
-  for (const p of ['', ...TRACKS.map((t) => `${t}/`), 'sessions/', 'privacy/', 'impressum/']) {
+  for (const p of ['', ...TRACKS.map((t) => `${t}/`), 'sessions/', 'bildungsgutschein/', 'privacy/', 'impressum/']) {
     expect(sitemap).toContain(`<loc>${origin}${path}${p}</loc>`);
   }
   expect(sitemap).not.toContain('/sessions/materials/');
@@ -163,14 +168,37 @@ test('sitemap.xml and robots.txt list all public pages under the base path', asy
   expect(robots).toContain(`Sitemap: ${origin}${path}sitemap.xml`);
 });
 
-test('home waitlist submits the chosen program and canonical facts are visible', async ({ page }) => {
+test('home waitlist requires payment plan, submits chosen program, and canonical facts are visible', async ({ page }) => {
   const api = await mockApi(page);
   await page.goto('');
   await expect(page.locator('#facts')).toContainText('Start: April 2027');
-  await expect(page.locator('#funding')).toContainText('Designed for Bildungsgutschein funding (AZAV).');
+  await expect(page.locator('#funding')).toContainText('Designed for Bildungsgutschein funding (AZAV), coming soon.');
   await page.selectOption('[name=program]', 'ai-engineering');
-  await page.fill('#email-hero', 'test@example.com');
+  await page.fill('#email-hero', 'dev+test@dtcdev.click');
+  await page.click('#signup-hero button[type=submit]');
+  await expect(page.locator('#signup-hero [data-error=payment_plan]')).toBeVisible();
+  expect(api.signups).toHaveLength(0);
+
+  await page.selectOption('#payment-plan-hero', 'Self-funded');
   await page.click('#signup-hero button[type=submit]');
   await expect(page.locator('#signup-hero [data-success]')).toBeVisible();
-  expect(api.signups[0].postDataJSON().track).toBe('ai-engineering');
+  expect(api.signups[0].postDataJSON()).toMatchObject({
+    track: 'ai-engineering',
+    payment_plan: 'Self-funded',
+  });
+});
+
+test('German bildungsgutschein page returns 200 with self canonical and canonical German copy', async ({ page, baseURL }) => {
+  const { origin, pathname: path } = new URL(baseURL!);
+  const res = await page.goto('bildungsgutschein/');
+  expect(res?.status()).toBe(200);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `${origin}${path}bildungsgutschein/`);
+  await expect(page.locator('link[rel="alternate"][hreflang="de"]')).toHaveAttribute(
+    'href',
+    `${origin}${path}bildungsgutschein/`,
+  );
+  const text = await page.locator('body').innerText();
+  expect(text).toContain('Förderung per Bildungsgutschein (AZAV) in Kürze.');
+  expect(text).toContain('DataTalks.Club Academy bietet zwei Vollzeit-Weiterbildungen auf Englisch');
 });
