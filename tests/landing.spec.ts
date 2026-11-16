@@ -10,7 +10,7 @@ async function structure(page: import('@playwright/test').Page) {
     ),
     labels: Array.from(document.querySelectorAll('main .label')).map((e) => e.textContent!.replace(/TRACK [AB]/, '')),
     details: document.querySelectorAll('details').length,
-    modules: document.querySelectorAll('#syllabus ol li').length,
+    modules: document.querySelectorAll('#syllabus ol.modules > li').length,
     outcomes: document.querySelectorAll('#outcomes ol li').length,
   }));
 }
