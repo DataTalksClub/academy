@@ -3,6 +3,8 @@
 export interface Module {
   title: string;
   produce: string;
+  topics?: string[];
+  blurb?: string;
 }
 export interface Group {
   weeks: string;
@@ -117,15 +119,15 @@ export const tracks: Track[] = [
     outcomesTitle: 'By the end you can build an AI application, and show where it works and where it fails.',
     outcomes: [
       'Build an assistant in Python on an LLM API.',
-      'Use retrieval-augmented generation (RAG) and document processing over company data.',
+      'Use retrieval-augmented generation (RAG) and document processing over company data, and keep the index up to date as documents change.',
       'Give the assistant tools, function calling and MCP connections to look things up or call an API.',
       'Define what it can do on its own and when it needs human approval.',
-      'Evaluate answers and tool use on realistic tasks, compare prompts and models, and catch regressions.',
+      'Build evaluation datasets from realistic tasks, evaluate answers and tool use, compare prompts and models, and catch regressions.',
       'Deploy the application to the cloud and trace its model and tool calls.',
       'Track quality, latency and cost, and handle failures safely with guardrails.',
     ],
     project:
-      'You build and deploy an AI assistant for a concrete company use case, for example one that answers questions from messy internal documents with sources and carries out actions after human approval. You show where it works, where it fails, and how you measured that.',
+      'You build and deploy an AI assistant for a concrete company use case, for example one that answers questions from messy internal documents that keep changing, with sources and carries out actions after human approval. You show where it works, where it fails, and how you measured that.',
     fitFirst: 'You program today, ideally in Python, and can use APIs and work in a repository.',
     prerequisites:
       "You are comfortable programming, preferably in Python, and you can use the command line, Git and basic Docker. You don't need a machine-learning background, advanced mathematics or a GPU.",
@@ -135,9 +137,9 @@ export const tracks: Track[] = [
         title: 'Retrieval',
         modules: [
           { title: 'Agentic engineering basics and a Python service on an LLM API.', produce: 'a working coding-agent setup (day 1) and a small API that returns validated, structured answers.' },
-          { title: 'Retrieval, document processing and indexing.', produce: 'a one-command ingestion pipeline and a knowledge assistant with sources.' },
+          { title: 'Retrieval, document processing and indexing.', produce: 'a one-command ingestion pipeline you can rerun safely and a knowledge assistant with sources.' },
           { title: 'Vector and hybrid search.', produce: 'three retrieval variants, with examples of where each fails.' },
-          { title: 'Evaluating retrieval.', produce: 'a retrieval evaluation and a justified configuration.' },
+          { title: 'Evaluating retrieval.', produce: 'a first evaluation dataset, a retrieval evaluation and a justified configuration.' },
         ],
       },
       {
@@ -154,9 +156,19 @@ export const tracks: Track[] = [
         weeks: 'Weeks 8 to 9',
         title: 'Quality and production',
         modules: [
-          { title: 'Testing LLM applications and CI/CD.', produce: 'a regression suite running in CI.' },
-          { title: 'Evaluating answers and agents.', produce: 'an evaluation report comparing two configurations.' },
-          { title: 'Tracing, monitoring, cost and latency.', produce: 'traces, dashboards, and a cost/latency report with a measured improvement.' },
+          {
+            title: 'Data Pipelines, Freshness and Evaluation Datasets',
+            topics: [
+              'Incremental ingestion: add, update and remove documents without rebuilding the index.',
+              'Freshness: how old the index is, and what the assistant says when its data is stale.',
+              'Building an evaluation dataset from real questions and documents, with synthetic cases for the gaps.',
+              'Versioning the evaluation dataset, and updating it when the documents change.',
+            ],
+            produce: "a pipeline that keeps your assistant's index up to date, with a freshness report, and a versioned evaluation dataset for your project.",
+            blurb: 'Most assistants work on the day you load the documents and get worse as the documents change. In this module you keep the data behind your assistant fresh and build the evaluation dataset you use for the rest of the program.',
+          },
+          { title: 'Testing and Evaluating Answers and Agents', produce: 'a regression suite running in CI and an evaluation report comparing two configurations.' },
+          { title: 'Tracing, monitoring, cost and latency.', produce: 'traces, dashboards that include data freshness, and a cost and latency report with a measured improvement.' },
           { title: 'Safety: guardrails, injection and compliance.', produce: 'tested guardrails and a short compliance checklist.' },
         ],
       },

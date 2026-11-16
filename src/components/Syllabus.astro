@@ -27,12 +27,14 @@ let n = 0;
                 return (
                   <li>
                     <span class="mono mod__n">{String(n).padStart(2, '0')}</span>
-                    <span class="mod__body">
+                    <div class="mod__body">
                       <span class="mod__title">{m.title}</span>
                       <span class="mod__produce">
                         <span class="mono">You produce:</span> {m.produce}
                       </span>
-                    </span>
+                      {m.blurb && <p class="mod__description">{m.blurb}</p>}
+                      {m.topics && <ul class="mod__topics">{m.topics.map((topic) => <li>{topic}</li>)}</ul>}
+                    </div>
                   </li>
                 );
               })}
@@ -138,13 +140,13 @@ let n = 0;
     margin: 0;
     padding: 4px 18px 10px;
   }
-  .modules li {
+  .modules > li {
     display: grid;
     grid-template-columns: 2.5rem minmax(0, 1fr);
     gap: 4px 14px;
     padding: 14px 0;
   }
-  .modules li + li {
+  .modules > li + li {
     border-top: 2px dashed var(--black);
   }
   .mod__n {
@@ -159,6 +161,18 @@ let n = 0;
   .mod__title {
     display: block;
     font-weight: 700;
+  }
+  .mod__description,
+  .mod__topics {
+    margin: 10px 0 0;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+  .mod__topics {
+    padding-left: 20px;
+  }
+  .mod__topics li + li {
+    margin-top: 6px;
   }
   .mod__produce {
     display: block;

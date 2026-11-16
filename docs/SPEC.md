@@ -299,30 +299,38 @@ SignupForm (same component), small seat grid.
 - `outcomesTitle`: By the end you can build an AI application, and show where it works and where it fails.
 - `outcomes`:
   1. Build an assistant in Python on an LLM API.
-  2. Use retrieval-augmented generation (RAG) and document processing over company data.
+  2. Use retrieval-augmented generation (RAG) and document processing over company data, and keep the index up to date as documents change.
   3. Give the assistant tools, function calling and MCP connections to look things up or call an API.
   4. Define what it can do on its own and when it needs human approval.
-  5. Evaluate answers and tool use with realistic tasks; compare prompts, models and retrieval methods; catch regressions.
+  5. Build evaluation datasets from realistic tasks, evaluate answers and tool use, compare prompts and models, and catch regressions.
   6. Deploy the application to the cloud and trace its model and tool calls.
   7. Track quality, latency and cost, and handle failures safely with guardrails.
-- `project`: You build and deploy an AI assistant for a concrete company use case, for example one that answers questions from messy internal documents with sources and carries out actions after human approval. You show where it works, where it fails, and how you measured that.
+- `project`: You build and deploy an AI assistant for a concrete company use case, for example one that answers questions from messy internal documents that keep changing, with sources and carries out actions after human approval. You show where it works, where it fails, and how you measured that.
 - `fitFirst`: You program today, ideally in Python, and can use APIs and work in a repository.
 - `prerequisites`: You are comfortable programming, preferably in Python, and you can use the command line, Git and basic Docker. You don't need a machine-learning background, advanced mathematics or a GPU.
 - `syllabus` (four groups):
   - **Weeks 1–4 · Retrieval**
     1. Agentic engineering basics and a Python service on an LLM API. *You produce: a working coding-agent setup (day 1) and a small API that returns validated, structured answers.*
-    2. Retrieval, document processing and indexing. *You produce: a one-command ingestion pipeline and a knowledge assistant with sources.*
+    2. Retrieval, document processing and indexing. *You produce: a one-command ingestion pipeline you can rerun safely and a knowledge assistant with sources.*
     3. Vector and hybrid search. *You produce: three retrieval variants, with examples of where each fails.*
-    4. Evaluating retrieval. *You produce: a retrieval evaluation and a justified configuration.*
+    4. Evaluating retrieval. *You produce: a first evaluation dataset, a retrieval evaluation and a justified configuration.*
   - **Weeks 5–7 · Agents**
     5. Agentic engineering workflow, tools and the agent loop. *You produce: the full agent workflow on your project repo (spec to tasks, tests, diff review, CI) and an assistant that calls an API through a tool.*
     6. Agent frameworks, MCP and context. *You produce: the assistant rebuilt on a framework, with one MCP tool.*
     7. Serving and cloud deployment. *You produce: a deployed assistant with cited answers and one tool (midterm).*
     8. Agentic workflows and human approval. *You produce: a workflow action that waits for approval and handles refusal.*
   - **Weeks 8–9 · Quality and production**
-    9. Testing LLM applications and CI/CD. *You produce: a regression suite running in CI.*
-    10. Evaluating answers and agents. *You produce: an evaluation report comparing two configurations.*
-    11. Tracing, monitoring, cost and latency. *You produce: traces, dashboards, and a cost/latency report with a measured improvement.*
+    9. Data Pipelines, Freshness and Evaluation Datasets. *You produce: a pipeline that keeps your assistant's index up to date, with a freshness report, and a versioned evaluation dataset for your project.*
+
+       Most assistants work on the day you load the documents and get worse as the documents change. In this module you keep the data behind your assistant fresh and build the evaluation dataset you use for the rest of the program.
+
+       1. Incremental ingestion: add, update and remove documents without rebuilding the index.
+       2. Freshness: how old the index is, and what the assistant says when its data is stale.
+       3. Building an evaluation dataset from real questions and documents, with synthetic cases for the gaps.
+       4. Versioning the evaluation dataset, and updating it when the documents change.
+
+    10. Testing and Evaluating Answers and Agents. *You produce: a regression suite running in CI and an evaluation report comparing two configurations.*
+    11. Tracing, monitoring, cost and latency. *You produce: traces, dashboards that include data freshness, and a cost and latency report with a measured improvement.*
     12. Safety: guardrails, injection and compliance. *You produce: tested guardrails and a short compliance checklist.*
   - **Weeks 10–13 · Capstone and interviews**
     13. Technical interviews and hiring prep (full week, 40 UE). *You produce: algorithm coding drills without AI, a timed take-home, a project presentation and first peer mocks.*
