@@ -17,7 +17,7 @@ test('sessions page shows all three sessions, the form and an OG image', async (
   await expect(page.locator('[data-session-id]')).toHaveCount(3);
   await expect(page.locator('[data-session-id]').nth(0)).toContainText('Monday 23 November');
   await expect(page.locator('[data-session-id]').nth(1)).toContainText('Monday 30 November');
-  await expect(page.locator('[data-session-id]').nth(2)).toContainText('Monday 7 December');
+  await expect(page.locator('[data-session-id]').nth(2)).toContainText('Tuesday 15 December');
   await expect(page.locator('h1')).toHaveText(H.a);
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', /og\/sessions\.png$/);
   await expect(page.locator('#register form')).toBeVisible();

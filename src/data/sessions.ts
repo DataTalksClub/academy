@@ -20,6 +20,8 @@ export interface Session {
   /** Local start in Europe/Berlin, used for the label. */
   dateLabel: string;
   weekdayDate: string;
+  /** Start time label for the hero list, e.g. '17:00 Berlin'. */
+  heroTime: string;
   startUtc: string;
   endUtc: string;
   title: string;
@@ -42,6 +44,7 @@ export const sessions: Session[] = [
     number: 1,
     dateLabel: 'Mon 23 Nov',
     weekdayDate: 'Monday 23 November',
+    heroTime: '17:00 Berlin',
     startUtc: '20261123T160000Z',
     endUtc: '20261123T170000Z',
     title: 'AI Engineering vs Agentic Engineering for Experienced Developers',
@@ -57,6 +60,7 @@ export const sessions: Session[] = [
     number: 2,
     dateLabel: 'Mon 30 Nov',
     weekdayDate: 'Monday 30 November',
+    heroTime: '17:00 Berlin',
     startUtc: '20261130T160000Z',
     endUtc: '20261130T170000Z',
     title: 'How I Build Software with Claude Code and Other Coding Agents',
@@ -70,13 +74,14 @@ export const sessions: Session[] = [
   {
     id: 'session-3',
     number: 3,
-    dateLabel: 'Mon 7 Dec',
-    weekdayDate: 'Monday 7 December',
-    startUtc: '20261207T160000Z',
-    endUtc: '20261207T170000Z',
+    dateLabel: 'Tue 15 Dec',
+    weekdayDate: 'Tuesday 15 December',
+    heroTime: '16:30 Berlin',
+    startUtc: '20261215T153000Z',
+    endUtc: '20261215T163000Z',
     title: 'AI Engineering for Experienced Developers: How to Build Apps on Top of LLMs',
     heroTopic: 'AI Engineering for Experienced Developers: How to Build Apps on Top of LLMs',
-    shortLabel: 'Mon 7 Dec: AI Engineering for Experienced Developers: How to Build Apps on Top of LLMs',
+    shortLabel: 'Tue 15 Dec: AI Engineering for Experienced Developers: How to Build Apps on Top of LLMs',
     description:
       "AI engineering is building products that use LLMs, like chatbots, search over your company's documents or agents that do tasks for users.\n\nIn the first 15 to 20 minutes I'll explain:\n\n- what AI engineers build day to day\n- which skills from backend, frontend or data work you already have\n- what to learn first if you want to move into it\n- how to get a Bildungsgutschein for your training\n\nThen I'll answer your questions.",
     zoomUrl: 'https://us06web.zoom.us/j/89929618442?pwd=xjMMnER39hbJudSCMZ9bUXbCwvwrWI.1',
@@ -94,7 +99,7 @@ export type Variant = 'a' | 'b' | 'c';
 const approvedHero = {
   headline: 'Hireable With AI',
   subhead:
-    'Hireable With AI is a series of three free online sessions for developers with 2+ years of experience who were laid off, are in their notice period or are looking for a job. They run on Mondays 23 Nov, 30 Nov and 7 Dec 2026 at 17:00 Berlin time, on Zoom, in English. Each one is a 15 to 20 minute talk by Alexey Grigorev, then Q&A.',
+    'Hireable With AI is a series of three free online sessions for developers with 2+ years of experience who were laid off, are in their notice period or are looking for a job. They run on Mondays 23 Nov and 30 Nov at 17:00 and Tuesday 15 Dec 2026 at 16:30 Berlin time, on Zoom, in English. Each one is a 15 to 20 minute talk by Alexey Grigorev, then Q&A.',
 };
 
 /** Approved copy-bank hero (hero.md) for all utm_content values. */
@@ -112,7 +117,7 @@ export function variantFor(utmContent: string | null | undefined): Variant {
 export const sessionsPage = {
   metaTitle: 'Hireable With AI: Free Sessions for Experienced Developers | DataTalks.Club',
   metaDescription:
-    '3 free online sessions for developers with 2+ years of experience who were laid off, are in their notice period or are looking for a job. Mondays 23 Nov, 30 Nov and 7 Dec at 17:00 Berlin time, on Zoom.',
+    '3 free online sessions for developers with 2+ years of experience who were laid off, are in their notice period or are looking for a job. Mondays 23 Nov and 30 Nov at 17:00, Tuesday 15 Dec at 16:30 Berlin time, on Zoom.',
   eyebrow: 'Free online sessions for developers in Berlin and beyond',
   factLine: '',
   speakerLine:
@@ -128,10 +133,10 @@ export const sessionsPage = {
     'You have a job and want to learn Cursor, Claude Code or LLM APIs.',
   ],
   forOutro:
-    'Any programming language works for the first two sessions, and Python helps for 7 December. Anyone can join from anywhere, though the job market and Agentur für Arbeit parts focus on Berlin.',
+    'Any programming language works for the first two sessions, and Python helps for 15 December. Anyone can join from anywhere, though the job market and Agentur für Arbeit parts focus on Berlin.',
   forNote: "If you've never written code, these sessions will move too fast. My free [Zoomcamps](https://datatalks.club/courses.html) are a better place to start.",
 
-  sessionsHeading: 'Three Mondays, 17:00 to 18:00 Berlin time',
+  sessionsHeading: 'Two Mondays 17:00, final Tuesday 16:30 Berlin time',
   afterSessions:
     "After the talk and Q&A I spend about ten minutes on the full-time program starting April 2027 and on how the Bildungsgutschein works. If you're not interested, you can leave before that part.",
 
@@ -169,7 +174,7 @@ export const sessionsPage = {
     },
     {
       q: 'Do I need to know Python?',
-      a: 'It helps for 7 December. Any language is fine for the first two.',
+      a: 'It helps for 15 December. Any language is fine for the first two.',
     },
     {
       q: 'What happens to my email?',
@@ -179,7 +184,7 @@ export const sessionsPage = {
 
   finalHeading: 'Choose your sessions',
   finalText:
-    'Free and online, Mondays 23 November, 30 November and 7 December at 17:00 Berlin time. Recordings go to everyone who registers.',
+    'Free and online, Mondays 23 November and 30 November at 17:00, Tuesday 15 December at 16:30 Berlin time. Recordings go to everyone who registers.',
 };
 
 export const form = {
