@@ -17,10 +17,13 @@ test('sessions page shows all three sessions, the form and an OG image', async (
   await expect(page.locator('[data-session-id]')).toHaveCount(3);
   await expect(page.locator('[data-session-id]').nth(0)).toContainText('Monday 23 November');
   await expect(page.locator('[data-session-id]').nth(1)).toContainText('Monday 30 November');
-  await expect(page.locator('[data-session-id]').nth(2)).toContainText('Monday 7 December');
+  await expect(page.locator('[data-session-id]').nth(2)).toContainText('Tuesday 15 December');
   await expect(page.locator('h1')).toHaveText(H.a);
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', /og\/sessions\.png$/);
   await expect(page.locator('#register form')).toBeVisible();
+  for (const id of ['session-1', 'session-2', 'session-3']) {
+    await expect(page.locator(`#register input[name="sessions"][value="${id}"]`)).not.toBeChecked();
+  }
   // Meetup RSVP buttons stay hidden until rsvp_published is true.
   await expect(page.locator('[data-rsvp]')).toHaveCount(0);
   await expect(page.locator('a[href*="meetup.com"]')).toHaveCount(0);
@@ -65,7 +68,8 @@ test('form posts survey answers as source=layoff_proof with channel UTMs, then s
   const form = page.locator('#register form');
   await form.locator('input[name="email"]').fill('dev+lp@dtcdev.click');
   await form.locator('input[name="name"]').fill('Ada');
-  await form.locator('input[name="sessions"][value="session-2"]').uncheck();
+  await form.locator('input[name="sessions"][value="session-1"]').check();
+  await form.locator('input[name="sessions"][value="session-3"]').check();
   await form.locator('input[name="track_interest"][value="both"]').check();
   await form.locator('input[name="status"][value="job_hunting"]').check();
   await form.locator('input[name="years_dev"]').fill('7');
@@ -112,7 +116,6 @@ test('form needs at least one session and an email', async ({ page }) => {
   await form.locator('button[type="submit"]').click();
   await expect(form.locator('[data-error="invalid"]')).toBeVisible();
   await form.locator('input[name="email"]').fill('dev+x@dtcdev.click');
-  for (const id of ['session-1', 'session-2', 'session-3']) await form.locator(`input[name="sessions"][value="${id}"]`).uncheck();
   await form.locator('button[type="submit"]').click();
   await expect(form.locator('[data-error="sessions"]')).toBeVisible();
   expect(api.signups).toHaveLength(0);
@@ -123,6 +126,7 @@ test('failed signup shows the error and keeps the form', async ({ page }) => {
   await page.goto('sessions/');
   const form = page.locator('#register form');
   await form.locator('input[name="email"]').fill('dev+x@dtcdev.click');
+  await form.locator('input[name="sessions"][value="session-1"]').check();
   await form.locator('button[type="submit"]').click();
   await expect(form.locator('[data-error="failed"]')).toBeVisible();
   await expect(form).toBeVisible();
@@ -166,7 +170,7 @@ test('ics files carry the per-session Zoom link and the right times', async ({ r
   const zoom = {
     'session-1': ['84099607571', '20261123T160000Z', 'AI Engineering vs Agentic Engineering'],
     'session-2': ['86910927132', '20261130T160000Z', 'How I Build Software with Claude Code and Other Coding Agents'],
-    'session-3': ['89929618442', '20261207T160000Z', 'AI Engineering for Experienced Developers: How to Build Apps on Top of LLMs'],
+    'session-3': ['89929618442', '20261215T153000Z', 'AI Engineering for Experienced Developers: How to Build Apps on Top of LLMs'],
   } as const;
   for (const [id, [meeting, start, title]] of Object.entries(zoom)) {
     const res = await request.get(`${baseURL}sessions/${id}.ics`);

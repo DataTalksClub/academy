@@ -1,10 +1,11 @@
 // Generates public/og/*.png (1200x630) and public/favicon-32.png with Playwright.
 // Fonts are read from node_modules, so nothing leaves the machine.
 import { chromium } from '@playwright/test';
-import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
+import { readFileSync, mkdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
 
-const root = new URL('../', import.meta.url).pathname;
+const root = fileURLToPath(new URL('../', import.meta.url));
 const require = createRequire(import.meta.url);
 const font = (p) => 'data:font/woff2;base64,' + readFileSync(require.resolve(p)).toString('base64');
 const fraunces = font('@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2');
@@ -18,8 +19,12 @@ const items = [
   {
     file: 'sessions',
     head: 'Hireable With AI',
-    tag: 'MONDAYS 23 NOV, 30 NOV, 7 DEC AT 17:00 BERLIN TIME',
-    dates: ['23 NOV', '30 NOV', '7 DEC'],
+    tag: '23 NOV, 30 NOV AT 17:00, 15 DEC AT 16:30 BERLIN TIME',
+    dates: [
+      { date: '23 NOV', time: '17:00' },
+      { date: '30 NOV', time: '17:00' },
+      { date: '15 DEC', time: '16:30' },
+    ],
   },
 ];
 
@@ -27,7 +32,7 @@ function dateCards(dates) {
   return dates
     .map(
       (d, i) =>
-        `<div class="dc"><span>0${i + 1}</span><b>${d}</b><i>17:00</i></div>`,
+        `<div class="dc"><span>0${i + 1}</span><b>${d.date}</b><i>${d.time}</i></div>`,
     )
     .join('');
 }
