@@ -5,7 +5,7 @@
 # recording: the public YouTube URL of the session recording (Alexey's personal channel), e.g.
 # https://www.youtube.com/watch?v=XXXXXXXXXXX or https://youtu.be/XXXXXXXXXXX
 # Leave it empty until the video is public; the page then shows "Recording coming soon".
-recording: ''
+recording: 'https://youtu.be/roiT85s5vxA'
 ---
 
 ## The Audience for This Session

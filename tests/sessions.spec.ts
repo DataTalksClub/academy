@@ -213,9 +213,10 @@ test('session 1 recap: linked from the sessions page, recording slot and slides'
   await expect(page).toHaveURL(/sessions\/ai-engineering-vs-agentic-engineering\/$/);
   await expect(page.locator('h1')).toHaveText('AI Engineering vs Agentic Engineering: Session 1 Recap and Answers');
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/sessions\/ai-engineering-vs-agentic-engineering\/$/);
-  // No recording URL yet: the frame says so and nothing points at YouTube.
-  await expect(page.locator('[data-recording-pending]')).toHaveText('Recording coming soon');
-  await expect(page.locator('[data-recap-media] a[href*="youtube"], iframe')).toHaveCount(0);
+  // The recording is a click-to-play frame: nothing loads from YouTube before play.
+  await expect(page.locator('[data-recording-pending]')).toHaveCount(0);
+  await expect(page.locator('[data-video-facade]')).toHaveAttribute('href', 'https://www.youtube.com/watch?v=roiT85s5vxA');
+  await expect(page.locator('iframe')).toHaveCount(0);
   for (const sel of ['[data-slides-link]', '[data-slides-pdf]']) {
     const href = await page.locator(sel).getAttribute('href');
     const res = await request.get(new URL(href!, baseURL).toString());
