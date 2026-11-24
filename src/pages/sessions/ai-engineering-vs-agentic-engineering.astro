@@ -1,0 +1,334 @@
+---
+// Hireable With AI session 1 recap. The copy is src/data/recap-session-1.md (mirrors the new
+// site's content file); the recording URL is that file's `recording:` front-matter line.
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import * as recap from '../../data/recap-session-1.md';
+import { url, absoluteUrl } from '../../lib';
+
+const PATH = '/sessions/ai-engineering-vs-agentic-engineering/';
+const page = {
+  title: 'AI Engineering vs Agentic Engineering: Session 1 Recap and Answers | DataTalks.Club Academy',
+  description:
+    'Recap of Hireable With AI session 1 by Alexey Grigorev: the difference between AI engineering and agentic engineering, what companies ask for, and answers to attendee questions on hardware, funding and finding a job.',
+  eyebrow: 'Hireable With AI, session 1',
+  heading: 'AI Engineering vs Agentic Engineering: Session 1 Recap and Answers',
+  lead: 'On 23 November 2026 I ran the first free Hireable With AI session for experienced developers. This is a short recap of the talk and my answers to the questions people asked.',
+  author: 'Alexey Grigorev',
+  published: '2026-11-23',
+  publishedLabel: '23 November 2026',
+  related: [
+    { label: 'The Agentic Engineering program', href: '/agentic-engineering/' },
+    { label: 'The AI Engineering program', href: '/ai-engineering/' },
+    { label: 'Questions about the Academy', href: '/faq/' },
+    { label: 'The next free sessions', href: '/sessions/' },
+  ],
+  joinHeading: 'Join the Waitlist',
+  joinText: 'Start: April 2027. Join the waitlist and you hear first when applications open.',
+};
+const slidesHref = url(`${PATH}slides/`);
+const slidesPdf = url(`${PATH}slides.pdf`);
+
+// Strict: an empty value means "coming soon"; anything else must be a YouTube watch/short link.
+const YT_ID = /^[A-Za-z0-9_-]{11}$/;
+function youtubeId(raw: string): string {
+  const u = new URL(raw);
+  const host = u.hostname.replace(/^www\./, '');
+  let id = '';
+  if (u.protocol !== 'https:') id = '';
+  else if (host === 'youtu.be') id = u.pathname.slice(1).split('/')[0];
+  else if (host === 'youtube.com' || host === 'm.youtube.com') {
+    if (u.pathname === '/watch') id = u.searchParams.get('v') ?? '';
+    else {
+      const [prefix, rest] = u.pathname.slice(1).split('/');
+      if (['embed', 'live', 'shorts'].includes(prefix)) id = rest ?? '';
+    }
+  }
+  if (!YT_ID.test(id)) throw new Error(`recap-session-1.md: recording is not a YouTube video URL: ${raw}`);
+  return id;
+}
+const recording = String(recap.frontmatter.recording ?? '').trim();
+const videoId = recording ? youtubeId(recording) : '';
+const watchUrl = videoId ? `https://www.youtube.com/watch?v=${videoId}` : '';
+const embedUrl = videoId ? `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1` : '';
+
+// Internal links in the copy are written from the site root; apply the base path.
+const bodyHtml = (await recap.compiledContent()).replace(/href="\/(?!\/)/g, `href="${url('/')}`);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: page.heading,
+  description: page.description,
+  url: absoluteUrl(PATH),
+  mainEntityOfPage: absoluteUrl(PATH),
+  inLanguage: 'en',
+  datePublished: page.published,
+  author: { '@type': 'Person', name: page.author },
+  publisher: { '@type': 'Organization', name: 'DataTalks.Club', url: 'https://datatalks.club' },
+  image: absoluteUrl('/og/sessions.png'),
+};
+---
+
+<Base title={page.title} description={page.description} path={PATH} ogImage="/og/sessions.png" jsonLd={jsonLd}>
+  <Header cta tagline={false} />
+  <main id="main">
+    <section class="hero recap-hero">
+      <div class="wrap">
+        <p class="mono eyebrow">{page.eyebrow}</p>
+        <h1>{page.heading}</h1>
+        <p class="lead">{page.lead}</p>
+        <p class="mono byline">{page.author}, <time datetime={page.published}>{page.publishedLabel}</time></p>
+      </div>
+    </section>
+
+    <section class="section recap-media" aria-labelledby="media-heading" data-recap-media>
+      <div class="wrap recap-col">
+        <h2 id="media-heading">Recording and slides</h2>
+        {
+          videoId ? (
+            <div class="video" data-video data-embed={embedUrl} data-title={`Watch ${page.heading} on YouTube`}>
+              <a class="video__facade" href={watchUrl} data-video-facade>
+                <span class="video__title">{page.heading}</span>
+                <span class="video__play" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22"><path d="M9 6.5l9 5.5-9 5.5z" fill="currentColor" /></svg>
+                  Play video
+                </span>
+                <span class="sr-only">Play the session recording on YouTube</span>
+              </a>
+            </div>
+          ) : (
+            <div class="video video--pending" data-recording-pending>
+              <p class="video__pending">Recording coming soon</p>
+            </div>
+          )
+        }
+        <p class="slides">
+          <a class="btn btn--green" href={slidesHref} target="_blank" rel="noopener" data-slides-link>View the slides</a>
+          <a class="slides__pdf" href={slidesPdf} download data-slides-pdf>Download the slides (PDF)</a>
+        </p>
+      </div>
+    </section>
+
+    <article class="section recap-body">
+      <div class="wrap recap-col prose" set:html={bodyHtml} />
+    </article>
+
+    <section class="section recap-related" aria-labelledby="related-heading">
+      <div class="wrap recap-col">
+        <h2 id="related-heading">Read Next</h2>
+        <ul>
+          {page.related.map((l) => <li><a href={url(l.href)}>{l.label}</a></li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section recap-join" aria-labelledby="join-heading">
+      <div class="wrap recap-col">
+        <div class="join-card">
+          <h2 id="join-heading">{page.joinHeading}</h2>
+          <p>{page.joinText}</p>
+          <a class="btn btn--green" href={url('/#signup-hero')}>Join the Waitlist</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<script>
+  // Click-to-play: nothing is requested from YouTube until the reader presses play.
+  const frame = document.querySelector<HTMLElement>('[data-video]');
+  const facade = frame?.querySelector<HTMLAnchorElement>('[data-video-facade]');
+  if (frame && facade) {
+    facade.setAttribute('role', 'button');
+    const play = (event: Event) => {
+      event.preventDefault();
+      const player = document.createElement('iframe');
+      player.src = frame.dataset.embed!;
+      player.title = frame.dataset.title!;
+      player.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      player.referrerPolicy = 'strict-origin-when-cross-origin';
+      player.allowFullscreen = true;
+      facade.replaceWith(player);
+      player.focus();
+    };
+    facade.addEventListener('click', play);
+    facade.addEventListener('keydown', (e) => {
+      if (e.key === ' ') play(e);
+    });
+  }
+</script>
+
+<style>
+  .recap-hero {
+    background: var(--yellow);
+    color: var(--black);
+    padding-block: 48px 56px;
+    border-bottom: var(--border);
+  }
+  .eyebrow {
+    display: inline-block;
+    margin: 0 0 18px;
+    padding: 6px 12px;
+    background: var(--black);
+    color: var(--yellow);
+    border-radius: 999px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .recap-hero h1 {
+    margin: 0;
+    max-width: 24ch;
+  }
+  .lead {
+    margin: 20px 0 0;
+    max-width: 42rem;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+  }
+  .byline {
+    margin: 16px 0 0;
+    font-size: 0.875rem;
+  }
+  .recap-col {
+    max-width: calc(46rem + var(--gutter) * 2);
+  }
+  .recap-media {
+    padding-block: 40px 8px;
+  }
+  .recap-media h2,
+  .recap-related h2 {
+    font-size: 1.5rem;
+    margin: 0 0 16px;
+  }
+  .video {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--black);
+    color: var(--white);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .video :global(iframe) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .video__facade {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-start;
+    padding: 24px;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .video__facade:focus-visible {
+    outline: 3px solid var(--yellow);
+    outline-offset: -6px;
+  }
+  .video__title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.1rem, 3vw, 1.8rem);
+    line-height: 1.2;
+    max-width: 22ch;
+  }
+  .video__play {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px 10px 14px;
+    background: var(--yellow);
+    color: var(--black);
+    border: var(--border);
+    border-radius: 999px;
+    font-weight: 700;
+  }
+  .video__facade:hover .video__play {
+    transform: translate(-2px, -2px);
+  }
+  .video--pending {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .video__pending {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+  }
+  .slides {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 24px;
+    margin: 28px 0 0;
+  }
+  .slides__pdf {
+    color: var(--blue);
+    font-weight: 600;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  .recap-body {
+    padding-block: 24px 8px;
+  }
+  .recap-body :global(h2) {
+    font-size: 1.5rem;
+    margin: 40px 0 12px;
+  }
+  .recap-body :global(p),
+  .recap-body :global(li) {
+    line-height: 1.65;
+  }
+  .recap-related {
+    padding-block: 32px 8px;
+  }
+  .recap-related ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+  .recap-related li + li {
+    margin-top: 6px;
+  }
+  .recap-related a {
+    color: var(--blue);
+    font-weight: 600;
+  }
+  .recap-join {
+    padding-block: 32px 72px;
+  }
+  .join-card {
+    background: var(--tint-mint);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+  }
+  .join-card h2 {
+    margin: 0 0 8px;
+    font-size: 1.5rem;
+  }
+  .join-card p {
+    margin: 0 0 16px;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>

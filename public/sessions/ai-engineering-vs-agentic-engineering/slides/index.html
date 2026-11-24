@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Engineering vs Agentic Engineering</title>
+<link rel="stylesheet" href="reveal/reveal.css">
+<link rel="stylesheet" href="reveal/theme/black.css">
+<style>
+  .reveal h1, .reveal h2, .reveal h3 { text-transform: none; }
+  .reveal h1 { font-size: 2.0em; }
+  .reveal h2 { font-size: 1.5em; }
+  .reveal h3 { font-size: 1.1em; color: #60a5fa; }
+  .reveal { font-size: 32px; }
+  .reveal ul, .reveal ol { text-align: left; }
+  .reveal li { margin-bottom: 0.3em; }
+  .reveal .big-number { font-size: 3em; color: #60a5fa; font-weight: bold; }
+  .reveal .medium-number { font-size: 2em; color: #60a5fa; font-weight: bold; }
+  .reveal table { margin: 0 auto; font-size: 0.8em; }
+  .reveal th, .reveal td { padding: 0.3em 0.8em; }
+  .reveal .subtitle { color: #888; font-size: 0.6em; }
+  .reveal .source { color: #888; font-size: 0.5em; margin-top: 1em; }
+  .reveal .section-title { color: #60a5fa; font-size: 0.6em; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0; }
+  .reveal .accent { color: #60a5fa; }
+  .reveal .green { color: #4ade80; }
+  .reveal .cols { display: flex; gap: 1.2em; text-align: left; }
+  .reveal .cols > div { flex: 1; background: #1a1a1a; border-radius: 10px; padding: 0.6em 0.8em; }
+  .reveal .cols h3 { margin-top: 0; }
+  .reveal .cols p, .reveal .cols li { font-size: 0.75em; }
+  .reveal .cols ul { margin: 0 0 0 0.9em; }
+  .reveal .cols p.source { font-size: 0.5em; }
+  .reveal .def { text-align: left; background: #1a1a1a; border-left: 6px solid #60a5fa; border-radius: 6px; padding: 0.5em 0.9em; margin: 0.6em 0; }
+  .reveal .def.agentic { border-left-color: #4ade80; }
+  .reveal .def b { display: block; font-size: 0.85em; margin-bottom: 0.2em; }
+  .reveal .def span { font-size: 0.8em; }
+  .reveal .cta { display: inline-block; background: #4ade80; color: #000; font-weight: bold; padding: 0.4em 1.2em; border-radius: 8px; margin-top: 0.4em; }
+  .reveal .facts { font-size: 0.75em; }
+  .reveal .facts td:first-child { color: #888; }
+  .reveal .bars { width: 85%; margin: 0.4em auto; text-align: left; font-size: 0.7em; }
+  .reveal .bar { display: flex; align-items: center; margin: 0.25em 0; }
+  .reveal .bar .lbl { width: 9em; }
+  .reveal .bar .track { flex: 1; background: #222; border-radius: 4px; height: 0.9em; position: relative; }
+  .reveal .bar .fill { background: #60a5fa; height: 100%; border-radius: 4px; }
+  .reveal .bar .val { width: 6em; text-align: right; color: #ccc; }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- 1. Title -->
+<section>
+  <p class="section-title">Hireable With AI &middot; Session 1 of 3</p>
+  <h1>AI Engineering vs<br>Agentic Engineering</h1>
+  <h3 style="color:#ddd">For Experienced Developers</h3>
+  <br>
+  <p>Alexey Grigorev</p>
+  <p class="subtitle">DataTalks.Club Academy &middot; Monday, 23 November 2026</p>
+</section>
+
+<!-- 2. Who I am -->
+<section>
+  <h2>Who I Am</h2>
+  <p class="big-number">100,000+</p>
+  <p>I'm Alexey Grigorev. I have taught more than 100,000 students in DataTalks.Club courses.</p>
+</section>
+
+<!-- 2b. Who this is for -->
+<section>
+  <h2>Who This Session Is For</h2>
+  <ul>
+    <li>Developers with 2+ years of experience</li>
+    <li>Laid off, in a notice period or looking for a job</li>
+    <li>You already ship code at work, so I skip the basics</li>
+  </ul>
+  <p class="subtitle">15 to 20 minutes of talk, then your questions</p>
+</section>
+
+<!-- 3. Two definitions -->
+<section>
+  <h2>Two Definitions</h2>
+  <div class="def">
+    <b class="accent">AI Engineering</b>
+    <span>Building apps that use LLMs, like chatbots, search over documents or agents.</span>
+  </div>
+  <div class="def agentic">
+    <b class="green">Agentic Engineering</b>
+    <span>Using tools like Claude Code or Cursor to write most of the code, while you decide what to build and check the result.</span>
+  </div>
+</section>
+
+<!-- 4. How they are different -->
+<section>
+  <h2>How They Are Different</h2>
+  <table style="font-size:1em">
+    <tr><th></th><th class="accent">AI Engineering</th><th class="green">Agentic Engineering</th></tr>
+    <tr><td>Is about</td><td><b>What</b> you build</td><td><b>How</b> you build</td></tr>
+    <tr><td>You build</td><td>A product with an LLM inside</td><td>Any product</td></tr>
+    <tr><td>Hard part</td><td>Making the LLM reliable</td><td>Checking the agent's code</td></tr>
+  </table>
+</section>
+
+<!-- 5. They overlap -->
+<section>
+  <h2>They Overlap</h2>
+  <p>An AI engineer uses coding agents too.</p>
+  <p>An agentic engineer can build anything,<br>including apps with LLMs.</p>
+</section>
+
+<!-- 6. What companies want: AI engineering (data) -->
+<section>
+  <h2>What Companies Want: AI Engineering</h2>
+  <div class="bars" style="font-size:0.85em">
+    <div class="bar"><span class="lbl">RAG</span><span class="track"><span class="fill" style="width:38.2%;display:block"></span></span><span class="val">38.2%</span></div>
+    <div class="bar"><span class="lbl">Prompt engineering</span><span class="track"><span class="fill" style="width:34.2%;display:block"></span></span><span class="val">34.2%</span></div>
+    <div class="bar"><span class="lbl">LLM evaluation</span><span class="track"><span class="fill" style="width:26.6%;display:block"></span></span><span class="val">26.6%</span></div>
+    <div class="bar"><span class="lbl">MCP</span><span class="track"><span class="fill" style="width:20.4%;display:block"></span></span><span class="val">20.4%</span></div>
+  </div>
+  <p class="source">Share of postings, Nov 2026. 9,760 postings from builtin.com.<br>Source: AI Engineering Field Guide, role/07-trends.md</p>
+</section>
+
+<!-- 7. Integrators -->
+<section>
+  <h2>They Hire Builders, Not Model Trainers</h2>
+  <p class="big-number">91.7%</p>
+  <p>of AI first jobs are about RAG, agents and APIs</p>
+  <p class="source">Up from 80.0% in Feb 2026. Source: AI Engineering Field Guide, role/07-trends.md</p>
+</section>
+
+<!-- 8. Example requirements -->
+<section>
+  <h2>What It Looks Like in Real Postings</h2>
+  <ul>
+    <li>Build RAG systems and agents</li>
+    <li>Build evaluation and testing</li>
+    <li>Ship production APIs</li>
+  </ul>
+  <p class="accent"><br>Backend engineering with an LLM inside</p>
+  <p class="source">Source: AI Engineering Field Guide, role/03-responsibilities.md</p>
+</section>
+
+<!-- 9. What companies want: coding agents (data) -->
+<section>
+  <h2>What Companies Want: Coding Agents</h2>
+  <p class="big-number">7.6% &rarr; 13.6%</p>
+  <p>of postings list Claude Code, Copilot, Cursor or Codex</p>
+  <p class="source">Feb to Nov 2026. Source: AI Engineering Field Guide, role/08-trends-appendix.md</p>
+</section>
+
+<!-- 9b. What I see -->
+<section>
+  <h2>What I See</h2>
+  <ul>
+    <li>Using agents is assumed</li>
+    <li>You write the spec and the tests</li>
+    <li>You own every line in production</li>
+  </ul>
+</section>
+
+<!-- 10. Which one to pick -->
+<section>
+  <h2>Which One to Pick</h2>
+  <table style="font-size:1em">
+    <tr><td>Backend</td><td class="accent">AI Engineering</td></tr>
+    <tr><td>Frontend</td><td class="green">Agentic Engineering</td></tr>
+    <tr><td>Data</td><td class="accent">AI Engineering</td></tr>
+  </table>
+  <p><br>Everyone: learn agentic engineering anyway</p>
+</section>
+
+<!-- 11. Next weeks: portfolio -->
+<section>
+  <h2>What to Do in the Next Weeks</h2>
+  <p style="font-size:0.85em">Build one portfolio project</p>
+  <table style="font-size:0.9em">
+    <tr><td>Backend</td><td>Search assistant over docs, with evaluation</td></tr>
+    <tr><td>Frontend</td><td>Full stack app built with Claude Code</td></tr>
+    <tr><td>Data</td><td>Duplicate issue detector with embeddings</td></tr>
+  </table>
+  <p class="source">Source: AI Engineering Field Guide, portfolio/07-project-ideas.md</p>
+</section>
+
+<!-- 12. Bildungsgutschein -->
+<section>
+  <h2>How to Get a Bildungsgutschein</h2>
+  <ol>
+    <li>Talk to your Agentur f&uuml;r Arbeit or Jobcenter counsellor early</li>
+    <li>Pick a training that is AZAV certified</li>
+    <li>The counsellor decides</li>
+  </ol>
+  <p class="source"><a href="https://www.arbeitsagentur.de/karriere-und-weiterbildung/bildungsgutschein">arbeitsagentur.de/karriere-und-weiterbildung/bildungsgutschein</a></p>
+</section>
+
+<!-- 13. Academy -->
+<section>
+  <h2>DataTalks.Club Academy</h2>
+  <p>Agentic Engineering and AI Engineering</p>
+  <p style="font-size:0.8em">3 months, full-time, live, in English<br>Berlin or live online &middot; 15 seats &middot; Start: April 2027</p>
+  <p style="font-size:0.7em" class="subtitle">Designed for Bildungsgutschein funding (AZAV), coming soon</p>
+</section>
+
+<!-- 12b. Counsellor wants German classes first -->
+<section>
+  <h2>If Your Counsellor Says: German First</h2>
+  <ul>
+    <li>B2 is "usually" expected, not required by law</li>
+    <li>Bring job ads in English for your target role</li>
+    <li>Show a plan for your German</li>
+    <li>If it's a no, ask for it in writing (Bescheid)</li>
+  </ul>
+  <p class="source">Source: BA Umsetzungshinweis 2/2026 ("i.d.R. B2") and Fachliche Weisungen FbW. Not legal advice.</p>
+</section>
+
+<!-- 14. Next sessions -->
+<section>
+  <h2>Next Sessions</h2>
+  <p class="subtitle">Hireable With AI, free, on Zoom, Berlin time</p>
+  <div class="def agentic">
+    <b>Monday 30 November, 17:00</b>
+    <span>How I Build Software with Claude Code and Other Coding Agents</span>
+  </div>
+  <div class="def">
+    <b>Tuesday 15 December, 16:30</b>
+    <span>AI Engineering for Experienced Developers: How to Build Apps on Top of LLMs</span>
+  </div>
+</section>
+
+<!-- 14b. Summary and materials (QR) -->
+<section>
+  <h2>Get the summary and materials</h2>
+  <img src="images/materials-qr.svg" alt="QR code to the materials form" style="width:340px;height:340px;background:#fff;padding:8px;border-radius:8px;margin:0.3em auto;display:block">
+  <p class="subtitle">datatalks.club/academy/sessions/materials</p>
+</section>
+
+</div>
+</div>
+<script src="reveal/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: true,
+  transition: 'slide',
+  width: 1200,
+  height: 700,
+});
+</script>
+</body>
+</html>

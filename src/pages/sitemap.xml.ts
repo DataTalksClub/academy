@@ -7,6 +7,7 @@ export const GET: APIRoute = () => {
     '/',
     ...tracks.map((t) => `/${t.slug}/`),
     '/sessions/',
+    '/sessions/ai-engineering-vs-agentic-engineering/',
     '/bildungsgutschein/',
     '/faq/',
     '/privacy/',
