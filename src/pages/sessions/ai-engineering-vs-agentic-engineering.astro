@@ -51,7 +51,7 @@ function youtubeId(raw: string): string {
 const recording = String(recap.frontmatter.recording ?? '').trim();
 const videoId = recording ? youtubeId(recording) : '';
 const watchUrl = videoId ? `https://www.youtube.com/watch?v=${videoId}` : '';
-const embedUrl = videoId ? `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1` : '';
+const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1` : '';
 
 // Internal links in the copy are written from the site root; apply the base path.
 const bodyHtml = (await recap.compiledContent()).replace(/href="\/(?!\/)/g, `href="${url('/')}`);
