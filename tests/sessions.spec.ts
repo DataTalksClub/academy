@@ -65,7 +65,8 @@ test('form posts survey answers as source=layoff_proof with channel UTMs, then s
   const form = page.locator('#register form');
   await form.locator('input[name="email"]').fill('dev+lp@dtcdev.click');
   await form.locator('input[name="name"]').fill('Ada');
-  await form.locator('input[name="sessions"][value="session-2"]').uncheck();
+  await form.locator('input[name="sessions"][value="session-1"]').check();
+  await form.locator('input[name="sessions"][value="session-3"]').check();
   await form.locator('input[name="track_interest"][value="both"]').check();
   await form.locator('input[name="status"][value="job_hunting"]').check();
   await form.locator('input[name="years_dev"]').fill('7');
@@ -112,9 +113,10 @@ test('form needs at least one session and an email', async ({ page }) => {
   await form.locator('button[type="submit"]').click();
   await expect(form.locator('[data-error="invalid"]')).toBeVisible();
   await form.locator('input[name="email"]').fill('dev+x@dtcdev.click');
-  for (const id of ['session-1', 'session-2', 'session-3']) await form.locator(`input[name="sessions"][value="${id}"]`).uncheck();
+  for (const id of ['session-1', 'session-2', 'session-3']) await expect(form.locator(`input[name="sessions"][value="${id}"]`)).not.toBeChecked();
   await form.locator('button[type="submit"]').click();
   await expect(form.locator('[data-error="sessions"]')).toBeVisible();
+  await expect(form.locator('input[name="academy_optin"]')).not.toBeChecked();
   expect(api.signups).toHaveLength(0);
 });
 
@@ -123,6 +125,7 @@ test('failed signup shows the error and keeps the form', async ({ page }) => {
   await page.goto('sessions/');
   const form = page.locator('#register form');
   await form.locator('input[name="email"]').fill('dev+x@dtcdev.click');
+  await form.locator('input[name="sessions"][value="session-1"]').check();
   await form.locator('button[type="submit"]').click();
   await expect(form.locator('[data-error="failed"]')).toBeVisible();
   await expect(form).toBeVisible();
