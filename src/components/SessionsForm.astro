@@ -40,7 +40,7 @@ const rsvp = rsvp_published ? sessions.filter((s) => s.meetupUrl) : [];
         {
           sessions.map((s) => (
             <label class="check-item">
-              <input type="checkbox" name="sessions" value={s.id} checked />
+              <input type="checkbox" name="sessions" value={s.id} />
               <span>{s.shortLabel}</span>
             </label>
           ))
