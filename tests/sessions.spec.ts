@@ -17,7 +17,7 @@ test('sessions page shows all three sessions, the form and an OG image', async (
   await expect(page.locator('[data-session-id]')).toHaveCount(3);
   await expect(page.locator('[data-session-id]').nth(0)).toContainText('Monday 23 November');
   await expect(page.locator('[data-session-id]').nth(1)).toContainText('Monday 30 November');
-  await expect(page.locator('[data-session-id]').nth(2)).toContainText('Monday 7 December');
+  await expect(page.locator('[data-session-id]').nth(2)).toContainText('Tuesday 15 December');
   await expect(page.locator('h1')).toHaveText(H.a);
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute('content', /og\/sessions\.png$/);
   await expect(page.locator('#register form')).toBeVisible();
@@ -166,7 +166,7 @@ test('ics files carry the per-session Zoom link and the right times', async ({ r
   const zoom = {
     'session-1': ['84099607571', '20261123T160000Z', 'AI Engineering vs Agentic Engineering'],
     'session-2': ['86910927132', '20261130T160000Z', 'How I Build Software with Claude Code and Other Coding Agents'],
-    'session-3': ['89929618442', '20261207T160000Z', 'AI Engineering for Experienced Developers: How to Build Apps on Top of LLMs'],
+    'session-3': ['89929618442', '20261215T153000Z', 'AI Engineering for Experienced Developers: How to Build Apps on Top of LLMs'],
   } as const;
   for (const [id, [meeting, start, title]] of Object.entries(zoom)) {
     const res = await request.get(`${baseURL}sessions/${id}.ics`);
@@ -182,6 +182,9 @@ test('ics files carry the per-session Zoom link and the right times', async ({ r
     for (const other of Object.values(zoom)) if (other[0] !== meeting) expect(body).not.toContain(other[0]);
   }
   const all = (await (await request.get(`${baseURL}sessions/hireable-with-ai.ics`)).text()).replace(/\r\n /g, '');
+  // Session 3 moved after the first publish: its SEQUENCE is bumped so calendar clients update it.
+  expect(all).toContain('UID:session-3@hireable-with-ai.academy.datatalks.club\r\nDTSTAMP:20261114T120000Z\r\nDTSTART:20261215T153000Z\r\nDTEND:20261215T163000Z\r\nSEQUENCE:1');
+  expect(all.match(/SEQUENCE:/g)).toHaveLength(1);
   expect(all.match(/BEGIN:VEVENT/g)).toHaveLength(3);
   for (const [, , title] of Object.values(zoom)) expect(all).toContain(title);
   expect(all).not.toMatch(/live coding|live demo|hands-on|merged pull request/i);
@@ -201,4 +204,26 @@ test('QR codes are committed as PNG and SVG for each session', () => {
     expect(existsSync(`public/qr/session-${n}.svg`)).toBe(true);
     expect(readFileSync(`public/qr/session-${n}.svg`, 'utf8')).toContain('<svg');
   }
+});
+
+test('session 1 recap: linked from the sessions page, recording slot and slides', async ({ page, request, baseURL }) => {
+  await mockApi(page);
+  await page.goto('sessions/');
+  await page.locator('[data-session-id="session-1"] a', { hasText: 'Read the recap and answers' }).click();
+  await expect(page).toHaveURL(/sessions\/ai-engineering-vs-agentic-engineering\/$/);
+  await expect(page.locator('h1')).toHaveText('AI Engineering vs Agentic Engineering: Session 1 Recap and Answers');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/sessions\/ai-engineering-vs-agentic-engineering\/$/);
+  // No recording URL yet: the frame says so and nothing points at YouTube.
+  await expect(page.locator('[data-recording-pending]')).toHaveText('Recording coming soon');
+  await expect(page.locator('[data-recap-media] a[href*="youtube"], iframe')).toHaveCount(0);
+  for (const sel of ['[data-slides-link]', '[data-slides-pdf]']) {
+    const href = await page.locator(sel).getAttribute('href');
+    const res = await request.get(new URL(href!, baseURL).toString());
+    expect(res.status()).toBe(200);
+  }
+  const deck = await (await request.get(`${baseURL}sessions/ai-engineering-vs-agentic-engineering/slides/`)).text();
+  expect(deck).toContain('Designed for Bildungsgutschein funding (AZAV), coming soon');
+  expect(deck).not.toContain('cdn.jsdelivr.net');
+  const sitemap = await (await request.get(`${baseURL}sitemap.xml`)).text();
+  expect(sitemap).toContain('/sessions/ai-engineering-vs-agentic-engineering/</loc>');
 });

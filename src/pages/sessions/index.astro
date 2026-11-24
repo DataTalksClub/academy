@@ -53,7 +53,7 @@ const eventsJsonLd = sessions.map((s) => ({
             {
               sessions.map((s) => (
                 <li>
-                  <span class="hero__session-date mono">{s.dateLabel}, {HERO_TIME}</span>
+                  <span class="hero__session-date mono">{s.dateLabel}, {s.heroTime ?? HERO_TIME}</span>
                   <span class="hero__session-topic">{s.heroTopic}</span>
                 </li>
               ))
@@ -113,6 +113,11 @@ const eventsJsonLd = sessions.map((s) => ({
                     ),
                   )
                 }
+                {s.recap && (
+                  <p class="session-card__recap">
+                    <a href={url(s.recap.path)}>{s.recap.label}</a>
+                  </p>
+                )}
               </li>
             ))
           }
@@ -318,6 +323,10 @@ const eventsJsonLd = sessions.map((s) => ({
     padding-left: 1.2rem;
     color: var(--ink-2);
     line-height: 1.55;
+  }
+  .session-card__recap {
+    margin: 12px 0 0;
+    font-weight: 600;
   }
   .session-card__bullets li + li {
     margin-top: 4px;

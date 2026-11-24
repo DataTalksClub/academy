@@ -31,6 +31,7 @@ function event(s: Session): string[] {
     'DTSTAMP:20261114T120000Z',
     `DTSTART:${s.startUtc}`,
     `DTEND:${s.endUtc}`,
+    ...(s.sequence ? [`SEQUENCE:${s.sequence}`] : []),
     `SUMMARY:${esc(title)}`,
     `DESCRIPTION:${esc(desc)}`,
     `LOCATION:${esc(s.zoomUrl)}`,
